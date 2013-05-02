@@ -1,5 +1,5 @@
+#!./bin/python
 #Le pongo .py para tener el syntax highlight de python, en realidad hay que correrlo con scapy
-#!/bin/python
 
 from sys import argv
 from scapy.all import *
@@ -43,5 +43,5 @@ if __name__ == '__main__':
 
 	ip = argv[1]
 
-	print ip, "->"
-	print buscar(ip)
+	print "IP destino:", ip
+	print quienTiene(ip)
