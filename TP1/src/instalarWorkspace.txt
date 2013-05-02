@@ -1,0 +1,20 @@
+Bajen el paquete y descompriman:
+$ wget
+https://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.9.1.tar.gz
+$ tar xvfz virtualenv-1.9.1.tar.gz
+
+Ejecuten el binario para crear un ambiente virtual en su carpeta de
+proyecto:
+$ cd virtualenv-1.9.1
+$ ./virtualenv.py ~/project/redes_tp1
+$ cd ~/project/redes_tp1
+
+Bajen a última versión estable de scapy[1]
+
+$ wget http://www.secdev.org/projects/scapy/files/scapy-latest.tar.gz
+$ bin/pip install scapy-latest.tar.gz
+
+Ahora tienen configurado un ambiente con scapy instalado.
+OJO solo pueden usar el binario de python ubicado en:
+
+~/project/redes_tp1/bin/python
