@@ -1,4 +1,3 @@
-#!./bin/python
 #Le pongo .py para tener el syntax highlight de python, en realidad hay que correrlo con scapy
 
 from sys import argv
