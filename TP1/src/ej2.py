@@ -1,16 +1,43 @@
-#Script para pegar en el scapy
+#!/usr/bin/python
+
+# este script se puede correr con ./, empieza a caputar hasta q se apriete ctrl + c
 import sys
+import datetime
+import os
+
+from scapy.all import *
+
+DUMP_DIR='capturas'
+
 
 def grabar(f, p):
     f.write("%d %s %s %s %s\n" % (p.op, p.psrc, p.pdst, p.hwsrc, p.hwdst))
 
-dump = open('capturaNoche.data', 'w') #ojo que borra lo que habia y abre un archivo en blanco!!
-escribirPaquete = lambda p: grabar(dump, p)
-capturar = lambda: sniff(lfilter = lambda p: p.haslayer('ARP'), prn = lambda p: escribirPaquete(p))
+if __name__ == '__main__':
 
-#hasta aca!
+	if os.geteuid():
+		print "Vuelve cuando seas root (correr con sudo :) )"
+		exit()
+	
+	# seteamos lugar donde se va a imprimir el archivo de salida
+	
+	if not os.path.exists(DUMP_DIR):
+		os.mkdir(DUMP_DIR)
 
-#capturar() en la consola de scapy: empieza a capturar y guarda en el archivo
-#lo interrumpimos con ctrl c cuando nos aburrimos, y despues  hay que hacer
-dump.close()
-#para que guarde todo efectivamente
+	time = datetime.datetime.now().strftime('%d%m%y-%H:%M:%S')
+	filename = DUMP_DIR + '/' + time + '.data'
+	dump = open(filename, 'w') 
+
+	escribirPaquete = lambda p: grabar(dump, p)
+	capturar = lambda: sniff(lfilter = lambda p: p.haslayer('ARP'), prn = lambda p: escribirPaquete(p))
+
+	print "Inicio de captura, para interrumpir -> ctrl + c"
+	capturar()
+
+	#para que guarde todo efectivamente
+	dump.close()
+
+	print
+	print 'Captura guardada en', filename
+
+	exit()

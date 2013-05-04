@@ -84,7 +84,7 @@ if __name__ == '__main__':
 	elif len(macs) == 1:
 		print 'Mac:', macs[0]
 	else:
-		print 'Mac:',
+		print 'Macs:',
 		for mac in macs:
 			print mac,
 
