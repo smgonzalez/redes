@@ -1,21 +1,38 @@
-#Le pongo .py para tener el syntax highlight de python, en realidad hay que correrlo con scapy
+#!/usr/bin/python
 
-from sys import argv
+import sys
+import os
 from scapy.all import *
 
+
+
 def quienTiene(ip):
-	# Creamos un nuevo paquete ARP y le seteamos la direccion ip cuya mac quiero averiguar
-	arp = ARP()
-	arp.setfieldval('pdst', ip)
-	#Lo mandamos y esperamos respuesta
-	rec = sr(arp, timeout = 1)
-	#Lo mostramos lindo
-	rec[0].show()
-	#Armamos una lista de mappings 'ip': dir ip, 'mac': dir mac (como para hacer algo mas)
-	lst = []
-	if len(rec) > 0:
-		for pkg in rec[0]:
-			lst.append({'ip': pkg[0].pdst, 'mac' : pkg[1].hwsrc })
+
+	try:
+		# redireccionamos stdout a /dev/null para no ver la salida del scapy
+		f = open(os.devnull, 'w')
+		stdout = sys.stdout
+		sys.stdout = f
+		# Creamos un nuevo paquete ARP y le seteamos la direccion ip cuya mac quiero averiguar
+		arp = ARP()
+		arp.setfieldval('pdst', ip)
+		#Lo mandamos y esperamos respuesta
+		rec = sr(arp, timeout = 1)
+		#Lo mostramos lindo
+		rec[0].show()
+		#Armamos una lista de macs
+		lst = []
+		if len(rec) > 0:
+			for pkg in rec[0]:
+				lst.append(pkg[1].hwsrc)
+
+	except:
+		return -1
+
+	finally:
+		# restauramos stdout
+		sys.stdout = stdout
+
 	return lst
 
 def buscar(ipBase, step = 1):
@@ -24,6 +41,11 @@ def buscar(ipBase, step = 1):
 	for i in range(1, 255 / step):
 		ipArmada = ipBase + str(step * i)
 		ips = quienTiene(ipArmada)
+		
+		if ips == -1:
+			print 'Error al buscar direccion MAC'
+			exit()
+
 		if len(ips) == 0:
 			maps[ipArmada] = []
 		else:
@@ -36,11 +58,34 @@ def buscar(ipBase, step = 1):
 
 
 if __name__ == '__main__':
-	if len(argv) < 2:
+
+	if os.geteuid():
+		print "Vuelve cuando seas root (correr con sudo :) )"
+		exit()
+
+	if len(sys.argv) < 2:
 		print "Usar: ./ej1 <numero ip>"
 		exit()
 
-	ip = argv[1]
+	ip = sys.argv[1]
 
 	print "IP destino:", ip
-	print quienTiene(ip)
+
+	ips = quienTiene(ip)
+	if ips == -1:
+		print 'Error al buscar direccion MAC'
+		exit()
+
+	macs = quienTiene(ip)
+	print
+
+	if len(macs) == 0:
+		print ip, 'no es una ip valida o no puede ser alcanzada'
+	elif len(macs) == 1:
+		print 'Mac:', macs[0]
+	else:
+		print 'Mac:',
+		for mac in macs:
+			print mac,
+
+	exit()
