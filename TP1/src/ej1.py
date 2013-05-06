@@ -2,9 +2,9 @@
 
 import sys
 import os
+import logging
+logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 from scapy.all import *
-
-
 
 def quienTiene(ip):
 
@@ -13,14 +13,18 @@ def quienTiene(ip):
 		f = open(os.devnull, 'w')
 		stdout = sys.stdout
 		sys.stdout = f
+		
 		# Creamos un nuevo paquete ARP y le seteamos la direccion ip cuya mac quiero averiguar
 		arp = ARP()
 		arp.setfieldval('pdst', ip)
+		
 		#Lo mandamos y esperamos respuesta
-		rec = sr(arp, timeout = 1)
+		rec = sr(arp, timeout = 3)
+		
 		#Lo mostramos lindo
 		rec[0].show()
-		#Armamos una lista de macs
+		
+		#Armamos lista de macs recibidas para devolver
 		lst = []
 		if len(rec) > 0:
 			for pkg in rec[0]:

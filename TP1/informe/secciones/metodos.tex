@@ -4,7 +4,35 @@
 % Hablar de entropia (como la vamos a tomar, como vamos a sniffear. Tambien puede ponerse un pseudocodigo, o una explicacion del codigo
 
 \subsection{Primera Consigna: Implementaci\'on de un cliente ARP}
-El primer paso consiste en implementar un cliente ARP, definiendo una funci\'on que, dada una direcci\'on IP, realice un pedido por la direcci\'on f\'isica asociada y, en caso de que reciba respuesta, la muestre. *** ESTO ES LO QUE HACEMOS??
+El primer paso consiste en implementar una funci\'on que, dada una direcci\'on IP, env\'ie un mensaje ARP a trav\'es de la red local preguntando con qu\'e direcci\'on MAC se corresponde. Si recibe respuesta, se muestra por pantalla dicha direcci\'on; en caso contrario se indica que la IP es inexistente, o no puede ser alcanzada desde la red local.\\
+
+Como mencionamos, esta consigna se implementa utilizando la herramienta \emph{scapy}. Ya que la misma funciona sobre python, programamos la funci\'on en este lenguaje. Para el env\'io del paquete ARP instanciamos un paquete del tipo ARP, y modificamos solamente el campo \emph{pdst}, ya que los otros tienen por defecto los valores que necesitamos (la IP de la m\'aquina que env\'ia, tipo de mensaje \emph{who-has}, etc). El env\'io en s\'i se realiza a trav\'es de la funci\'on \emph{sr} (send and receive), utilizando un timeout de 3 segundos. Esta funci\'on devuelve una lista cuyo primer elemento son los paquetes que respondieron, y el segundo los paquetes sin respuestas. Si el primer elemento no es vac\'io, se devuelven las direcciones MAC< para ser mostradas luego por pantalla; en caso contrario se indicar\'a entonces que no se puede acceder a esa ip. *** NOSOTROS DEVOLVEMOS UNA LISTA, PERO  CREO QUE SOLO DEVUELVE UNA MAC POR CADA WHO-HAS??\\
+
+Utilizando la funci\'on programada, vamos a analizar qu\'e ocurre al suministrarle distintos tipos de direcciones IP. Todos estos casos fueron probados sobre una red wireless, cuya IP era 192.168.0.3. Probamos los siguientes casos:
+
+\begin{enumerate}
+ \item Direcciones que pertenecen a la red (para conocer las direcciones IP que se encuentran en la red utilizamos la funci\'on \emph{arping}, inclu\'ida dentro de \emph{scapy}): 192.168.0.1, 192.168.0.4, 192.168.0.6
+ \item Direcciones con la m\'ascara de red correcta, pero que no pertenecen a hosts conectados a la misma. Por ejemplo: 192.168.0.2, 192.168.0.5, etc.
+ \item Misma direcci\'on que la m\'aquina de origen (en este caso, 192.168.0.3).
+ \item Direcci\'on IP correspondiente a la m\'aquina de origen, seg\'un se ve de afuera (utilizando por ejemplo http://www.whatismyip.com/). En este caso dicha direcci\'on fue 24.232.212.124.
+ \item Direcci\'on broadcast de la red (192.168.0.255)
+ \item Direcci\'on 0.0.0.0
+ \item Direcci\'on 255.255.255.255
+ \item Direcciones inv\'alidas (por ejemplo: 123456789)
+ \item Direcciones que no pertenecen a la red local (por ejemplo, 173.194.42.35)
+\end{enumerate}
+
+*** LO DE ABAJO CREO QUE VA EN RESULTADOS.
+El \'unico caso en que se recibe una respuesta con la direcci\'on MAC solicitada es cuando se pregunta por una IP que pertenece a la red. En todos los otros casos el mensaje ARP no recibe respuesta alguna.\\
+
+Utilizando, al mismo tiempo que la funci\'on programada, la herramienta Wireshark, puede observarse con un poco m\'as de detalle qu\'e ocurre en cada una de estas situaciones. El primer caso funciona como se espera: al paquete \emph{who-has} (enviado de manera broadcast) le sigue un paquete \emph{is-at}, con el host cuya MAC se quiere conocer como origen, y dirigido \'unicamente a la m\'aquina que pregunt\'o. Si se pregunta por una IP que no existe, pero que tiene una m\'ascara correspondiente con la red local, no se observa ning\'un tipo de respuesta. Sin embargo, si se pregunta por un direcci\'on cuya m\'ascara no se corresponde con la red (casos 4, 6, 7 y 8) el funcionamiento es distinto. En vez de enviar un paquete ARP de manera broadcast, la m\'aquina pregunta primero quien tiene la direcci\'on 192.168.0.1 (direcci\'on del router). Una vez obtenida esta direcci\'on, pregunta espec\'ificamente al router qui\'en tiene la direcci\'on buscada. No se recibe  En el caso de una direcc\'on inv\'alida, la direcci\'on enviada se traduce a una direcci\'on IP correcta (en este caso se envi\'o el paquete pregunt\'ando por la direcci\'on 7.91.205.21).
+
+
+
+
+
+
+
 
 \subsection{Segunda Consigna: Capturando tr\'afico}
 
