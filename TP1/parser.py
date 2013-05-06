@@ -48,6 +48,7 @@ def getEdgeList(dump, timeStart= None, timeEnd = None):
 				break
 		else:
 			continue
+	f.close()
 	return edgeList
 
 def grafoDeRed(dump, timeStart = None, timeEnd = None, plot = False):
