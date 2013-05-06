@@ -9,11 +9,13 @@ import os
 import re
 import collections
 import math
+import parser
 
 params_readTime  = 'readtime' #con qué formato interpreto el timestamp
 params_timePlace = 'timeplace' #en qué índice de split(línea de entrada) está el timestamp
 params_history = 'history' #en minutos, cuánta historia consideramos
 params_dataPlace = 'dataplace' #qué índices de split(línea de entrada) consideramos como información
+params_live = 'live'
 
 params = {params_readTime : None,
 	params_timePlace : None,
@@ -39,8 +41,26 @@ def parseParams(args):
 
 def entropia(counter):
 	total = float(sum(counter.values()))
-	ponderacion = lambda s: counter[s]/total * (math.log(total/counter[s]))
+	ponderacion = lambda s: counter[s]/total * (math.log(total/counter[s], 2))
 	return sum(map(ponderacion, counter.iterkeys()))
+
+def contarSimbolos(dump, startTime = None, endTime = None):
+	f = open(dump, 'r')
+	startEndFilter = lambda l: parser.filtrarPorTiempo(l, startTime, endTime)
+	l = parser.readFilteredLine(f, startEndFilter)
+	cantidad = collections.Counter()
+	while l:
+		l = l.split()
+		cantidad[l[1]+'-'+l[2]] += 1
+		l = parser.readFilteredLine(f, startEndFilter)
+	return cantidad
+
+def calcularTodo(dump, startTime = None, endTime = None):
+	if type(startTime) == str:
+		startTime = parser.parseStrTime(startTime)
+	if type(endTime) == str:
+		endTime = parser.parseStrTime(endTime)
+	return entropia(contarSimbolos(dump, startTime, endTime))
 
 if __name__ == '__main__':
 	cantidad = collections.Counter()
