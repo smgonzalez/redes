@@ -11,7 +11,7 @@ DUMP_DIR='capturas'
 
 
 def grabar(f, p):
-    f.write("%d %s %s %s %s\n" % (p.op, p.psrc, p.pdst, p.hwsrc, p.hwdst))
+    f.write("%d %s %s %s %s %s\n" % (p.op, p.psrc, p.pdst, p.hwsrc, p.hwdst, datetime.datetime.now().strftime("%d-%m-%y/%I:%M%p")))
 
 if __name__ == '__main__':
 
