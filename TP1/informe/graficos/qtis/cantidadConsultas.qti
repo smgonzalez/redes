@@ -1,0 +1,195 @@
+QtiPlot 0.9.8 project file
+<scripting-lang>	muParser
+<windows>	2
+<table>
+Tabla1	90	2	06/05/13 00:19
+geometry	0	-12	445	220	
+header	18131166137[X]	56[Y]
+ColWidth	100	100	
+<com>
+</com>
+ColType	1;0/13	0;0/13
+ReadOnlyColumn	0	0
+HiddenColumn	0	0
+Comments		56	
+WindowLabel		2
+<data>
+0	181.31.167.140	280
+1	181.31.167.204	112
+2	181.31.167.251	65
+3	190.244.32.153	112
+4	190.244.32.48	80
+5	190.244.32.58	952
+6	190.244.33.201	194
+7	190.244.33.75	1744
+8	190.244.34.156	88
+9	190.244.34.213	112
+10	190.244.34.249	4468
+11	190.244.34.47	408
+12	190.244.34.54	216
+13	190.244.35.125	258
+14	190.244.35.196	520
+15	190.244.36.225	560
+16	190.244.37.188	240
+17	190.244.37.236	88
+18	190.244.38.115	240
+19	190.244.38.19	328
+20	190.244.39.1	586
+21	190.244.39.153	528
+22	190.244.39.182	587
+23	190.244.40.194	88
+24	190.244.40.38	208
+25	190.244.40.46	1408
+26	190.244.42.109	200
+27	190.244.42.124	5976
+28	190.244.42.44	176
+29	190.244.43.107	152
+30	190.244.44.206	280
+31	190.244.44.228	120
+32	190.244.44.232	56
+33	190.244.44.56	1226
+34	190.244.45.142	352
+35	190.244.45.2	336
+36	190.244.47.142	256
+37	190.244.47.22	565
+38	190.244.47.227	120
+39	190.244.47.55	1832
+40	190.244.47.73	264
+41	190.244.48.182	120
+42	190.244.48.187	248
+43	190.244.49.93	1264
+44	190.244.51.109	80
+45	190.244.51.119	1896
+46	190.244.51.132	80
+47	190.244.51.208	392
+48	190.244.51.33	168
+49	190.244.51.35	96
+50	190.244.52.148	560
+51	190.244.52.58	80
+52	190.244.53.150	88
+53	190.244.53.167	152
+54	190.244.53.246	208
+55	190.244.53.82	1344
+56	190.244.55.118	96
+57	190.244.55.151	312
+58	190.244.55.203	72
+59	190.244.55.205	2568
+60	190.244.55.206	88
+61	190.244.55.240	168
+62	190.244.55.5	96
+63	190.244.55.55	208
+64	190.244.56.199	1216
+65	190.244.56.44	112
+66	190.244.57.163	280
+67	190.244.57.203	560
+68	190.244.57.27	792
+69	190.244.58.126	248
+70	190.244.58.138	2440
+71	190.244.58.158	104
+72	190.244.58.159	2184
+73	190.244.58.76	96
+74	190.244.59.156	1328
+75	190.244.59.172	98
+76	190.244.59.209	144
+77	190.244.59.236	264
+78	190.244.59.5	898
+79	190.244.60.137	98
+80	190.244.60.244	168
+81	190.244.61.105	72
+82	190.244.61.13	1288
+83	190.244.61.23	168
+84	190.244.61.53	4600
+85	190.244.61.94	224
+86	190.244.62.120	512
+87	190.244.63.226	149
+88	190.244.63.31	912
+89	190.244.63.50	56
+</data>
+</table>
+<multiLayer>
+Gráfica1	1	1	06/05/13 00:21
+geometry	457	-36	733	952	active
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	15	11	708	879
+<PageGeometry>0.0206897	0.0121681	0.976552	0.972345</PageGeometry>
+PlotTitle		#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	0	1	0	
+AxesTitles	Cantidad de veces demandad	IP destino		%(?Y)	
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	4	4	4	4
+AxesTitleDistance	2	-1	1	-1
+TitleFont	Ubuntu	24	75	0	0	0
+ScaleFont0	Ubuntu	14	75	0	0	0
+ScaleFont1	Ubuntu	20	75	0	0	0
+ScaleFont2	Ubuntu	14	75	0	0	0
+ScaleFont3	Ubuntu	20	75	0	0	0
+AxisFont0	Ubuntu	6	75	1	0	0
+AxisFont1	Ubuntu	20	50	0	0	0
+AxisFont2	Ubuntu	10	75	1	0	0
+AxisFont3	Ubuntu	20	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#1f1c1b	#1f1c1b	#1f1c1b	#1f1c1b
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	Tabla1_18131166137	Tabla1_56	10	1	#000000	0	1	7	0	#000000	#000000	1	#00ff00	0	0	0	2	0	0	89	1
+scale	0	0	91	1	92	100	0	0
+scale	1	0	91	1	92	100	0	0
+scale	2	0	6000	0	13	5	0	0
+scale	3	0	6000	0	13	5	0	0
+LabelsFormat	0	6	0	6	0	6	0	6
+AxisType	1;Tabla1_18131166137	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	3	5
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	6	4	1	4
+ShowTicksPolicy	-1	42212960	0	0
+EnabledTickLabels	1	1	1	1
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>4156.146179402</x>
+<y>77.765625</y>
+<right>6279.06976744186</right>
+<bottom>73.171875</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1) Cantidades
+</Text>
+<Font>Ubuntu	14	75	1	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<open>1</open>
