@@ -10,10 +10,10 @@ import re
 import collections
 import math
 
-params_readTime  = 'readtime'
-params_timePlace = 'timeplace'
-params_history = 'history' #en minutos
-params_dataPlace = 'dataplace'
+params_readTime  = 'readtime' #con qué formato interpreto el timestamp
+params_timePlace = 'timeplace' #en qué índice de split(línea de entrada) está el timestamp
+params_history = 'history' #en minutos, cuánta historia consideramos
+params_dataPlace = 'dataplace' #qué índices de split(línea de entrada) consideramos como información
 
 params = {params_readTime : None,
 	params_timePlace : None,
@@ -22,6 +22,7 @@ params = {params_readTime : None,
 }
 
 def parseParams(args):
+	#--paramA = valorA --paramB = valorB ...
 	argString = reduce(lambda a, b: a+' '+b, args)
 	paramDict = {}
 	for paramKey in params.iterkeys():
@@ -44,7 +45,7 @@ def entropia(counter):
 if __name__ == '__main__':
 	cantidad = collections.Counter()
 	paramDict = parseParams(sys.argv[1:])
-	if paramDict[params_timePlace] == None or paramDict[params_readTime] == None or paramDict[params_history]:
+	if paramDict[params_timePlace] == None or paramDict[params_readTime] == None or paramDict[params_history] == None:
 		l = sys.stdin.readline()
 		while l:
 			data = l.split()
