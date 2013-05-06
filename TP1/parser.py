@@ -1,53 +1,77 @@
 #coding: utf-8
-class Arp:
-	"""Datos de captura de un paquete ARP (así no necesitamos scapy para todo esto). En realidad, tampoco lo necesitamos, me parece."""
-	ipSrc = ''
-	ipDst = ''
-	macSrc = ''
-	macDst = ''
-	op = ''
-	tmstmp = None
+# class Arp:
+# 	"""Datos de captura de un paquete ARP (así no necesitamos scapy para todo esto). En realidad, tampoco lo necesitamos, me parece."""
+# 	ipSrc = ''
+# 	ipDst = ''
+# 	macSrc = ''
+# 	macDst = ''
+# 	op = ''
+# 	tmstmp = None
 
-	# def __init__():
-	# 	return None
+# 	# def __init__():
+# 	# 	return None
 
-	def __init__(self, linea):
-		# pkg = Arp()
-		dataList = linea.split()
-		self.op = dataList[0]
-		self.ipSrc = dataList[1]
-		self.ipDst = dataList[2]
-		self.macSrc = dataList[3]
-		self.macDst = dataList[4]
-		if len(dataList) > 5:
-			import time as tm
-			self.tmpstmp = tm.strptime(dataList[5], '%d-%m-%y/%I:%M%p')
+# 	def __init__(self, linea):
+# 		# pkg = Arp()
+# 		dataList = linea.split()
+# 		self.op = dataList[0]
+# 		self.ipSrc = dataList[1]
+# 		self.ipDst = dataList[2]
+# 		self.macSrc = dataList[3]
+# 		self.macDst = dataList[4]
+# 		if len(dataList) > 5:
+# 			import time as tm
+# 			self.tmpstmp = tm.strptime(dataList[5], '%d-%m-%y/%I:%M%p')
 
-	def getRel(self):
-		return (self.ipSrc, self.ipDst)
+# 	def getRel(self):
+# 		return (self.ipSrc, self.ipDst)
+
+def readFilteredLine(f, filtro):
+	l = self.readline()
+	while l and not filtro(l):
+		l = self.readline()
+	return l
 
 import time as tm
-parseStrTime = lambda string: tm.strptime(string, '%d-%m-%y/%I:%M%p')
+import sys
+parseStrTime = lambda string: tm.strptime(string, '%d-%m-%y/%I:%M%p') if string else None
+esValida = lambda cota, val, cmp: cota is None or cmp(cota, val)
+
+def filtrarPorTiempo(linea, timeStart, timeEnd):
+	l = linea.split() if linea else None
+	if len(l) == 0 or l[0] != 1:
+		return False 
+	elif len(l) < 6:
+		return True
+	else:
+		return esValida(timeStart, parseStrTime(l[5]), lambda x,y: x<=y) and esValida(timeEnd, parseStrTime(l[5]), lambda x,y: x>=y)
+
 
 def getEdgeList(dump, timeStart= None, timeEnd = None):
 	f = open(dump, 'r')
-	esValida = lambda cota, val, cmp: cota is None or cmp(cota, parseStrTime(val))  #cómo me gusta poner implicaciones en los ifs
 	#l[0] = op, l[1] = ipSrc, l[2] = ipDst
-	for linea in f:
-		l = linea.split() 
-		if l[0] == '1' and esValida(timeStart, l[5], lambda x, y: x<=y): 
-			break
-	edgeList = [(l[1], l[2])]
-	for linea in f:
-		l = linea.split()
-		if l[0] == '1':
-			if esValida(timeEnd, l[5], lambda x, y: x>=y):
-				# ipSrc -> ipDst
-				edgeList.append((l[1], l[2]))
-			else:
-				break
-		else:
-			continue
+	# for linea in f:
+	# 	l = linea.split() 
+	# 	if l[0] == '1' and esValida(timeStart, parseStrTime(l[5] if len(l) > 5 else None), lambda x, y: x<=y): 
+	# 		break
+	# edgeList = [(l[1], l[2])]
+	# for linea in f:
+	# 	l = linea.split()
+	# 	if l[0] == '1':
+	# 		if esValida(timeEnd, parseStrTime(l[5] if len(l) > 5 else None), lambda x, y: x>=y):
+	# 			# ipSrc -> ipDst
+	# 			edgeList.append((l[1], l[2]))
+	# 		else:
+	# 			break
+	# 	else:
+	# 		continue
+
+	l = readFilteredLine(f, lambda l: filtrarPorTiempo(l, timeStart, timeEnd))
+	edgeList = []
+	while l:
+		l = l.split()
+		edgeList[(l[1], l[2])]
+		l = freadFilteredLine(f, lambda l: filtrarPorTiempo(l, timeStart, timeEnd))
 	f.close()
 	return edgeList
 
