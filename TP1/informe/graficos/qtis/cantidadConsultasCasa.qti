@@ -1,0 +1,173 @@
+QtiPlot 0.9.8 project file
+<scripting-lang>	muParser
+<windows>	2
+<table>
+capturaOff_ips_cant_filtrado	68	2	06/05/13 19:46
+geometry	0	10	445	220	
+header	1[X]	2[Y]
+ColWidth	100	100	
+<com>
+</com>
+ColType	1;0/13	0;0/13
+ReadOnlyColumn	0	0
+HiddenColumn	0	0
+Comments			
+WindowLabel	/home/sergiogonza/Facu/repos/redes/TP1/informe/graficos/datos/capturaOff_ips_cant_filtrado.csv	2
+<data>
+0	169.254.255.255	452
+1	172.20.10.1	2834
+2	172.20.10.106	55
+3	172.20.10.111	338
+4	172.20.10.12	69
+5	172.20.10.123	131
+6	172.20.10.126	87
+7	172.20.10.128	204
+8	172.20.10.13	66
+9	172.20.10.130	77
+10	172.20.10.132	159
+11	172.20.10.133	195
+12	172.20.10.137	316
+13	172.20.10.139	55
+14	172.20.10.14	69
+15	172.20.10.140	179
+16	172.20.10.141	112
+17	172.20.10.142	59
+18	172.20.10.143	63
+19	172.20.10.146	257
+20	172.20.10.15	68
+21	172.20.10.150	161
+22	172.20.10.151	398
+23	172.20.10.152	192
+24	172.20.10.153	269
+25	172.20.10.154	52
+26	172.20.10.155	142
+27	172.20.10.156	61
+28	172.20.10.157	184
+29	172.20.10.164	407
+30	172.20.10.167	152
+31	172.20.10.172	394
+32	172.20.10.175	77
+33	172.20.10.185	110
+34	172.20.10.187	214
+35	172.20.10.188	73
+36	172.20.10.192	99
+37	172.20.10.200	172
+38	172.20.10.202	51
+39	172.20.10.206	267
+40	172.20.10.208	108
+41	172.20.10.209	103
+42	172.20.10.211	83
+43	172.20.10.212	1796
+44	172.20.10.219	78
+45	172.20.10.222	97
+46	172.20.10.232	77
+47	172.20.10.238	131
+48	172.20.10.240	161
+49	172.20.10.30	446
+50	172.20.10.61	163
+51	172.20.10.62	76
+52	172.20.10.63	131
+53	172.20.10.66	214
+54	172.20.10.71	69
+55	172.20.10.72	106
+56	172.20.10.73	112
+57	172.20.10.74	167
+58	172.20.10.78	394
+59	172.20.10.80	151
+60	172.20.10.82	153
+61	172.20.10.85	115
+62	172.20.10.88	92
+63	172.20.10.90	283
+64	172.20.10.92	74
+65	172.20.10.96	55
+66	192.168.1.254	56
+67	192.168.133.1	6818
+</data>
+</table>
+<multiLayer>
+Gráfica1	1	1	06/05/13 19:48
+geometry	445	0	753	942	active
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	5	5	704	861
+<PageGeometry>0.00671141	0.00559284	0.944966	0.963087</PageGeometry>
+PlotTitle		#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	1	1	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	0	1	0	
+AxesTitles	 Cantidad	IPs destino		%(?Y)	
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	4	5124	4
+AxesTitleDistance	2	-1	2	-1
+TitleFont	Ubuntu	24	75	0	0	0
+ScaleFont0	Ubuntu	20	75	0	0	0
+ScaleFont1	Ubuntu	20	75	0	0	0
+ScaleFont2	Ubuntu	20	75	0	0	0
+ScaleFont3	Ubuntu	20	75	0	0	0
+AxisFont0	Ubuntu	8	75	1	0	0
+AxisFont1	Ubuntu	20	50	0	0	0
+AxisFont2	Ubuntu	10	75	1	0	0
+AxisFont3	Ubuntu	20	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#1f1c1b	#1f1c1b	#1f1c1b	#1f1c1b
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	capturaOff_ips_cant_filtrado_1	capturaOff_ips_cant_filtrado_2	10	1	#000000	0	1	7	0	#000000	#000000	1	#00ff00	0	0	0	2	0	0	67	1
+scale	0	0	70	1	71	1	0	0
+scale	1	0	70	1	71	1	0	0
+scale	2	51	6000	0	5	2	1	0	2000	2500	50	0	0	1	1	0	4	1
+scale	3	51	6000	0	5	2	1	0	2000	2500	50	0	0	1	1	0	4	1
+LabelsFormat	0	6	0	6	0	6	0	6
+AxisType	1;capturaOff_ips_cant_filtrado_1	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	33	0	0	0
+EnabledTickLabels	1	1	1	1
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>3511.97053407</x>
+<y>60</y>
+<right>5909.7605893186</right>
+<bottom>56.3157894736842</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1) Cantidad
+</Text>
+<Font>Ubuntu	20	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<open>1</open>

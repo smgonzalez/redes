@@ -1,0 +1,131 @@
+QtiPlot 0.9.8 project file
+<scripting-lang>	muParser
+<windows>	3
+<table>
+entroOfi3	16	3	06/05/13 23:53
+geometry	29	211	445	220	
+header	1[X]	4[Y]	3[Y]
+ColWidth	100	100	100	
+<com>
+</com>
+ColType	1;0/13	0;0/13	0;0/13
+ReadOnlyColumn	0	0	0
+HiddenColumn	0	0	0
+Comments				
+WindowLabel	/home/sergiogonza/Facu/repos/redes/TP1/src/datos/entroOfi3.txt	2
+<data>
+0	03:33PM	7.194	7.578
+1	04:33PM	7.458	0
+2	05:33PM	7.362	7.118
+3	06:33PM	5.921	0
+4	07:33PM	5.026	4.981
+5	08:33PM	4.714	0
+</data>
+</table>
+<table>
+entroOfi2	13	2	07/05/13 00:05
+geometry	0	431	445	220	
+header	1[X]	2[Y]
+ColWidth	100	100	
+<com>
+</com>
+ColType	1;0/13	0;0/13
+ReadOnlyColumn	0	0
+HiddenColumn	0	0
+Comments			
+WindowLabel	/home/sergiogonza/Facu/repos/redes/TP1/src/datos/entroOfi2.txt	2
+<data>
+0	03:33PM	7.578
+1	05:33PM	7118
+2	07:33PM	4.981
+</data>
+</table>
+<multiLayer>
+Gráfica1	1	1	07/05/13 00:14
+geometry	570	112	669	562	active
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	6	5	647	495
+<PageGeometry>0.00907716	0.00972763	0.97882	0.963035</PageGeometry>
+PlotTitle		#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	0	1	0	
+AxesTitles	Ventana horaria	Entropia		%(?Y)	
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	4	5124	4
+AxesTitleDistance	2	-1	2	-1
+TitleFont	Ubuntu	14	75	0	0	0
+ScaleFont0	Ubuntu	11	75	0	0	0
+ScaleFont1	Ubuntu	11	75	0	0	0
+ScaleFont2	Ubuntu	11	75	0	0	0
+ScaleFont3	Ubuntu	11	75	0	0	0
+AxisFont0	Ubuntu	11	50	0	0	0
+AxisFont1	Ubuntu	11	50	0	0	0
+AxisFont2	Ubuntu	11	50	0	0	0
+AxisFont3	Ubuntu	11	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#1f1c1b	#1f1c1b	#1f1c1b	#1f1c1b
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	entroOfi3_1	entroOfi3_3	3	1	#000000	0	1	7	0	#ff0000	#ff0000	1	#ff0000	0	0	50	2	0	0	15	1
+curve	entroOfi3_1	entroOfi3_4	3	1	#000000	0	1	7	0	#000000	#000000	1	#000000	0	50	50	2	0	0	15	1
+scale	0	4	8	0	9	5	0	0
+scale	1	4	8	0	9	5	0	0
+scale	2	0	7	0	8	5	0	0
+scale	3	0	7	0	8	5	0	0
+LabelsFormat	0	6	0	6	0	6	0	6
+AxisType	0	0	1;entroOfi3_1	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	69516800	0
+EnabledTickLabels	1	1	1	1
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>3.5827702702703</x>
+<y>8.0552995391705</y>
+<right>6.70439189189189</right>
+<bottom>7.6036866359447</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)Entropia medida cada 2 horas
+\l(2)Entropia medida cada hora
+</Text>
+<Font>Ubuntu	12	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<open>1</open>

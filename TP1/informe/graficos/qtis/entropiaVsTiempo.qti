@@ -1,0 +1,120 @@
+QtiPlot 0.9.8 project file
+<scripting-lang>	muParser
+<windows>	2
+<table>
+Tabla1	25	2	06/05/13 23:26
+geometry	0	0	445	220	
+header	1[X]	2[Y]
+ColWidth	100	129	
+<com>
+</com>
+ColType	1;0/13	0;1/3
+ReadOnlyColumn	0	0
+HiddenColumn	0	0
+Comments			
+WindowLabel		2
+<data>
+0	01:48PM-02:47PM	4.601
+1	02:48PM-03:47PM	5.024
+2	03:48PM-04:47PM	5.026
+3	04:48PM-05:47PM	5.081
+4	05:48PM-06:47PM	5.127
+5	06:48PM-07:47PM	5.224
+6	07:48PM-08:47PM	5.403
+7	08:48PM-09:47PM	5.31
+8	09:48PM-10:47PM	5.429
+9	10:48PM-11:47PM	5.642
+10	11:48PM-12:47AM	5.613
+11	12:48AM-01:47AM	5.647
+12	01:48AM-02:47AM	5.605
+13	02:48AM-03:47AM	5.201
+14	03:48AM-04:47AM	4.902
+</data>
+</table>
+<multiLayer>
+Gráfica1	1	1	06/05/13 23:28
+geometry	581	60	694	596	active
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	5	5	676	531
+<PageGeometry>0.00728863	0.00912409	0.985423	0.968978</PageGeometry>
+PlotTitle		#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	0	1	0	
+AxesTitles	Ventana horaria	Entropia		%(?Y)	
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	4	5124	4
+AxesTitleDistance	2	-1	2	-1
+TitleFont	Ubuntu	15	75	0	0	0
+ScaleFont0	Ubuntu	12	75	0	0	0
+ScaleFont1	Ubuntu	12	75	0	0	0
+ScaleFont2	Ubuntu	12	75	0	0	0
+ScaleFont3	Ubuntu	12	75	0	0	0
+AxisFont0	Ubuntu	10	75	1	0	0
+AxisFont1	Ubuntu	12	50	0	0	0
+AxisFont2	Ubuntu	10	75	1	0	0
+AxisFont3	Ubuntu	12	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#1f1c1b	#1f1c1b	#1f1c1b	#1f1c1b
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	Tabla1_1	Tabla1_2	3	1	#000000	0	1	7	0	#000000	#000000	1	#00ff00	0	20	0	2	0	0	14	1
+scale	0	4.6	5.8	0	7	5	0	0
+scale	1	4.6	5.8	0	7	5	0	0
+scale	2	1	16	1	16	5	0	0
+scale	3	1	16	1	16	5	0	0
+LabelsFormat	1	3	0	6	0	6	0	6
+AxisType	0	0	1;Tabla1_1	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	-30	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	1	1	1
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>3.76</x>
+<y>7</y>
+<right>5.95</right>
+<bottom>6.69451371571072</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)%(1)
+</Text>
+<Font>Ubuntu	12	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<open>1</open>
