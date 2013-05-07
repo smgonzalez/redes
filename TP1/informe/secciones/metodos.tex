@@ -52,7 +52,7 @@ Para caracterizar una red buscamos, por un lado, encontrar los nodos relevantes 
 \begin{enumerate}
  \item Grafos dirigidos, en donde cada nodo representa una IP, y existe un eje desde el nodo A hasta el nodo B, si A hizo un pedido \emph{who-has} a B (es decir, si el s\'imbolo \texttt{<A, B>} apareci\'o durante la captura). Dado que el trazado de aristas resulta imposible de interpretar a simple vista, lo simplificamos gráficamente, representando el grafo de manera circular y concéntrica, donde los nodos que se encuentran más al centro tienen mayor grado de entrada que los más distantes. No realizamos esto en un continuo, sino separándolo en clases en una escala logarítmica. Para no sobrecargar el gr\'afico no vamos a nombrar los distintos nodos;  consideramos que la IP en particular con que se corresponden no es relevante.
  
- \item Histograma relacionando cada IP con la cantidad de veces que fue consultada (es decir, que apareci\'o en el campo \texttt{ip\_destino}).
+ \item Histograma relacionando cada IP con la cantidad de veces que fue consultada (es decir, que apareci\'o en el campo \texttt{ip\_destino}). Para claridad de los gr\'aficos, no se incluyen aquellos nodos con menos de 20 demandas.
  
  \item Cantidad de informaci\'on de cada IP. En este caso puede compararse la informaci\'on con la entrop\'ia total, y sacar conclusiones a partir de esto de cu\'ales son los nodos significativos. Cada barra representa un host distinto: nuevamente, no vamos a nombrar los distintos hosts por cuestiones de claridad del gr\'afico.
  
