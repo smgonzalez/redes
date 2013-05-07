@@ -43,17 +43,20 @@ esValida = lambda cota, val, cmp: cota is None or cmp(cota, val)
 
 def filtrarPorTiempo(linea, timeStart, timeEnd):
 	l = linea.split() if linea else None
-	# print l, 'en filtro'
 	if l == None or len(l) == 0 or l[0] != '1':
+		#Miramos sólo who-has
 		return False 
 	elif len(l) < 6:
+		#Si no tenemos timestamp, no filtramos
 		return True
 	else:
 		if esValida(timeStart, parseStrTime(l[5]), lambda x,y: x<=y):
 			if esValida(timeEnd, parseStrTime(l[5]), lambda x,y: x>=y):
+				#timeStart <= timestamp <= timeEnd
 				return True
 			else:
-				return None #me pasé, basta de buscar
+				#me pasé, basta de buscar
+				return None 
 		else:
 			return False
 
@@ -124,6 +127,33 @@ def easyPlot(g, onlyNodes = False):
 	pplot.show()
 
 
+def marcarApariciones(dump):
+	f = open(dump, 'r')
+	contar = {}
+	l = f.readline().split()
+	toSeconds = lambda x: tm.mktime(parseStrTime(x))
+	t0 = toSeconds(l[5])
+	bucket = lambda t: (int(t - t0) / 3600) + 1
+	for l in f:
+		l = l.split()
+		if l[0] != '1': continue
+		t = toSeconds(l[5])
+		simbolo = l[1]+l[2]
+		if (contar.has_key(simbolo)):
+			contar[simbolo].append(bucket(t))
+		else:
+			contar[simbolo] = [bucket(t)]
+	f.close()
+	#contar[simbolo] = [i, i, i, .., j, j ,j, ... k, k]
+	#donde cada aparición de t en contar[simbolo] indica una aparición de símbolo en la t-ésima hora de captura
+	return contar
+
+# def aparicionesPorHora(lista, horas):
+# 	res = [[] for i in range(horas)]
+# 	for i in lista:
+# 		for j in range(horas):
+# 			res[j].append(i.count(j))
+# 	return res
 
 
 
