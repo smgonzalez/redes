@@ -89,7 +89,7 @@ def getEdgeList(dump, timeStart= None, timeEnd = None):
 	f.close()
 	return edgeList
 
-def grafoDeRed(dump, timeStart = None, timeEnd = None, plot = False):
+def grafoDeRed(dump, timeStart = None, timeEnd = None):
 	import matplotlib as mpl
 	import networkx as nx
 	edgeList = getEdgeList(dump, timeStart, timeEnd)
@@ -114,16 +114,22 @@ def logLayout(g):
 			circ.append('1')
 	return nx.layout.shell_layout(g, nlist = circulos)
 
-def easyPlot(g, onlyNodes = False):
+def easyPlot(g, onlyNodes = False, useLabels = [], title = None, noLayout = False):
 	import matplotlib as mpl
 	import networkx as nx
 	mpl.use('cocoaagg')		#hack para mac
 	import matplotlib.pyplot as pplot
 	pplot.figure()
+	if title:
+		pplot.title(title)
 	if onlyNodes:
-		nx.draw_networkx_nodes(g, pos = logLayout(g), useLabels = True)
+		nx.draw_networkx_nodes(g, pos = logLayout(g), with_labels = useLabels, node_size = 50)
 	else:
-		nx.draw(g, pos = logLayout(g))
+		if noLayout:
+			nx.draw(g, with_labels = useLabels, node_size = 50)
+		else:
+			nx.draw(g, pos = logLayout(g), with_labels = useLabels, node_size = 50)
+	print 'temine de calcular'
 	pplot.show()
 
 

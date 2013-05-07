@@ -11,17 +11,19 @@ import collections
 import math
 import parser
 
-params_readTime  = 'readtime' #con qué formato interpreto el timestamp
-params_timePlace = 'timeplace' #en qué índice de split(línea de entrada) está el timestamp
-params_history = 'history' #en minutos, cuánta historia consideramos
-params_dataPlace = 'dataplace' #qué índices de split(línea de entrada) consideramos como información
-params_live = 'live'
 
-params = {params_readTime : None,
-	params_timePlace : None,
-	params_history: None,
-	params_dataPlace : None,
-}
+# TODO LO COMENTADO NO SIRVE PARA ENTREGAR, PERO ME DA PENA BORRARLO.
+# params_readTime  = 'readtime' #con qué formato interpreto el timestamp
+# params_timePlace = 'timeplace' #en qué índice de split(línea de entrada) está el timestamp
+# params_history = 'history' #en minutos, cuánta historia consideramos
+# params_dataPlace = 'dataplace' #qué índices de split(línea de entrada) consideramos como información
+# params_live = 'live'
+
+# params = {params_readTime : None,
+# 	params_timePlace : None,
+# 	params_history: None,
+# 	params_dataPlace : None,
+# }
 
 # def parseParams(args):
 # 	#--paramA = valorA --paramB = valorB ...
@@ -41,8 +43,8 @@ params = {params_readTime : None,
 
 def entropia(counter):
 	#counter[s] = cantidad de apariciones del símbolo s (positivas)
-	#counter.values() = [cantidad de apariciones de s for s in simbolos]
-	#counter.keys() = [simbolos]
+	#counter.values() = [cantidad de apariciones de s for s in símbolos]
+	#counter.keys() = [símbolos]
 	total = float(sum(counter.values())) #cantidad de paquetes capturados
 	#fórmula individual de la entropía, medida en base 2 (bits)
 	ponderacion = lambda s: counter[s]/total * (math.log(total/counter[s], 2))
@@ -64,6 +66,20 @@ def contarSimbolos(dump, startTime = None, endTime = None):
 		l = parser.readFilteredLine(f, startEndFilter)
 	return cantidad
 
+def contarHosts(dump):
+	#perdón por el copy-paste
+	f = open(dump, 'r')
+	filtrarWhos = lambda l: l and l.split()[0] == '1'
+	#Leemos sólo los who-has
+	l = parser.readFilteredLine(f, filtrarWhos)
+	#Cantidad: dicc(ipDst => cantidadDeApariciones)
+	cantidad = collections.Counter()
+	while l:
+		l = l.split()
+		cantidad[l[1]] += 1 #si la clave k no está definida, cantidad[k] = 0
+		l = parser.readFilteredLine(f, filtrarWhos)
+	return cantidad
+
 def calcularTodo(dump, startTime = None, endTime = None):
 	if type(startTime) == str:
 		startTime = parser.parseStrTime(startTime)
@@ -71,16 +87,25 @@ def calcularTodo(dump, startTime = None, endTime = None):
 		endTime = parser.parseStrTime(endTime)
 	return entropia(contarSimbolos(dump, startTime, endTime))
 
-if __name__ == '__main__':
-	cantidad = collections.Counter()
-	paramDict = parseParams(sys.argv[1:])
-	if paramDict[params_timePlace] == None or paramDict[params_readTime] == None or paramDict[params_history] == None:
-		l = sys.stdin.readline()
-		while l:
-			data = l.split()
-			mensaje = reduce(lambda a, b: a+'-'+b, [data[i] for i in paramDict[params_dataPlace]])
-			cantidad[mensaje] += 1
-			l = sys.stdin.readline()
-		print entropia(cantidad)
-		print 'ahora sabés más'
-		exit()
+def calcularInfoPorHost(dump):
+	todosLosHosts = contarHosts(dump)
+	todosLosPedidos = sum(todosLosHosts.itervalues())
+	infoPorHost = {}
+	for d in todosLosHosts.iteritems():
+		infoPorHost[d[0]] = -math.log(float(d[1])/todosLosPedidos)
+	return infoPorHost
+
+
+# if __name__ == '__main__':
+# 	cantidad = collections.Counter()
+# 	paramDict = parseParams(sys.argv[1:])
+# 	if paramDict[params_timePlace] == None or paramDict[params_readTime] == None or paramDict[params_history] == None:
+# 		l = sys.stdin.readline()
+# 		while l:
+# 			data = l.split()
+# 			mensaje = reduce(lambda a, b: a+'-'+b, [data[i] for i in paramDict[params_dataPlace]])
+# 			cantidad[mensaje] += 1
+# 			l = sys.stdin.readline()
+# 		print entropia(cantidad)
+# 		print 'ahora sabés más'
+# 		exit()
