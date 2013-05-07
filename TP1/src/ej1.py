@@ -39,28 +39,6 @@ def quienTiene(ip):
 
 	return lst
 
-def buscar(ipBase, step = 1):
-	"""ipBase es de la forma XX.XX.XX., step es cada cuantas IPs queremos preguntar"""
-	maps = {}
-	for i in range(1, 255 / step):
-		ipArmada = ipBase + str(step * i)
-		ips = quienTiene(ipArmada)
-		
-		if ips == -1:
-			print 'Error al buscar direccion MAC'
-			exit()
-
-		if len(ips) == 0:
-			maps[ipArmada] = []
-		else:
-			for i in ips:
-				if i['ip'] in maps:
-					maps[i['ip']].append(i['mac'])
-				else:
-					maps[i['ip']] = [i['mac']]
-	return maps
-
-
 if __name__ == '__main__':
 
 	if os.geteuid():

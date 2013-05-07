@@ -2,4 +2,22 @@
 
 % LES COPIO LO QUE TENGO ANOTADO EN EL CUADERNO:
 % Dar parametros de contexto (info sobre LANs usadas y resultados observados, no conclusiones).
+\subsection{Implementaci\'on de un cliente ARP}
 
+De todos los casos mencionados en la secci\'on \ref{sec:metodos_1}, el \'unico en que se recibi\'o una respuesta con la direcci\'on MAC solicitada es en el caso (1), es decir, al pedir direcciones MAC de nodos presentes dentro de la red local. En todos los otros casos el mensaje ARP no recibi\'o respuesta alguna.\\
+
+A trav\'es del uso de \emph{Wireshark} pudimos observar con un poco m\'as de detalle qu\'e ocurri\'o en cada una de estas situaciones.\\
+
+El caso (1) funcion\'o como se esperaba: al paquete \emph{who-has} (enviado de manera broadcast) le sigue un paquete \emph{is-at}, con el host cuya MAC se quiere conocer como origen, y dirigido \'unicamente a la m\'aquina que pregunt\'o.\\
+
+Si se pregunta por una IP que no existe, pero que tiene una m\'ascara correspondiente con la red local (por ejemplo, 192.168.0.2), no se observa ning\'un tipo de respuesta. Sin embargo, si se pregunta por un direcci\'on cuya m\'ascara no se corresponde con la red (casos 4, 6, 7, 8\footnote{En el caso de una direcc\'on inv\'alida, la direcci\'on enviada se traduce a una direcci\'on IP correcta (en este caso se envi\'o el paquete pregunt\'ando por la direcci\'on 7.91.205.21).} y 9) se observa un intercambio de mensajes ligeramente diferente. En vez de enviar un paquete ARP de manera broadcast, la m\'aquina pregunta primero qui\'en tiene la direcci\'on (en nuestro caso) 192.168.0.1 (direcci\'on del router). Al recibir la respuesta \emph{is-at} con la MAC correspondiente, pregunta espec\'ificamente al router qui\'en tiene la direcci\'on buscada. Es decir, pareciera ser que antes de enviar mensajes ARP, autom\'aticamente se calcula si dicha IP se encuentra dentro de la red local. Si no se encuentra, se ejecuta el intercambio mencionado, enviando el pedido por la IP buscada directamente al router (del cual no se recibe respuesta, al menos en los casos probados).\\
+
+Por \'ultimo, si se 
+
+
+
+\subsection{Captura de tr\'afico}
+
+% poner resultados de entropia de cada red
+
+\subsection{Gr\'aficos y An\'alisis}
