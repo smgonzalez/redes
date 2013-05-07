@@ -72,3 +72,114 @@ Para el grafo de la figura \ref{fig:grafo3}, se observa algo similar que en la f
 \end{figure}
 
 Por último, en la figura \ref{fig:grafo4} vemos un esquema similar a los anteriores, pero dado a que el nivel de tráfico es menor, se aprecian mejor los enlaces. Igualmente existen las direcciones anómalas y los nodos distinguidos en el centro, pero se puede apreciar mejor el intercambio entre los nodos menos distinguidos de la red.
+
+\subsubsection{Histogramas}
+
+\begin{figure}[H]
+        \begin{subfigure}[H]{0.5\textwidth}
+                \centering
+                \includegraphics[width=1\textwidth]{graficos/cantidadConsultasCasaJulian.pdf}
+                \caption{Cantidad de demandas a cada IP - Red ISP}
+                \label{fig:hist1}
+        \end{subfigure}
+        \begin{subfigure}[H]{0.5\textwidth}
+                \centering
+                \includegraphics[width=1\textwidth]{graficos/cantidadConsultasOficina.pdf}
+                \caption{Cantidad de demandas a cada IP - Oficina}
+                \label{fig:hist2}
+        \end{subfigure}
+\end{figure}
+
+\begin{figure}[H]
+        \begin{subfigure}[H]{0.5\textwidth}
+                \centering
+                \includegraphics[width=1\textwidth]{graficos/cantidadConsultasCasaJulian.pdf}
+                \caption{Cantidad de demandas a cada IP - big\_arp.pcap *** FALTA!!}
+                \label{fig:hist3}
+        \end{subfigure}
+        \begin{subfigure}[H]{0.5\textwidth}
+                \centering
+                \includegraphics[width=1\textwidth]{graficos/cantidadConsultasCasaJulian.pdf}
+                \caption{Cantidad de demandas a cada IP - small\_arp.pcap *** FALTA}
+                \label{fig:hist4}
+        \end{subfigure}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{graficos/hist_casa.png}
+	\caption{Cantidad de apariciones de cada mensaje ARP - Red ISP}
+	\label{fig:hist5}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{graficos/hist_oficina.png}
+	\caption{Cantidad de apariciones de cada mensaje ARP - Oficina}
+	\label{fig:hist6}
+\end{figure}
+
+\subsubsection{Informaci\'on de los nodos}
+
+\begin{figure}[H]
+        \begin{subfigure}[H]{0.5\textwidth}
+                \centering
+                \includegraphics[width=1\textwidth]{graficos/infoHost_casa.png}
+                \caption{Cantidad de informaci\'on seg\'un host - Red ISP}
+                \label{fig:info1}
+        \end{subfigure}
+        \begin{subfigure}[H]{0.5\textwidth}
+                \centering
+                \includegraphics[width=1\textwidth]{graficos/infoHost_oficina.png}
+                \caption{Cantidad de informaci\'on seg\'un host - Oficina}
+                \label{fig:info2}
+        \end{subfigure}
+\end{figure}
+
+\begin{figure}[H]
+        \begin{subfigure}[H]{0.5\textwidth}
+                \centering
+                \includegraphics[width=1\textwidth]{graficos/infoHost_laboBig.png}
+                \caption{Cantidad de informaci\'on seg\'un host - big\_arp.pcap}
+                \label{fig:info3}
+        \end{subfigure}
+        \begin{subfigure}[H]{0.5\textwidth}
+                \centering
+                \includegraphics[width=1\textwidth]{graficos/infoHost_laboSmall.png}
+                \caption{Cantidad de informaci\'on seg\'un host - small\_arp.pcap}
+                \label{fig:info4}
+        \end{subfigure}
+\end{figure}
+
+
+\subsubsection{Mediciones en funci\'on del tiempo}
+
+\begin{figure}[H]
+        \begin{subfigure}[H]{0.5\textwidth}
+                \centering
+                \includegraphics[width=1\textwidth]{graficos/entropiaXHora.pdf}
+                \caption{Entrop\'ia en funci\'on de la franja horaria - Red ISP  *** FALTA!}
+                \label{fig:paquetes1}
+        \end{subfigure}
+        \begin{subfigure}[H]{0.5\textwidth}
+                \centering
+                \includegraphics[width=1\textwidth]{graficos/entropiaXHora.pdf}
+                \caption{Entrop\'ia en funci\'on de la franja horaria - Oficina}
+                \label{fig:paquetes2}
+        \end{subfigure}
+\end{figure}
+
+\begin{figure}[H]
+        \begin{subfigure}[H]{0.5\textwidth}
+                \centering
+                \includegraphics[width=1\textwidth]{graficos/paquetesVsTiempoCasa.pdf}
+                \caption{Cantidad de paquetes enviados en funci\'on de la franja horaria - Red ISP}
+                \label{fig:paquetes1}
+        \end{subfigure}
+        \begin{subfigure}[H]{0.5\textwidth}
+                \centering
+                \includegraphics[width=1\textwidth]{graficos/paquetesVsTiempoOficina.pdf}
+                \caption{Cantidad de paquetes enviados en funci\'on de la franja horaria - Oficina}
+                \label{fig:paquetes2}
+        \end{subfigure}
+\end{figure}
