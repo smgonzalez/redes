@@ -73,7 +73,7 @@ Para el grafo de la figura \ref{fig:grafo3}, se observa algo similar que en la f
 
 Por último, en la figura \ref{fig:grafo4} vemos un esquema similar a los anteriores, pero dado a que el nivel de tráfico es menor, se aprecian mejor los enlaces. Igualmente existen las direcciones anómalas y los nodos distinguidos en el centro, pero se puede apreciar mejor el intercambio entre los nodos menos distinguidos de la red.
 
-\subsubsection{Histogramas}
+\subsubsection{Gr\'aficos de demanda}  %histogramas es otra cosa técnicamente :)
 
 \begin{figure}[H]
         \begin{subfigure}[H]{0.5\textwidth}
@@ -105,21 +105,12 @@ Por último, en la figura \ref{fig:grafo4} vemos un esquema similar a los anteri
         \end{subfigure}
 \end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\textwidth]{graficos/hist_casa.png}
-	\caption{Cantidad de apariciones de cada mensaje ARP - Red ISP}
-	\label{fig:hist5}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\textwidth]{graficos/hist_oficina.png}
-	\caption{Cantidad de apariciones de cada mensaje ARP - Oficina}
-	\label{fig:hist6}
-\end{figure}
+En las figuras \ref{fig:hist1}, \ref{fig:hist2}, \ref{fig:hist3}, \ref{fig:hist4} se aprecia claramente cuáles son las IPs más solicitadas, que asociamos con nodos funcionalmente significativos en la red (servidores, routers, etc)
 
 \subsubsection{Informaci\'on de los nodos}
+
+En las figuras \ref{fig:info1}, \ref{fig:info2}, \ref{fig:info3}, \ref{fig:info4} distinguimos los nodos de una manera diferente:
+graficamos la cantidad de información para cada host, superponiendo la entropía medida. En los casos correspondientes a los laboratorios (figuras \ref{fig:info3} y \ref{fig:info4}), observamos una importante proporción de nodos que aportan más información que la media. Asociamos esto con los nodos poco consultados que observábamos en los grafos anteriores. Para la figura \ref{fig:info2} observamos una proporción más pareja, pero vale el mismo comentario.
 
 \begin{figure}[H]
         \begin{subfigure}[H]{0.5\textwidth}
@@ -150,7 +141,6 @@ Por último, en la figura \ref{fig:grafo4} vemos un esquema similar a los anteri
                 \label{fig:info4}
         \end{subfigure}
 \end{figure}
-
 
 \subsubsection{Mediciones en funci\'on del tiempo}
 
@@ -183,3 +173,24 @@ Por último, en la figura \ref{fig:grafo4} vemos un esquema similar a los anteri
                 \label{fig:paquetes2}
         \end{subfigure}
 \end{figure}
+
+De las figuras \ref{fig:paquetes1} y \ref{fig:paquetes2} podemos deducir dos comportamientos diferentes de la red, si miramos su evolución a lo largo del tiempo. Si comparamos los valores obtenidos en la figura correspondiente a la ISP con la entropía medida, vemos que si bien no la alcanza, no presenta una variabilidad significativa a lo largo del tiempo (más allá de la atribuible al aumento de tráfico que puede haber en las horas de la tarde-noche). Lo contrario sucede para la red de la oficina: el pico de entropía medida coincide con la cantidad de información media durate un horario de intensa actividad, llegando incluso a superar la entropía medida en forma general. Observamos que con el correr de las horas esta situación se revierte completamente. Esto indica que la información ARP generada en la red a lo largo de la tarde proviene mayormente de un rango horario más acotado, pasado el cual, baja enormemente. Atribuimos este hecho a que permanecen encendidas sólo algunas computadoras de las que se comunicaban antes, con lo cual los mensajes generados en este período no aportan a la cantidad de información diaria de la red, pues ya fueron observados anteriormente, y al ser menor el volumen de actividad, es de esperar que la variabilidad de comportamiento de los hosts sea menor, con lo cual, los pedidos tienden a regularizarse, y por ende, significar menos información. Esta disminución en la variabilidad de comportamiento no se observa en la red ISP, ya que dada la magnitud de la red (y, por qué no, alguna estrategia de optimización por parte del proveedor) sigue siendo lo suficientemente general y diversa, tanto en períodos de baja como de alta actividad.
+
+\subsubsection{Histogramas de frecuencia}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{graficos/hist_casa.png}
+	\caption{Cantidad de apariciones de cada mensaje ARP - Red ISP}
+	\label{fig:hist5}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{graficos/hist_oficina.png}
+	\caption{Cantidad de apariciones de cada mensaje ARP - Oficina}
+	\label{fig:hist6}
+\end{figure}
+
+Como adelantamos anteriormente, en las figuras \ref{fig:hist5} y \ref{fig:hist6} comparamos los histogramas de repetición de mensajes para la red Oficina y la ISP.  Estos histogramas refuerzan la idea explicada anteriormente: para el caso del ISP, se observa una uniformidad mayor, que puede corresponderse con la variabilidad sostenida. Mientras que para la Oficina, se ve, además de la abundancia de paquetes con pocas apariciones (hecho común en ambos casos, nuevamente, atribuible a mensajes erróneos o dispositivos específicos de poca actividad), un decaimiento muy rápido en la cantidad de apariciones, que no se recupera. Esto es consistente con el comentario sobre la dinámica de funcionamiento de la oficina comentada: sólo un subconjunto de los hosts permanece operativo suficiente tiempo de la muestra, y éstos son los que extienden el histograma hacia la derecha. Los restantes, son los abundantes y poco frecuentes que contribuyen a elevar la entropía al pico máximo, y en definitiva, son los que más aporte realizan a la hora de calcular la información media durante la jornada. Justamente, para el caso de la ISP, se ve que esta responsabilidad está más compartida (el histograma decae más lentamente) y la parte significativa se extiende más.
+
