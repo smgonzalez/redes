@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# este script se puede correr con ./, empieza a caputar hasta q se apriete ctrl + c
+# este script se puede correr con ./, empieza a caputar hasta que se interrumpa con ctrl + c
 import sys
 import datetime
 import os
@@ -20,7 +20,6 @@ if __name__ == '__main__':
 		exit()
 	
 	# seteamos lugar donde se va a imprimir el archivo de salida
-	
 	if not os.path.exists(DUMP_DIR):
 		os.mkdir(DUMP_DIR)
 
@@ -36,9 +35,7 @@ if __name__ == '__main__':
 	print "Inicio de captura, para interrumpir -> ctrl + c"
 	capturar()
 
-	#para que guarde todo efectivamente
 	dump.close()
-
 	print
 	print 'Captura guardada en', filename
 

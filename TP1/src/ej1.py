@@ -21,7 +21,7 @@ def quienTiene(ip):
 		#Lo mandamos y esperamos respuesta
 		rec = sr(arp, timeout = 3)
 		
-		#Lo mostramos lindo
+		#Lo mostramos
 		rec[0].show()
 		
 		#Armamos lista de macs recibidas para devolver
@@ -63,10 +63,11 @@ if __name__ == '__main__':
 
 	if len(macs) == 0:
 		print ip, 'no es una ip valida o no puede ser alcanzada'
+	#por si recibimos mas de una respuesta
 	elif len(macs) == 1:
-		print 'Mac:', macs[0]
+		print 'MAC:', macs[0]
 	else:
-		print 'Macs:',
+		print 'MACs:',
 		for mac in macs:
 			print mac,
 

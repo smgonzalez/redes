@@ -1,33 +1,9 @@
 #coding: utf-8
 
-
-
-# class Arp:
-# 	"""Datos de captura de un paquete ARP (así no necesitamos scapy para todo esto). En realidad, tampoco lo necesitamos, me parece."""
-# 	ipSrc = ''
-# 	ipDst = ''
-# 	macSrc = ''
-# 	macDst = ''
-# 	op = ''
-# 	tmstmp = None
-
-# 	# def __init__():
-# 	# 	return None
-
-# 	def __init__(self, linea):
-# 		# pkg = Arp()
-# 		dataList = linea.split()
-# 		self.op = dataList[0]
-# 		self.ipSrc = dataList[1]
-# 		self.ipDst = dataList[2]
-# 		self.macSrc = dataList[3]
-# 		self.macDst = dataList[4]
-# 		if len(dataList) > 5:
-# 			import time as tm
-# 			self.tmpstmp = tm.strptime(dataList[5], '%d-%m-%y/%I:%M%p')
-
-# 	def getRel(self):
-# 		return (self.ipSrc, self.ipDst)
+import time as tm
+import sys
+parseStrTime = lambda string: tm.strptime(string, '%d-%m-%y/%I:%M%p') if string else None
+esValida = lambda cota, val, cmp: cota is None or cmp(cota, val)
 
 def readFilteredLine(f, filtro):
 	l = f.readline()
@@ -35,11 +11,6 @@ def readFilteredLine(f, filtro):
 		if filtro(l) == None : return None
 		l = f.readline()
 	return l
-
-import time as tm
-import sys
-parseStrTime = lambda string: tm.strptime(string, '%d-%m-%y/%I:%M%p') if string else None
-esValida = lambda cota, val, cmp: cota is None or cmp(cota, val)
 
 def filtrarPorTiempo(linea, timeStart, timeEnd):
 	l = linea.split() if linea else None
@@ -63,23 +34,6 @@ def filtrarPorTiempo(linea, timeStart, timeEnd):
 
 def getEdgeList(dump, timeStart= None, timeEnd = None):
 	f = open(dump, 'r')
-	#l[0] = op, l[1] = ipSrc, l[2] = ipDst
-	# for linea in f:
-	# 	l = linea.split() 
-	# 	if l[0] == '1' and esValida(timeStart, parseStrTime(l[5] if len(l) > 5 else None), lambda x, y: x<=y): 
-	# 		break
-	# edgeList = [(l[1], l[2])]
-	# for linea in f:
-	# 	l = linea.split()
-	# 	if l[0] == '1':
-	# 		if esValida(timeEnd, parseStrTime(l[5] if len(l) > 5 else None), lambda x, y: x>=y):
-	# 			# ipSrc -> ipDst
-	# 			edgeList.append((l[1], l[2]))
-	# 		else:
-	# 			break
-	# 	else:
-	# 		continue
-
 	l = readFilteredLine(f, lambda l: filtrarPorTiempo(l, timeStart, timeEnd))
 	edgeList = []
 	while l:
@@ -131,45 +85,3 @@ def easyPlot(g, onlyNodes = False, useLabels = [], title = None, noLayout = Fals
 			nx.draw(g, pos = logLayout(g), with_labels = useLabels, node_size = 50)
 	print 'temine de calcular'
 	pplot.show()
-
-
-def marcarApariciones(dump):
-	f = open(dump, 'r')
-	contar = {}
-	l = f.readline().split()
-	toSeconds = lambda x: tm.mktime(parseStrTime(x))
-	t0 = toSeconds(l[5])
-	bucket = lambda t: (int(t - t0) / 3600) + 1
-	for l in f:
-		l = l.split()
-		if l[0] != '1': continue
-		t = toSeconds(l[5])
-		simbolo = l[1]+l[2]
-		if (contar.has_key(simbolo)):
-			contar[simbolo].append(bucket(t))
-		else:
-			contar[simbolo] = [bucket(t)]
-	f.close()
-	#contar[simbolo] = [i, i, i, .., j, j ,j, ... k, k]
-	#donde cada aparición de t en contar[simbolo] indica una aparición de símbolo en la t-ésima hora de captura
-	return contar
-
-# def aparicionesPorHora(lista, horas):
-# 	res = [[] for i in range(horas)]
-# 	for i in lista:
-# 		for j in range(horas):
-# 			res[j].append(i.count(j))
-# 	return res
-
-
-
-
-
-
-
-
-
-
-
-
-
