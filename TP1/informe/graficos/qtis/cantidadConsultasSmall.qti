@@ -1,0 +1,199 @@
+QtiPlot 0.9.8 project file
+<scripting-lang>	muParser
+<windows>	2
+<table>
+small_filtrado	94	2	07/05/13 07:39
+geometry	0	0	445	220	
+header	1[X]	2[Y]
+ColWidth	100	100	
+<com>
+</com>
+ColType	1;0/13	0;0/13
+ReadOnlyColumn	0	0
+HiddenColumn	0	0
+Comments			
+WindowLabel	/home/sergiogonza/Facu/repos/redes/TP1/src/small/small_filtrado.csv	2
+<data>
+0	10.1.0.10	12
+1	10.1.0.11	80
+2	10.1.0.13	55
+3	10.1.0.190	6
+4	10.1.0.195	9
+5	10.1.0.254	218
+6	10.1.100.1	14
+7	10.1.100.101	33
+8	10.1.100.105	740
+9	10.1.100.106	475
+10	10.1.100.111	21
+11	10.1.100.112	80
+12	10.1.100.114	48
+13	10.1.100.115	60
+14	10.1.100.116	55
+15	10.1.100.124	54
+16	10.1.100.130	289
+17	10.1.100.133	477
+18	10.1.100.134	42
+19	10.1.100.174	816
+20	10.1.100.175	348
+21	10.1.100.2	407
+22	10.1.100.201	43
+23	10.1.100.202	36
+24	10.1.100.205	6
+25	10.1.100.211	7
+26	10.1.100.212	255
+27	10.1.100.213	48
+28	10.1.100.215	121
+29	10.1.100.216	96
+30	10.1.100.222	13
+31	10.1.100.224	11
+32	10.1.100.229	7
+33	10.1.100.237	27
+34	10.1.100.254	1381
+35	10.1.100.29	19
+36	10.1.100.4	12
+37	10.1.100.43	9
+38	10.1.100.50	19
+39	10.1.100.53	104
+40	10.1.100.63	63
+41	10.1.100.68	35
+42	10.1.100.93	41
+43	10.1.100.94	22
+44	10.1.11.161	15
+45	10.1.11.170	19
+46	10.1.11.254	989
+47	10.1.11.69	18
+48	10.1.11.72	30
+49	10.1.11.83	881
+50	10.1.11.9	7
+51	10.1.200.109	14
+52	10.1.200.113	15
+53	10.1.200.12	20
+54	10.1.200.120	12
+55	10.1.200.123	24
+56	10.1.200.142	36
+57	10.1.200.16	6
+58	10.1.200.161	37
+59	10.1.200.170	23
+60	10.1.200.174	15
+61	10.1.200.175	13
+62	10.1.200.177	11
+63	10.1.200.18	6
+64	10.1.200.185	7
+65	10.1.200.188	13
+66	10.1.200.189	34
+67	10.1.200.194	11
+68	10.1.200.21	9
+69	10.1.200.254	407
+70	10.1.200.35	8
+71	10.1.200.41	19
+72	10.1.200.49	6
+73	10.1.200.5	16
+74	10.1.200.51	94
+75	10.1.200.52	18
+76	10.1.200.57	32
+77	10.1.200.58	18
+78	10.1.200.6	50
+79	10.1.200.65	1061
+80	10.1.200.70	27
+81	10.1.200.76	7
+82	10.1.200.77	6
+83	10.1.200.85	19
+84	10.1.200.90	10
+85	10.1.200.98	35
+86	10.1.254.1	11
+87	10.1.254.3	33
+88	10.1.254.6	8
+89	10.2.100.254	23
+90	169.254.142.81	6
+91	169254255255	205
+92	192.168.0.1	11
+93	192.168.1.1	56
+</data>
+</table>
+<multiLayer>
+Gráfica1	1	1	07/05/13 07:39
+geometry	445	0	622	909	active
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	5	5	604	833
+<PageGeometry>0.00814332	0.0058072	0.983713	0.96748</PageGeometry>
+PlotTitle		#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	0	1	0	
+AxesTitles	Cantidad de veces demandada	IP destino		%(?Y)	
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	4	5124	4
+AxesTitleDistance	2	-1	2	-1
+TitleFont	Ubuntu	23	75	0	0	0
+ScaleFont0	Ubuntu	19	75	0	0	0
+ScaleFont1	Ubuntu	19	75	0	0	0
+ScaleFont2	Ubuntu	19	75	0	0	0
+ScaleFont3	Ubuntu	19	75	0	0	0
+AxisFont0	Ubuntu	7	75	1	0	0
+AxisFont1	Ubuntu	19	50	0	0	0
+AxisFont2	Ubuntu	11	75	1	0	0
+AxisFont3	Ubuntu	19	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#1f1c1b	#1f1c1b	#1f1c1b	#1f1c1b
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	small_filtrado_1	small_filtrado_2	10	1	#000000	0	1	7	0	#000000	#000000	1	#00ff00	0	0	0	2	0	0	93	1
+scale	0	0	95	1	96	5	0	0
+scale	1	0	95	1	96	5	0	0
+scale	2	0	1400	0	8	5	0	0
+scale	3	0	1400	0	8	5	0	0
+LabelsFormat	0	6	0	6	0	6	0	6
+AxisType	1;small_filtrado_1	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	1	1	1
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>797.91231732777</x>
+<y>93.766233766234</y>
+<right>1370.77244258873</right>
+<bottom>88.8311688311688</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1) Cantidades
+</Text>
+<Font>Ubuntu	18	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<open>1</open>

@@ -73,8 +73,8 @@ AxesNumberColors	#1f1c1b	#1f1c1b	#1f1c1b	#1f1c1b
 AxesBaseline	0	0	0	0	
 CanvasBackground	#ffffff	0
 curve	Tabla1_1	Tabla1_2	3	1	#000000	0	1	7	0	#000000	#000000	1	#00ff00	0	20	0	2	0	0	14	1
-scale	0	4.6	5.8	0	7	5	0	0
-scale	1	4.6	5.8	0	7	5	0	0
+scale	0	2	6	0	5	5	0	0
+scale	1	2	6	0	5	5	0	0
 scale	2	1	16	1	16	5	0	0
 scale	3	1	16	1	16	5	0	0
 LabelsFormat	1	3	0	6	0	6	0	6
@@ -97,8 +97,8 @@ EnabledTickLabels	1	1	1	1
 <LineStyle>0</LineStyle>
 <x>3.76</x>
 <y>7</y>
-<right>5.95</right>
-<bottom>6.69451371571072</bottom>
+<right>2.58035714285714</right>
+<bottom>5.70063694267516</bottom>
 <attachTo>1</attachTo>
 <onTop>1</onTop>
 <visible>1</visible>
