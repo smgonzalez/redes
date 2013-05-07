@@ -3,7 +3,7 @@ QtiPlot 0.9.8 project file
 <windows>	2
 <table>
 capturaOff_ips_cant_filtrado	68	2	06/05/13 19:46
-geometry	0	10	445	220	
+geometry	0	-16	445	220	
 header	1[X]	2[Y]
 ColWidth	100	100	
 <com>
@@ -86,7 +86,7 @@ WindowLabel	/home/sergiogonza/Facu/repos/redes/TP1/informe/graficos/datos/captur
 </table>
 <multiLayer>
 Gráfica1	1	1	06/05/13 19:48
-geometry	445	0	753	942	active
+geometry	445	-26	753	942	active
 WindowLabel		2
 Margins	5	5	5	5
 Spacing	5	5
@@ -106,9 +106,9 @@ PlotTitle		#000000	4228
 Background	#ffffff	0
 Margin	0
 Border	0	#000000
-grid	1	1	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
 EnabledAxes	1	0	1	0	
-AxesTitles	 Cantidad	IPs destino		%(?Y)	
+AxesTitles	Cantidad de veces demandada 	IPs destino		%(?Y)	
 AxesTitleColors	#000000	#000000	#000000	#000000	
 AxesTitleAlignment	5124	4	5124	4
 AxesTitleDistance	2	-1	2	-1
@@ -143,29 +143,6 @@ LabelsSuffix
 TickLabelsSpace	4	4	4	4
 ShowTicksPolicy	33	0	0	0
 EnabledTickLabels	1	1	1	1
-<Legend>
-<Frame>1</Frame>
-<Color>#000000</Color>
-<FrameWidth>1</FrameWidth>
-<LineStyle>0</LineStyle>
-<x>3511.97053407</x>
-<y>60</y>
-<right>5909.7605893186</right>
-<bottom>56.3157894736842</bottom>
-<attachTo>1</attachTo>
-<onTop>1</onTop>
-<visible>1</visible>
-<Text>
-\l(1) Cantidad
-</Text>
-<Font>Ubuntu	20	50	0	0	0</Font>
-<TextColor>#000000</TextColor>
-<Background>#ffffff</Background>
-<Alpha>0</Alpha>
-<Angle>0</Angle>
-<AutoUpdate>1</AutoUpdate>
-<TeXOutput>0</TeXOutput>
-</Legend>
 </graph>
 <LinkXAxes>0</LinkXAxes>
 <ScaleLayers>1</ScaleLayers>
