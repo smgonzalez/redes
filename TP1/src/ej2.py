@@ -28,6 +28,8 @@ if __name__ == '__main__':
 	filename = DUMP_DIR + '/' + time + '.data'
 	dump = open(filename, 'w') 
 
+	# Definicion de funciones para capturar mensajes ARP (sniff)
+	# y para escribir lo capturado en el archivo
 	escribirPaquete = lambda p: grabar(dump, p)
 	capturar = lambda: sniff(lfilter = lambda p: p.haslayer('ARP'), prn = lambda p: escribirPaquete(p))
 
