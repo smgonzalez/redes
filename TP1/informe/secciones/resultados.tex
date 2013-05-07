@@ -1,7 +1,5 @@
 \section{Resultados}
 
-% LES COPIO LO QUE TENGO ANOTADO EN EL CUADERNO:
-% Dar parametros de contexto (info sobre LANs usadas y resultados observados, no conclusiones).
 \subsection{Implementaci\'on de un cliente ARP}
 
 De todos los casos mencionados en la secci\'on \ref{sec:metodos_1}, el \'unico en que se recibi\'o una respuesta con la direcci\'on MAC solicitada es en el caso (1), es decir, al pedir direcciones MAC de nodos presentes dentro de la red local. En todos los otros casos el mensaje ARP no recibi\'o respuesta alguna.\\
@@ -10,7 +8,8 @@ A trav\'es del uso de \emph{Wireshark} pudimos observar con un poco m\'as de det
 
 El caso (1) funcion\'o como se esperaba: al paquete \emph{who-has} (enviado de manera broadcast) le sigue un paquete \emph{is-at}, con el host cuya MAC se quiere conocer como origen, y dirigido \'unicamente a la m\'aquina que pregunt\'o.\\
 
-Si se pregunta por una IP que no existe, pero que tiene una m\'ascara correspondiente con la red local (por ejemplo, 192.168.0.2), no se observa ning\'un tipo de respuesta. Sin embargo, si se pregunta por un direcci\'on cuya m\'ascara no se corresponde con la red (casos 4, 6, 7, 8\footnote{En el caso de una direcc\'on inv\'alida, la direcci\'on enviada se traduce a una direcci\'on IP correcta (en este caso se envi\'o el paquete pregunt\'ando por la direcci\'on 7.91.205.21).} y 9) se observa un intercambio de mensajes ligeramente diferente. En vez de enviar un paquete ARP de manera broadcast, la m\'aquina pregunta primero qui\'en tiene la direcci\'on (en nuestro caso) 192.168.0.1 (direcci\'on del router). Al recibir la respuesta \emph{is-at} con la MAC correspondiente, pregunta espec\'ificamente al router qui\'en tiene la direcci\'on buscada. Es decir, pareciera ser que antes de enviar mensajes ARP, autom\'aticamente se calcula si dicha IP se encuentra dentro de la red local. Si no se encuentra, se ejecuta el intercambio mencionado, enviando el pedido por la IP buscada directamente al router (del cual no se recibe respuesta, al menos en los casos probados).\\
+Si se pregunta por una IP que no existe, pero que tiene una m\'ascara correspondiente con la red local (por ejemplo, 192.168.0.2), no se observa ning\'un tipo de respuesta. Sin embargo, si se pregunta por un direcci\'on cuya m\'ascara no se corresponde con la red (casos 4, 6, 7, 8\footnote{En el caso de una direcc\'on inv\'alida, la direcci\'on enviada se traduce a una direcci\'on IP correcta (en este caso se envi\'o el paquete pregunt\'ando por la direcci\'on 7.91.205.21).} y 9) se observa un intercambio de mensajes ligeramente diferente. En vez de enviar un paquete ARP de manera broadcast, la m\'aquina pregunta primero qui\'en tiene la direcci\'on (en nuestro caso) 192.168.0.1 (direcci\'on del router). Al recibir la respuesta \emph{is-at} con la MAC correspondiente, pregunta espec\'ificamente al router qui\'en tiene la direcci\'on buscada. Es decir, pareciera ser que antes de enviar mensajes ARP, autom\'aticamente se calcula si dicha IP se encuentra dentro de la red local. Si no se encuentra, se ejecuta el 
+intercambio mencionado, enviando el pedido por la IP buscada directamente al router (del cual no se recibe respuesta, al menos en los casos probados).\\
 
 %Por \'ultimo, si se pregunta por la IP de la misma m\'aquina, observamos a trav\'es del wireshark el siguiente comportamiento. El pedido mencionado genera en la red un paquete ARP cuya IP fuente no es la misma m\'aquina, sino el router (en nuestro caso se observa el siguiente mensaje: \texttt{``Who has 192.168.0.3? Tell 192.168.0.1''}. A este pedido le segu\'ia una respuesta del tipo \emph{is-at} con la informaci\'on correspondiente. De este intercambio no se obtiene sin embargo una respuesta final a la m\'aquina que origin\'o el paquete ARP con su misma IP. 
 % LO SAQUE PORQUE NO FUNCIONA ASI LA SEGUNDA VEZ QUE LO CORRO
@@ -37,41 +36,41 @@ $\\$
 A continuaci\'on se muestran los gr\'aficos generados a partir de los datos obtenidos en esta secci\'on.
 
 \subsubsection{Grafos}
-\begin{figure}[h!]
+\begin{figure}[H]
   \centering
-    \includegraphics[width=0.8\textwidth]{graficos/grafoCasa.png}
-    \caption{Grafo de IPs - Red Hogare\~na}
+    \includegraphics[width=0.9\textwidth]{graficos/grafoCasa.png}
+    \caption{Grafo de IPs - Red ISP}
     \label{fig:grafo1}
 \end{figure}
 
-Lo más notable de la figura \ref{fig:grafo1}, como se verá en contraste con los siguientes, es que presenta numerosas componentes conexas pequeñas. Atribuimos esta disposición a que, dado que corresponde con una red de ISP, la interacción, en principio, no se da entre cualqueir par de nodos por igual, ya que obedece a motivos \emph{personales} de los usuarios. De todas formas, la inconexión da la idea de que no existe un nodo centralizador a través del cual se canalice el tráfico (típicamente un router), con lo cual el funcionamiento de la red sería imposible. Por lo tanto, suponemos que, por razones del proveedor, esa información no se transmite via ARP (puede utilizar otros protocolos), o se controla el tráfico de paquetes ARP con destinos sensibles para la red.
+Lo más notable de la figura \ref{fig:grafo1}, como se verá en contraste con las siguientes, es que presenta numerosas componentes conexas pequeñas. Atribuimos esta disposición a que, dado que corresponde con una red de ISP, la interacción, en principio, no se da entre cualqueir par de nodos por igual, ya que obedece a motivos \emph{personales} de los usuarios. De todas formas, la inconexión da la idea de que no existe un nodo centralizador a través del cual se canalice el tráfico (típicamente un router), con lo cual el funcionamiento de la red sería imposible. Por lo tanto, suponemos que, por razones del proveedor, esa información no se transmite via ARP (puede utilizar otros protocolos), o se controla el tráfico de paquetes ARP con destinos sensibles para la red.
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \centering
-    \includegraphics[width=0.8\textwidth]{graficos/grafoOficina.png}
-    \caption{Grafo de IPs - Red de Oficina}
+    \includegraphics[width=0.9\textwidth]{graficos/grafoOficina.png}
+    \caption{Grafo de IPs - Oficina}
     \label{fig:grafo2}
 \end{figure}
 
-En el caso de la figura \ref{fig:grafo2}, observamos todo lo contrario al caso anterior. Recordemos que los nodos ubicados más al centro corresponden con las direcciones más solicitadas, típicamente routers/gateways. El alto grado de conexión entre  los nodos centrales refleja la intensa actividad que ocurre entre los hosts en una red privada (ej: clientes de chat). También se observan nodos en el círculo exterior que, no sólo realizan pocas consultas ARP, sino que también nunca le son respondidas. Estos pueden ser dispositivos que se conectaron por poco tiempo y para realizar una tarea espefícica, o direcciones inválidas que no fueron consideradas por el resto de la red para recibir datos.
+En el caso de la figura \ref{fig:grafo2}, observamos todo lo contrario. Recordemos que los nodos ubicados más al centro corresponden con las direcciones más solicitadas, típicamente routers/gateways. El alto grado de conexión entre  los nodos centrales refleja la intensa actividad que ocurre entre los hosts en una red privada (ej: clientes de chat). También se observan nodos en el círculo exterior que, no sólo realizan pocas consultas ARP, sino que también nunca le son respondidas. Estos pueden ser dispositivos que se conectaron por poco tiempo y para realizar una tarea espefícica, o direcciones inválidas que no fueron consideradas por el resto de la red para recibir datos.
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \centering
-    \includegraphics[width=0.8\textwidth]{graficos/grafoLaboBig.png}
+    \includegraphics[width=0.9\textwidth]{graficos/grafoLaboBig.png}
     \caption{Grafo de IPs - big\_arp.pcap}
     \label{fig:grafo3}
 \end{figure}
 
-Para el grafo de la figura \ref{fig:grafo3}, se observa algo similar que en la figura \ref{fig:grafo2}. Pocos nodos con un alto nivel de solicitudes, y una disposición numerosa a su alrededor. Cabe el mismo análisis que en el caso anterior, destacando también la presencia de un nodo del círculo exterior que realiza numerosos pedidos, pero que no le son respondidos en la misma medida. Nuevamente, atribuimos este hecho a la presencia de direcciones anómalas (por ejemplo, $0.0.0.0$).
+Para el grafo de la figura \ref{fig:grafo3}, se observa algo similar que en la figura \ref{fig:grafo2}. Pocos nodos con un alto nivel de solicitudes, y una disposición numerosa a su alrededor. Cabe el mismo análisis que en el caso anterior, destacando también la presencia de un nodo del círculo exterior que realiza numerosos pedidos, pero que no le son respondidos en la misma medida. Nuevamente, atribuimos este hecho a la presencia de direcciones anómalas (por ejemplo, 0.0.0.0).
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \centering
-    \includegraphics[width=0.8\textwidth]{graficos/grafoLaboSmall.png}
+    \includegraphics[width=0.9\textwidth]{graficos/grafoLaboSmall.png}
     \caption{Grafo de IPs - small\_arp.pcap}
     \label{fig:grafo4}
 \end{figure}
 
-Por último, en la figura \ref{fig:grafo4} vemos un esquema similar a los anteriores, pero dado a que el nivel de tráfico es menor, se aprecian mejor los enlaces. Igualmente existen las direcciones anómalas y los nodos distinguidos en el centro, pero se puede apreciar mejor el intercambio entre los nodos menos distinguidos de la red.
+Por último, en la figura \ref{fig:grafo4} vemos nuevamente un esquema similar a los anteriores, pero con mejor detalle, ya que el nivel de tráfico es menor. Igualmente existen las direcciones anómalas y los nodos distinguidos en el centro, pero se puede apreciar mejor el intercambio entre los nodos menos distinguidos de la red.
 
 \subsubsection{Gr\'aficos de demanda}  %histogramas es otra cosa técnicamente :)
 
@@ -93,24 +92,21 @@ Por último, en la figura \ref{fig:grafo4} vemos un esquema similar a los anteri
 \begin{figure}[H]
         \begin{subfigure}[H]{0.5\textwidth}
                 \centering
-                \includegraphics[width=1\textwidth]{graficos/cantidadConsultasCasaJulian.pdf}
-                \caption{Cantidad de demandas a cada IP - big\_arp.pcap *** FALTA!!}
+                \includegraphics[width=1\textwidth]{graficos/cantidadConsultasBig.pdf}
+                \caption{Cantidad de demandas a cada IP - big\_arp.pcap}
                 \label{fig:hist3}
         \end{subfigure}
         \begin{subfigure}[H]{0.5\textwidth}
                 \centering
-                \includegraphics[width=1\textwidth]{graficos/cantidadConsultasCasaJulian.pdf}
-                \caption{Cantidad de demandas a cada IP - small\_arp.pcap *** FALTA}
+                \includegraphics[width=1\textwidth]{graficos/cantidadConsultasSmall.pdf}
+                \caption{Cantidad de demandas a cada IP - small\_arp.pcap}
                 \label{fig:hist4}
         \end{subfigure}
 \end{figure}
 
-En las figuras \ref{fig:hist1}, \ref{fig:hist2}, \ref{fig:hist3}, \ref{fig:hist4} se aprecia claramente cuáles son las IPs más solicitadas, que asociamos con nodos funcionalmente significativos en la red (servidores, routers, etc)
+Las figuras \ref{fig:hist1}, \ref{fig:hist2}, \ref{fig:hist3}, \ref{fig:hist4} nos dan una idea de la distribuci\'on de los nodos significativos en cada una de las redes estudiadas: en todos los casos, unos pocos concentran la mayor\'ia de los pedidos. Se aprecia claramente en estos gr\'aficos cuáles son las IPs más solicitadas, que asociamos con nodos funcionalmente significativos en la red (servidores, routers, etc).
 
 \subsubsection{Informaci\'on de los nodos}
-
-En las figuras \ref{fig:info1}, \ref{fig:info2}, \ref{fig:info3}, \ref{fig:info4} distinguimos los nodos de una manera diferente:
-graficamos la cantidad de información para cada host, superponiendo la entropía medida. En los casos correspondientes a los laboratorios (figuras \ref{fig:info3} y \ref{fig:info4}), observamos una importante proporción de nodos que aportan más información que la media. Asociamos esto con los nodos poco consultados que observábamos en los grafos anteriores. Para la figura \ref{fig:info2} observamos una proporción más pareja, pero vale el mismo comentario.
 
 \begin{figure}[H]
         \begin{subfigure}[H]{0.5\textwidth}
@@ -119,7 +115,7 @@ graficamos la cantidad de información para cada host, superponiendo la entropí
                 \caption{Cantidad de informaci\'on seg\'un host - Red ISP}
                 \label{fig:info1}
         \end{subfigure}
-        \begin{subfigure}[H]{0.5\textwidth}
+        \begin{subfigure}[H]{0.55\textwidth}
                 \centering
                 \includegraphics[width=1\textwidth]{graficos/infoHost_oficina.png}
                 \caption{Cantidad de informaci\'on seg\'un host - Oficina}
@@ -141,6 +137,13 @@ graficamos la cantidad de información para cada host, superponiendo la entropí
                 \label{fig:info4}
         \end{subfigure}
 \end{figure}
+
+En las figuras \ref{fig:info1}, \ref{fig:info2}, \ref{fig:info3}, \ref{fig:info4} distinguimos los nodos de una manera diferente:
+graficamos la cantidad de información para cada host, superponiendo la entropía medida (l\'inea roja). En los casos correspondientes a los laboratorios (figuras \ref{fig:info3} y \ref{fig:info4}), observamos una importante proporción de nodos que aportan más información que la media. Asociamos esto con los nodos poco consultados que observábamos en los grafos anteriores. Para la figura \ref{fig:info2} observamos una proporción más pareja, pero vale el mismo comentario.\\
+
+En la figura \ref{fig:info1} podemos observar que solamente uno de los nodos supera la entrop\'ia. Asociamos esto con el hecho de que la red presenta varias componentes conexas: no existen nodos particularmente significativos, sino que, por la topolog\'ia de la misma, muchos cumplen este papel.
+
+
 
 \subsubsection{Mediciones en funci\'on del tiempo}
 
@@ -174,7 +177,8 @@ graficamos la cantidad de información para cada host, superponiendo la entropí
         \end{subfigure}
 \end{figure}
 
-De las figuras \ref{fig:paquetes1} y \ref{fig:paquetes2} podemos deducir dos comportamientos diferentes de la red, si miramos su evolución a lo largo del tiempo. Si comparamos los valores obtenidos en la figura correspondiente a la ISP con la entropía medida, vemos que si bien no la alcanza, no presenta una variabilidad significativa a lo largo del tiempo (más allá de la atribuible al aumento de tráfico que puede haber en las horas de la tarde-noche). Lo contrario sucede para la red de la oficina: el pico de entropía medida coincide con la cantidad de información media durate un horario de intensa actividad, llegando incluso a superar la entropía medida en forma general. Observamos que con el correr de las horas esta situación se revierte completamente. Esto indica que la información ARP generada en la red a lo largo de la tarde proviene mayormente de un rango horario más acotado, pasado el cual, baja enormemente. Atribuimos este hecho a que permanecen encendidas sólo algunas computadoras de las que se comunicaban antes, con lo cual los mensajes generados en este período no aportan a la cantidad de información diaria de la red, pues ya fueron observados anteriormente, y al ser menor el volumen de actividad, es de esperar que la variabilidad de comportamiento de los hosts sea menor, con lo cual, los pedidos tienden a regularizarse, y por ende, significar menos información. Esta disminución en la variabilidad de comportamiento no se observa en la red ISP, ya que dada la magnitud de la red (y, por qué no, alguna estrategia de optimización por parte del proveedor) sigue siendo lo suficientemente general y diversa, tanto en períodos de baja como de alta actividad.
+De las figuras \ref{fig:paquetes1} y \ref{fig:paquetes2} podemos deducir dos comportamientos diferentes de la red, mirando su evolución a lo largo del tiempo. Si comparamos los valores obtenidos en la figura correspondiente a la ISP, con la entropía medida, vemos que si bien no la alcanza, no presenta una variabilidad significativa a lo largo del tiempo (más allá de la atribuible al aumento de tráfico que puede haber en las horas de la tarde-noche). Lo contrario sucede para la red de la oficina: el pico de entropía medida coincide con la cantidad de paquetes enviados durante un horario de intensa actividad, llegando incluso a superar la entropía en forma general. Observamos que con el correr de las horas esta situación se revierte completamente. Esto indica que la información que proveen a la red los mensajes ARP a lo largo de la tarde proviene mayormente de un rango horario más acotado, pasado el cual, baja enormemente. Atribuimos este hecho a que permanecen encendidas sólo algunas computadoras de las que se 
+comunicaban antes, con lo cual los mensajes generados en este período no aportan a la cantidad de información diaria de la red, pues ya fueron observados anteriormente. Al ser menor el volumen de actividad, es de esperar que la variabilidad de comportamiento de los hosts sea menor, con lo cual los pedidos tienden a regularizarse, y por ende, aportan menos información. Esta disminución en la variabilidad de comportamiento no se observa en la red ISP, ya que dada la magnitud de la red (y, es posible, alguna estrategia de optimización por parte del proveedor) sigue siendo lo suficientemente general y diversa, tanto en períodos de baja como de alta actividad.
 
 \subsubsection{Histogramas de frecuencia}
 
@@ -192,5 +196,6 @@ De las figuras \ref{fig:paquetes1} y \ref{fig:paquetes2} podemos deducir dos com
 	\label{fig:hist6}
 \end{figure}
 
-Como adelantamos anteriormente, en las figuras \ref{fig:hist5} y \ref{fig:hist6} comparamos los histogramas de repetición de mensajes para la red Oficina y la ISP.  Estos histogramas refuerzan la idea explicada anteriormente: para el caso del ISP, se observa una uniformidad mayor, que puede corresponderse con la variabilidad sostenida. Mientras que para la Oficina, se ve, además de la abundancia de paquetes con pocas apariciones (hecho común en ambos casos, nuevamente, atribuible a mensajes erróneos o dispositivos específicos de poca actividad), un decaimiento muy rápido en la cantidad de apariciones, que no se recupera. Esto es consistente con el comentario sobre la dinámica de funcionamiento de la oficina comentada: sólo un subconjunto de los hosts permanece operativo suficiente tiempo de la muestra, y éstos son los que extienden el histograma hacia la derecha. Los restantes, son los abundantes y poco frecuentes que contribuyen a elevar la entropía al pico máximo, y en definitiva, son los que más aporte realizan a la hora de calcular la información media durante la jornada. Justamente, para el caso de la ISP, se ve que esta responsabilidad está más compartida (el histograma decae más lentamente) y la parte significativa se extiende más.
+Como adelantamos anteriormente, en las figuras \ref{fig:hist5} y \ref{fig:hist6} comparamos los histogramas de repetición de mensajes para la red Oficina y la ISP.  Estos histogramas refuerzan la idea explicada anteriormente: para el caso del ISP, se observa una uniformidad mayor, que puede corresponderse con la variabilidad sostenida. Para la red de Oficina, por otro lado, puede observarse, además de la abundancia de paquetes con pocas apariciones (hecho común en ambos casos, atribuible a mensajes erróneos o dispositivos específicos de poca actividad), un decaimiento muy rápido en la cantidad de apariciones, que no se recupera. Esto es consistente con el comentario sobre la dinámica de funcionamiento de la oficina comentada: sólo un subconjunto de los hosts permanece operativo suficiente tiempo de la muestra, y éstos son los que extienden el histograma hacia la derecha. Los restantes, son los abundantes y poco frecuentes que contribuyen a elevar la entropía al pico máximo, y en definitiva, son los que más aporte 
+realizan a la hora de calcular la información media durante la jornada. Justamente, para el caso de la ISP, se ve que esta responsabilidad está más compartida (el histograma decae más lentamente) y la parte significativa se extiende más.
 
