@@ -56,3 +56,12 @@ capturaOff.data:[
  (('08:33PM - 09:32PM'), 4.710782261631901)
 ]
 
+In [1]: import Entropimetro as ep
+
+In [2]: ep.calcularTodo('../capturaBigArp.data')
+Out[2]: 7.057221908621854
+
+In [3]: ep.calcularTodo('../capturaSmallArp.data')
+Out[3]: 6.227198799765303
+
+
