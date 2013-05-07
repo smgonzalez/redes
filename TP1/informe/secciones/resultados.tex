@@ -12,12 +12,54 @@ El caso (1) funcion\'o como se esperaba: al paquete \emph{who-has} (enviado de m
 
 Si se pregunta por una IP que no existe, pero que tiene una m\'ascara correspondiente con la red local (por ejemplo, 192.168.0.2), no se observa ning\'un tipo de respuesta. Sin embargo, si se pregunta por un direcci\'on cuya m\'ascara no se corresponde con la red (casos 4, 6, 7, 8\footnote{En el caso de una direcc\'on inv\'alida, la direcci\'on enviada se traduce a una direcci\'on IP correcta (en este caso se envi\'o el paquete pregunt\'ando por la direcci\'on 7.91.205.21).} y 9) se observa un intercambio de mensajes ligeramente diferente. En vez de enviar un paquete ARP de manera broadcast, la m\'aquina pregunta primero qui\'en tiene la direcci\'on (en nuestro caso) 192.168.0.1 (direcci\'on del router). Al recibir la respuesta \emph{is-at} con la MAC correspondiente, pregunta espec\'ificamente al router qui\'en tiene la direcci\'on buscada. Es decir, pareciera ser que antes de enviar mensajes ARP, autom\'aticamente se calcula si dicha IP se encuentra dentro de la red local. Si no se encuentra, se ejecuta el intercambio mencionado, enviando el pedido por la IP buscada directamente al router (del cual no se recibe respuesta, al menos en los casos probados).\\
 
-Por \'ultimo, si se 
+%Por \'ultimo, si se pregunta por la IP de la misma m\'aquina, observamos a trav\'es del wireshark el siguiente comportamiento. El pedido mencionado genera en la red un paquete ARP cuya IP fuente no es la misma m\'aquina, sino el router (en nuestro caso se observa el siguiente mensaje: \texttt{``Who has 192.168.0.3? Tell 192.168.0.1''}. A este pedido le segu\'ia una respuesta del tipo \emph{is-at} con la informaci\'on correspondiente. De este intercambio no se obtiene sin embargo una respuesta final a la m\'aquina que origin\'o el paquete ARP con su misma IP. 
+% LO SAQUE PORQUE NO FUNCIONA ASI LA SEGUNDA VEZ QUE LO CORRO
 
 
 
 \subsection{Captura de tr\'afico}
 
 % poner resultados de entropia de cada red
+Como mencionamos, se escucharon durante varias horas distintos tipos de redes. A partir de los datos obtenidos calculamos la entrop\'ia de la manera explicada en la secci\'on anterior. Los resultados obtenidos fueron los siguientes:\\
 
-\subsection{Gr\'aficos y An\'alisis}
+\begin{center}
+  \begin{tabular}{l l}
+    Captura de c\'atedra: big\_arp.pcap & 7.057\\
+    Captura de c\'atedra: small\_arp.pcap & 6.227\\
+    Red hogare\~na & 6.749\\
+    Red de oficina & 7.428 \\
+  \end{tabular}
+\end{center}
+
+$\\$
+A continuaci\'on se muestran los gr\'aficos generados a partir de los datos obtenidos en esta secci\'on.
+
+\subsubsection{Grafos}
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.8\textwidth]{graficos/grafoCasa.png}
+    \caption{Grafo de IPs - Red Hogare\~na}
+    \label{fig:grafo1}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.8\textwidth]{graficos/grafoOficina.png}
+    \caption{Grafo de IPs - Red de Oficina}
+    \label{fig:grafo1}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.8\textwidth]{graficos/grafoLaboBig.png}
+    \caption{Grafo de IPs - big\_arp.pcap}
+    \label{fig:grafo1}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.8\textwidth]{graficos/grafoLaboSmall.png}
+    \caption{Grafo de IPs - small\_arp.pcap}
+    \label{fig:grafo1}
+\end{figure}
+
