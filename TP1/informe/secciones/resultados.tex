@@ -31,6 +31,8 @@ Como mencionamos, se escucharon durante varias horas distintos tipos de redes. A
   \end{tabular}
 \end{center}
 
+
+
 $\\$
 A continuaci\'on se muestran los gr\'aficos generados a partir de los datos obtenidos en esta secci\'on.
 
@@ -42,24 +44,31 @@ A continuaci\'on se muestran los gr\'aficos generados a partir de los datos obte
     \label{fig:grafo1}
 \end{figure}
 
+Lo más notable de la figura \ref{fig:grafo1}, como se verá en contraste con los siguientes, es que presenta numerosas componentes conexas pequeñas. Atribuimos esta disposición a que, dado que corresponde con una red de ISP, la interacción, en principio, no se da entre cualqueir par de nodos por igual, ya que obedece a motivos \emph{personales} de los usuarios. De todas formas, la inconexión da la idea de que no existe un nodo centralizador a través del cual se canalice el tráfico (típicamente un router), con lo cual el funcionamiento de la red sería imposible. Por lo tanto, suponemos que, por razones del proveedor, esa información no se transmite via ARP (puede utilizar otros protocolos), o se controla el tráfico de paquetes ARP con destinos sensibles para la red.
+
 \begin{figure}[h!]
   \centering
     \includegraphics[width=0.8\textwidth]{graficos/grafoOficina.png}
     \caption{Grafo de IPs - Red de Oficina}
-    \label{fig:grafo1}
+    \label{fig:grafo2}
 \end{figure}
+
+En el caso de la figura \ref{fig:grafo2}, observamos todo lo contrario al caso anterior. Recordemos que los nodos ubicados más al centro corresponden con las direcciones más solicitadas, típicamente routers/gateways. El alto grado de conexión entre  los nodos centrales refleja la intensa actividad que ocurre entre los hosts en una red privada (ej: clientes de chat). También se observan nodos en el círculo exterior que, no sólo realizan pocas consultas ARP, sino que también nunca le son respondidas. Estos pueden ser dispositivos que se conectaron por poco tiempo y para realizar una tarea espefícica, o direcciones inválidas que no fueron consideradas por el resto de la red para recibir datos.
 
 \begin{figure}[h!]
   \centering
     \includegraphics[width=0.8\textwidth]{graficos/grafoLaboBig.png}
     \caption{Grafo de IPs - big\_arp.pcap}
-    \label{fig:grafo1}
+    \label{fig:grafo3}
 \end{figure}
+
+Para el grafo de la figura \ref{fig:grafo3}, se observa algo similar que en la figura \ref{fig:grafo2}. Pocos nodos con un alto nivel de solicitudes, y una disposición numerosa a su alrededor. Cabe el mismo análisis que en el caso anterior, destacando también la presencia de un nodo del círculo exterior que realiza numerosos pedidos, pero que no le son respondidos en la misma medida. Nuevamente, atribuimos este hecho a la presencia de direcciones anómalas (por ejemplo, $0.0.0.0$).
 
 \begin{figure}[h!]
   \centering
     \includegraphics[width=0.8\textwidth]{graficos/grafoLaboSmall.png}
     \caption{Grafo de IPs - small\_arp.pcap}
-    \label{fig:grafo1}
+    \label{fig:grafo4}
 \end{figure}
 
+Por último, en la figura \ref{fig:grafo4} vemos un esquema similar a los anteriores, pero dado a que el nivel de tráfico es menor, se aprecian mejor los enlaces. Igualmente existen las direcciones anómalas y los nodos distinguidos en el centro, pero se puede apreciar mejor el intercambio entre los nodos menos distinguidos de la red.
