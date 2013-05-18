@@ -1,0 +1,61 @@
+\section{M\'etodos}
+
+% LES COPIO LO QUE TENGO ANOTADO EN EL CUADERNO:
+% Hablar de entropia (como la vamos a tomar, como vamos a sniffear. Tambien puede ponerse un pseudocodigo, o una explicacion del codigo
+
+\subsection{Primera Consigna: Implementaci\'on de un cliente ARP}\label{sec:metodos_1}
+El primer paso consiste en implementar una funci\'on que, dada una direcci\'on IP, env\'ie un mensaje ARP a trav\'es de la red local preguntando con qu\'e direcci\'on MAC se corresponde. Si recibe respuesta, se muestra por pantalla dicha direcci\'on; en caso contrario se indica que la IP es inexistente, o no puede ser alcanzada desde la red local.\\
+
+Como mencionamos, esta consigna se implementa utilizando la herramienta \emph{scapy}. Ya que la misma funciona sobre python, programamos la funci\'on en este lenguaje. Para el env\'io del paquete ARP instanciamos un objeto del tipo ARP, y modificamos solamente el campo \emph{pdst}, ya que los otros tienen por defecto los valores que necesitamos (la IP de la m\'aquina que env\'ia, tipo de mensaje \emph{who-has}, etc). El env\'io en s\'i se realiza a trav\'es de la funci\'on \emph{sr} (send and receive), utilizando un timeout de 3 segundos. Esta funci\'on devuelve una lista cuyo primer elemento son los paquetes que respondieron, y el segundo los paquetes sin respuestas. Si el primer elemento no es vac\'io, se devuelven las direcciones MAC  recibidas\footnote{Si bien en condiciones normales, la asocicación IP-MAC debería ser única, en esta instancia consideramos que se pueden obtener múltiples respuestas. Para el análisis de los datos obtenidos en las secciones siguientes esto no será relevante pues sólo analizaremos relaciones entre direcciones IP}; en caso contrario se indica que dicha direcci\'on no puede ser alcanzada en la red local. \\
+
+Utilizando la funci\'on programada, vamos a analizar qu\'e ocurre al suministrarle distintos tipos de direcciones IP. Todos los casos que mencionamos a continuaci\'on fueron probados sobre una red wireless, con IP 192.168.0.3. Los casos testeados fueron los siguientes:
+
+\begin{enumerate}
+ \item Direcciones que pertenecen a la red (para conocer las direcciones IP que se encuentran en la red utilizamos la funci\'on \emph{arping}, inclu\'ida dentro de \emph{scapy}): 192.168.0.1, 192.168.0.4, 192.168.0.6
+ \item Direcciones con la m\'ascara de red correcta, pero que no pertenecen a hosts conectados a la misma. Por ejemplo: 192.168.0.2, 192.168.0.5, etc.
+ \item Misma direcci\'on que la m\'aquina de origen (en este caso, 192.168.0.3).
+ \item Direcci\'on IP correspondiente a la m\'aquina de origen, seg\'un se ve de afuera (utilizando por ejemplo \\ http://www.whatismyip.com/). En este caso dicha direcci\'on fue 24.232.212.124.
+ \item Direcci\'on broadcast de la red (192.168.0.255)
+ \item Direcci\'on 0.0.0.0
+ \item Direcci\'on 255.255.255.255
+ \item Direcciones inv\'alidas (por ejemplo: 123456789)
+ \item Direcciones que no pertenecen a la red local (por ejemplo, 173.194.42.35)
+\end{enumerate}
+
+Al mismo tiempo utilizaremos la herramienta \emph{wireshark}, para poder ver con m\'as precisi\'on los mensajes que se env\'ian al hacer uso de la funci\'on mencionada (como s\'olo nos interesan los paquetes ARP, utilizaremos un filtro que muestre solamente los mismos).
+
+\subsection{Segunda Consigna: Capturando tr\'afico}\label{sec:metodos_2}
+
+Para capturar los mensajes ARP nuevamente utilizaremos la herramienta \emph{scapy}: esta vez haremos uso de la funci\'on \emph{sniff}, filtrando solamente los mensajes ARP. Para hacer luego un an\'alisis de los datos obtenidos y poder comparar el comportamiento de distintas redes, tomamos los siguientes datos:
+
+\begin{itemize}
+ \item \texttt{Captura Oficina}: Escuchamos durante aproximadamente ocho horas de una jornada laborable la red ethernet interna de una oficina de una empresa de software. Para cada paquete recibido guardamos todos los campos mencionados en la introducci\'on, agregando el tiempo en el que se produjo la captura.
+ 
+ \item \texttt{Captura Red ISP}: Escuchamos durante aproximadamente dieciséis horas (13:00 - 5:00) de un día hábil a través de un modem hogareño conectado directamente al ISP. Relevamos los mismos datos que para el caso anterior.
+
+ \item \texttt{Captura Laboratorio}: Utilizamos adem\'as los archivos \texttt{pcap} provistos por la c\'atedra, correspondiente a capturas realizadas dentro de los laboratorios de la Facultad, con informaci\'on de una red de alto tr\'afico ARP, y otra de poco tr\'afico (\texttt{big\_arp.pcap} y \texttt{small\_arp.pcap}). En este caso no contamos con información temporal.\\
+
+\end{itemize}
+
+Una vez obtenidos los datos, analizamos la entrop\'ia de la red. Para ello definimos una fuente de informaci\'on cuyos s\'imbolos consisten en pares \texttt{<ip\_fuente, ip\_destino>}\footnote{Consideramos los pares de manera ordenada, por lo cual no es lo mismo una combinaci\'on de IPs, que la misma combinaci\'on de manera invertida.}. Estos s\'imbolos son tomados de los mensajes ARP del tipo \emph{who-has} que env\'ia cada host\footnote{El sniffer programado captura ambos tipos de mensaje ARP; al calcular la entrop\'ia filtramos primero los mensajes \emph{who-has}.}. Recordemos que los mensajes \emph{is-at} se env\'ian de manera privada al nodo que pregunt\'o por esa IP, por lo tanto s\'olo podemos escuchar los del tipo \emph{who-has}, o los \emph{is-at} env\'iados a nuestra m\'aquina. Para evitar considerar que la m\'aquina que corre el sniffer es m\'as sigificativa de lo que realmente es, s\'olo observaremos los paquetes \emph{who-has}, dado que son los únicos mensajes que podemos ver en su totalidad. Con estas salvedades, consideramos que contamos con suficiente información, utilizando únicamente el protocolo ARP, para conocer y caracterizar la red en cuestión. \\
+
+En estas condiciones, cada s\'imbolo posible tiene una probabilidad de ocurrencia que se relaciona con la importancia del nodo dentro de la red: los nodos \emph{significativos} (como, por ejemplo, el router) ser\'an aquellos que aparezcan con mayor frecuencia en el campo \texttt{ip\_destino}. La probabilidad de cada s\'imbolo se calcular\'a de manera emp\'irica, en base a la cantidad de apariciones sobre el total de s\'imbolos presentados (es decir, su frecuencia relativa). Además, podemos considerar que la fuente, definida de esta manera, es una fuente de memoria nula, ya que suponemos que los s\'imbolos emitidos son estad\'isticamente independientes\footnote{Esta suposición descarta casos patológicos, en los que, por ejemplo, la respuesta (o su ausencia) de un pedido pudiera generar nuevos, o bien tráfico intencionado más allá del normal funcionamiento del protocolo.}.\\
+
+Una vez conseguidos los datos de captura, procesamos estos archivos con sus respectivos scripts en \emph{Python}. Para todos los casos trazamos un grafo de red en base a los mensajes escuchados y calculamos la entropía total de la red. Esto lo realizamos trivialmente desde la definición, con la salvedad dicha anteriormente, de aproximar la probabilidad de ocurrencia de los símbolos por su frecuencia relativa. Para ajustar esta aproximación, consideramos períodos de tiempo prolongados. En los casos en que contábamos con información temporal sobre la captura de los paquetes, realizamos, además, el cálculo de la entropía para subintervalos disjuntos de una hora, de manera de observar la variabilidad de la red a lo largo del tiempo de captura. En todos los casos calculamos la entropía en bits, es decir, tomando logaritmo en base $2$.
+
+\subsection{Tercera Consigna: Gr\'aficos y An\'alisis}
+
+Para caracterizar una red buscamos, por un lado, encontrar los nodos relevantes de la misma. Contamos para esto con los s\'imbolos mencionados en la secci\'on anterior (pares \texttt{<ip\_fuente, ip\_destino>}), y con el valor de la informaci\'on de cada nodo (en este caso, función de su frecuencia relativa), así como la entrop\'ia de la red\footnote{Para caracterizar la red, consideramos que la asociaci\'on entre una IP y una direcci\'on MAC no es relevante. Lo importante en este caso es la comunicaci\'on entre los distintos hosts, los cuales pueden representarse a trav\'es de su IP o de su direcci\'on MAC. Elegimos utilizar la IP, pero podr\'ia haber sido cualquiera de las dos opciones.}. A partir de estos datos podemos caracterizar cada una de las redes a estudiar observando la siguiente informaci\'on:
+
+\begin{enumerate}
+ \item Grafos dirigidos, en donde cada nodo representa una IP, y existe un eje desde el nodo A hasta el nodo B, si A hizo un pedido \emph{who-has} a B (es decir, si el s\'imbolo \texttt{<A, B>} apareci\'o durante la captura). Dado que el trazado de aristas resulta imposible de interpretar a simple vista, lo simplificamos gráficamente, representando el grafo de manera circular y concéntrica, donde los nodos que se encuentran más al centro tienen mayor grado de entrada que los más distantes. No realizamos esto en un continuo, sino separándolo en clases en una escala logarítmica.
+ \item Histograma relacionando cada IP, con la cantidad de veces que fue consultada (es decir, que apareci\'o en el campo \texttt{ip\_destino}).
+ \item Cantidad de informaci\'on de cada IP. En este caso puede compararse la informaci\'on con la entrop\'ia total, y sacar conclusiones a partir de esto de cu\'ales son los nodos significativos.
+ 
+ \item Entrop\'ia de la fuente en funci\'on de un rango horario. En este caso no estamos observando tanto los nodos significativos, sino c\'omo distintos tipos de redes pueden variar la cantidad de informaci\'on presente seg\'un el momento del d\'ia, y el tipo de red que sea -hogare\~na, oficina, etc. Es de esperar que en un momento de mucha actividad de la red la variabilidad de los mensajes sea mayor, ya que las posibilidades de comunicación entre equipos aumenta considerablemente sólo por el hecho de que haya mayor cantidad de hosts conectados. Por otro lado, contrastaremos esta variabilidad con la entropía total calculada sobre toda la captura: si los valores correspondientes a subintervalos se corresponden con la entropía total, podremos deducir que la entropía de la red es relativamente constante, más allá del momento calculado, mientras que las discrepancias nos indicarán los períodos de mayor abundancia o escasez de información en la red.
+ 
+ \item Histograma de cantidad de apariciones de mensajes. Contamos cuántas veces aparece cada mensaje, y graficamos en un histograma estas cantidades. Esto nos permite diferenciar la variedad de mensajes escuchados: la cantidad de observaciones de un mensaje es creciente de izquierda a derecha, con lo cual, un pico hacia la izquierda indicaría variedad de mensajes escuchados frecuentemente (pocas apariciones pero de muchos mensajes distintos), mientras que un equilibrio en el histograma indicaría que existe la misma abundancia de mensajes poco frecuentes que de usuales. Nos extenderemos al respecto en el análisis de los gráficos en concreto, relacionándolo con los valores de entropía medidos en subunidades de tiempo.
+ 
+\end{enumerate}
+
+
