@@ -9,19 +9,27 @@ def ping(host, cant=4, p_ttl=64):
 	icmp = IP(dst=host, ttl=p_ttl) / ICMP() / 'Pingeando host'
 
 	printf('Pingeando %r usando TTL=%r', host, p_ttl)
-	for i in range(1, cant+1):
-		rep = None
-		secs = time.time()
-		rep = sr1(icmp, verbose=0, timeout=3)
-		secs = round(time.time() - secs, 4)
 
-		if rep == None:
-			print 'Ping no respondido'
-		else:
+	try:
+		for i in range(1, cant+1):
+			rep = None
+			secs = time.time()
+			rep = sr1(icmp, verbose=0, timeout=3)
+			secs = round(time.time() - secs, 4)
+
+			if rep == None:
+				print 'Ping no respondido'
+			else:
 			
-			host_rep = rep[0].src
+				host_rep = rep[0].src
 
-			printf('Reply obtenido de %r en %r segundos', host_rep, secs)
+				printf('Reply obtenido de %r en %r segundos', host_rep, secs)
+
+	except:
+
+		return -1
+
+	return 0
 
 
 def definirParamertos(parser):
@@ -50,5 +58,10 @@ if __name__ == '__main__':
 		parser.print_help()
 		exit()
 
-	ping(params.host, params.cant, params.ttl)
-	exit()
+	exit_code = ping(params.host, params.cant, params.ttl)
+
+	if exit_code == -1:
+		print 'Hubo un problema al realizar el ping'
+
+	exit(exit_code)
+
