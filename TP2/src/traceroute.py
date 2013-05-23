@@ -8,7 +8,7 @@ def traceroute(host, ttl_max=64):
 	pkg=IP(dst=host) / ICMP() / 'Pingeando host'
 
 	try:
-		for i in range(1, ttl_max+1):
+		for i in range(0, ttl_max+1):
 			pkg.ttl = i
 			rep = sr1(pkg, verbose=0, timeout=3)
 
@@ -19,7 +19,7 @@ def traceroute(host, ttl_max=64):
 			
 			route.append(ip)
 
-			if ip = host:
+			if ip == host:
 				break
 
 	except:
