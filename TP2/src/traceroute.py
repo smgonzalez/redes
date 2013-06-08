@@ -9,6 +9,8 @@ def traceroute(host, ttl_max=64):
 
 	try:
 		for i in range(0, ttl_max+1):
+			rep = None
+			print 'pingeando i:', i
 			pkg.ttl = i
 			rep = sr1(pkg, verbose=0, timeout=3)
 
