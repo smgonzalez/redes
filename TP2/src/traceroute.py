@@ -7,25 +7,25 @@ def traceroute(host, ttl_max=64):
 	route=[]
 	pkg=IP(dst=host) / ICMP() / 'Pingeando host'
 
-	try:
-		for i in range(0, ttl_max+1):
-			rep = None
-			print 'pingeando i:', i
-			pkg.ttl = i
-			rep = sr1(pkg, verbose=0, timeout=3)
+#	try:
+	for i in range(0, ttl_max+1):
+		rep = None
+		print 'pingeando i:', i
+		pkg.ttl = i
+		rep = sr1(pkg, verbose=0, timeout=3)
 
-			if rep == None:
-				ip = '-'
-			else:
-				ip = rep[0].src
+		if rep == None:
+			ip = '-'
+		else:
+			ip = rep[0].src
 			
-			route.append(ip)
+		route.append(ip)
 
-			if ip == host:
-				break
+		if ip == host:
+			break
 
-	except:
-		return -1
+#	except:
+#		return -1
 
 	i=1
 	print 'Ruta:'
