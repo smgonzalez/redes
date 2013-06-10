@@ -21,33 +21,4 @@ En base a este algoritmo se implementara la herramienta {\bf Traceroute}. Luego 
 
 Para determinar si un enlace es Transoceanico lo que se hara sera es utilizar herramientas como las que se encuentran en \url{http://www.geoiptool.com/es/} o \url{http://geoip.flagfox.net/} Para poder localicar el punto geografico de un router mediante su IP publica.
 
-% LES COPIO LO QUE TENGO ANOTADO EN EL CUADERNO:
-% Hablar de Scapy, ARP, cosas que usamos (definiciones, etc.)
-
-% Aclarar que uno puede ver los paquetes ARP del tipo who-has que se encuentran en el mismo dominio de broadcast que el host que origina el mensaje.
-% Hablar de gratuitious arp???
-
-% El presente trabajo pr\'actico tiene como objetivo estudiar el comportamiento de una red a nivel de enlace (analizando principalmente el v\'inculo de este nivel con la capa superior). Para ello vamos a observar el funcionamiento del protocolo ARP dentro de una determinada red: buscamos caracterizar la misma observando solamente los mensajes enviados a trav\'es este protocolo. A su vez, relacionaremos la red estudiada con los conceptos aprendidos dentro del campo de la teor\'ia de la informaci\'on: utilizando la entrop\'ia de una red local (tomando como fuente de informaci\'on el modelo explicado m\'as adelante) vamos a caracterizar el funcionamiento de la misma, centr\'andonos en cuales son los nodos distinguidos en ella.\\
-% 
-% ARP (\emph{Address Translation Protocol}) es el protocolo encargado de mapear direcciones de nivel 3 a direcciones de nivel 2 (nivel f\'isico). Comunmente se utiliza para traducir direcciones IP a direcciones MAC, aunque el protocolo permite asociar otros tipos de direcciones. En este trabajo nos concentraremos solamente en el caso mencionado. \\
-% 
-% %El mismo permite que cada host, a trav\'es del env\'io de mensajes \emph{broadcast} dentro de la red local, construya una tabla de asociaciones IP-MAC, que le permitir\'an luego enviar mensajes de manera directa a las m\'aquinas que se encuentran dentro de su misma red.\\
-% 
-% Para construir asociaciones IP-MAC se env\'ia un paquete ARP consistente, entre otros, de los siguientes campos:
-% 
-% \begin{itemize}
-%  \item Tipo de mensaje (\emph{``who-is''} / \emph{``is-at''})
-%  \item IP del host que env\'ia el mensaje
-%  \item MAC del host que env\'ia el mensaje
-%  \item IP del host destino
-%  \item MAC del host destino
-% \end{itemize}
-% 
-% Si la m\'aquina A quiere comunicarse con B, conociendo solamente su direcci\'on IP, deber\'a enviar un mensaje ARP de manera \emph{broadcast}, del tipo \emph{who-is}, con la IP de B dentro del campo IP-destino. El host cuya IP se corresponda con el mensaje contestar\'a entonces con un ARP del tipo \emph{is-at}, indicando su direcci\'on a nivel de enlace. Este \'ultimo mensaje se env\'ia solamente a la IP que desea conocer la MAC, por lo cual s\'olo puede ser escuchado por la m\'aquina que pregunt\'o. A trav\'es del env\'io de estos paquetes, cada host puede armar din\'amicamente una cach\'e de asociaciones IP-MAC. El hecho de que los mensajes \emph{who-has} sean enviados de manera \emph{broadcast} nos permitir\'a escucharlos f\'acilmente, para poder sacar conclusiones a partir del uso que se haga de ellos. En general las tablas ARP tienen vigencia por aproximadamente 15 minutos, por lo que se esperan ver mensajes ARP relativamente seguido.\\
-% 
-% El primer paso para cumplir con los objetivos mencionados ser\'a implementar una funci\'on que, dada una direcci\'on IP, pregunte con qu\'e direcci\'on MAC se corresponde, y la muestre en pantalla si es que obtuvo respuesta. Para esto utilizaremos la herramienta \emph{scapy}, un programa de manipulaci\'on de paquetes. Con esta funci\'on analizaremos qu\'e ocurre al suministrarle distintos tipos de direcciones IP.\\
-% 
-% A continuaci\'on implementaremos una funci\'on que capture los mensajes ARP, escuchando pasivamente la red local durante un determinado tiempo. Con la informaci\'on obtenida analizaremos la entrop\'ia de la red, utilizando el modelo de fuente explicado en la secci\'on \ref{sec:metodos_2}. A partir de estos datos graficaremos lo observado: grafos dirigidos en los que se indica qu\'e IP mand\'o mensaje a cual, histogramas con la informaci\'on calculada seg\'un cada IP, entre otros. Esperamos que estos gr\'aficos nos den una caracterizaci\'on de cada una de las redes estudiadas.
-% 
-% 
-% %l objetivo buscado en el trabajo es poder caracterizar la red observando solamente los mensajes enviados a trav\'es del protocolo mencionado.
+%% ACA ME FALTA UN TOQUE, COMITIE PORQUE ME FUI A COMER :P
