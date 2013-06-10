@@ -38,9 +38,6 @@ def traceroute(host, ttl_max=64, pkgs_per_ttl=1):
 			
 			if ans == None:
 				ip = '-'
-				# Asumo que el resto de los intentos tambien van a fallar
-				#contin = 1
-				#break
 			else:
 				ip = ans[0].src
 				ip_ok = 1

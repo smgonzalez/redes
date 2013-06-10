@@ -2,12 +2,36 @@
  
  \subsection{Implementaci\'on de \texttt{ping} y \texttt{traceroute}}
  
- Tanto para la implementaci\'on del \texttt{ping} como del \texttt{traceroute} se utiliz\'o el paquete \texttt{scapy}. \\
- 
- La implementaci\'on de \texttt{ping} consiste simplemente en construir un paquete de \texttt{scapy} compuesto por IP e ICMP, de la siguiente manera:\\
+ Para implementar \texttt{ping} debemos enviar un paquete ICMP del tipo \texttt{echo-request} a la direcci\'on deseada, y esperar de respuesta el correspondiente paquete ICMP del tipo \texttt{echo-reply}. Esto se puede conseguir utilizando la herramienta \texttt{scapy}, inicializando un paquete ICMP sobre un paquete IP, de la siguiente manera:\\
  
  \begin{center}
     \texttt{icmp = IP(dst=host, ttl=p\_ttl) / ICMP()}
  \end{center}
  
- Por defecto el paquete ICMP se inicializa del tipo \text{echo-request}
+ La funci\'on permite definir el host al que se quiere enviar el paquete IP y el TTL. Por defecto, el paquete ICMP se inicializa del tipo \texttt{echo-request}, por lo tanto basta con enviar el paquete creado y esperar la respuesta. Esto \'ultimo se consigue utilizando la funci\'on \texttt{sr1}, la cual se encarga de ambas acciones:
+ 
+ \begin{center}
+    \texttt{ans = sr1(icmp)}
+ \end{center}
+ 
+ Como resultado de esta funci\'on, si es que se recibe respuesta, se obtiene el paquete IP e ICMP devuelto por el host al recibir el \texttt{echo-request}, con la direcci\'on IP de donde proviene, entre otros datos.\\
+ *** ALGUNA ESPECIE DE REFLEXION DE QUE NOS CONTESTARON Y ENTONCES ESTAN VIVOS? DE CUANDO CONTESTAN Y CUANDO NO?\\
+ 
+ Para la implementaci\'on de \texttt{traceroute} nuevamente vamos a utilizar las funciones provistas por \texttt{scapy}. Esta funci\'on recibe como par\'ametros de entrada la direcci\'on destino, la cantidad m\'axima de hops que se van a realizar (\texttt{ttl\_max}), y la cantidad de paquetes a enviar a cada nodo que se encuentra en la ruta (\texttt{pkgs\_per\_ttl}).\\
+ 
+ La ruta que sigue un paquete puede ser encontrada variando el \texttt{ttl} dentro de la cabecera IP. Si comenzamos con un ttl igual a 1, el gateway que reciba ese paquete lo va a descartar, devolviendo a la direcci\'on fuente del mensaje un paquete ICMP indicando lo ocurrido, asi como la direcci\'on IP donde ocurri\'o el error. M\'as precisamente, sabemos que al mandar un paquete con ttl igual a 1 recibiremos (probablemente) como respuesta un mensaje ICMP del tipo \texttt{time-exceeded}, con c\'odigo \texttt{ttl-zero-during-transit}, y la direcci\'on IP del gateway que decrement\'o el ttl a cero. Esto nos permite saber la direcc\'on IP del primer nodo al que se env\'ia el paquete. Aumentando sucesivamente el ttl (ttl=2, ttl=3, etc) podemos descubir la ruta que sigue el hasta llegar a destino.\\
+ 
+ El paquete a enviar es simplemente un \texttt{ping}, el cual se manda una determinada cantidad de veces (seg\'un la variable \texttt{pkgs\_per\_ttl}) a la direcci\'on destino, para luego incrementar el ttl y repetir.\\
+ 
+ El algoritmo frena cuando se llega a un m\'aximo de hops permitidos (definido por \texttt{ttl\_max}), o cuando se recibe un paquete del tipo \texttt{echo-reply}, lo cual indica que se lleg\'o a destino y el mismo respondi\'o correctamente.\\
+ 
+ La implementaci\'on realizada permite conocer tambi\'en el RTT estimado hacia cada nodo. Esto se consigue midiendo el tiempo de ejecuci\'on de la funci\'on \texttt{sr1}. Debido a que este tiempo puede variar considerablemente seg\'un el tr\'afico que haya en el momento, es conveniente enviar una cantidad de paquetes relativamente grande por cada ttl, y tomar el RTT promedio.\\
+ 
+ Hay que tener en cuenta que no todos los nodos van a responder el \texttt{ping}: muchos de ellos ignoran estos paquetes por cuestiones de seguridad. Adem\'as, ICMP es generalmente el protocolo con menor prioridad, con lo cual un router ocupado puede elegir desechar este mensaje, sin que esto signifique que vaya a desechar todos los mensajes que se env\'ian a \'el. Si no se recibe respuesta para un paquete ping se procede a enviar el siguiente, ignorando esta informaci\'on.\\
+ 
+ Otro problema de esta implementaci\'on es que no podemos asegurar que, al enviar un mensaje con un determinado ttl (menor a lo necesario para llegar a destino) se siga la ruta encontrada hasta el momento. Por esta raz\'on, y por lo mencionado anteriormente respecto de la p\'erdida de paquetes, el camino que encuentre \texttt[traceroute} va a ser un camino aproximado. \\
+ 
+ \subsection{Exploraci\'on}
+ 
+ % CONTAR QUE ENLACES ELEGIMOS, POR QUE, COMO LOCALIZAMOS CADA IP, COMO TOMAMOS EL RTT MINIMO, ETC. DESPUES EN RESULTADOS PONEMOS LOS GRAFIQUITOS Y LOS ANALIZAMOS
+Las funciones mencionadas en la secci\'on anterior van a ser utilizadas para encontrar enlaces que conecten distintos continentes. Para ello ....

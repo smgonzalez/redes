@@ -12,16 +12,16 @@ def ping(host, cant=4, p_ttl=64):
 
 	try:
 		for i in range(1, cant+1):
-			rep = None
+			ans = None
 			secs = time.time()
-			rep = sr1(icmp, verbose=0, timeout=3)
+			ans = sr1(icmp, verbose=0, timeout=3)
 			secs = round(time.time() - secs, 4)
 
-			if rep == None:
+			if ans == None:
 				print 'Ping no respondido'
 			else:
 			
-				host_rep = rep[0].src
+				host_rep = ans[0].src
 
 				printf('Reply obtenido de %r en %r segundos', host_rep, secs)
 
@@ -48,7 +48,7 @@ def printf(format, *args):
 	
 if __name__ == '__main__':
 
-	usage = "usage: sudo %prog [options] -o <host>"
+	usage = "usage: sudo ./ping.py [options] -o <host>"
 
 	#parseamos los parametros
 	parser=OptionParser(usage=usage)
