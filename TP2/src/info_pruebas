@@ -24,6 +24,8 @@ Rtt promedio calculado:
 	17:54hs		23:54hs		218.2ms - 193.9ms = 24.3ms
 	18:17hs		00:17hs		252.6ms - 192.1ms = 60.5ms
 	18:40hs		00:40hs		265.8ms - 197.9ms = 67.9ms
+	19:03hs		01:03hs		261.7ms - 197.5ms = 64.2ms
+	19:27hs		01:27hs		290.4ms - 195.0ms = 95.4ms
 	
 
 
@@ -57,6 +59,8 @@ RTT promedio calculado:
 	18:07hs		22:07hs		285.7ms - 193.9ms = 91.8ms
 	18:27hs		22:27hs		292.8ms - 211.8ms = 81ms
 	18:48hs		22:48hs		323.9ms - 197.4ms = 126.5ms
+	19:11hs		23:11hs		292.1ms - 200.0ms = 92.1ms
+	19:33hs		23:33hs		287.5ms - 223.5ms = 64ms
 	
 	
 	
