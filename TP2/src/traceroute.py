@@ -49,7 +49,7 @@ def traceroute(host, ttl_max=64, pkgs_per_ttl=1):
 					ready = 1
 					break
 				
-			strRes += ip + '\t' + str(round(rtt,4)*100) + 'ms\t'
+			strRes += ip + '\t' + str(round(rtt,4)*1000) + 'ms\t'
 
 			if ip == host:
 				ready = 1
@@ -64,7 +64,7 @@ def traceroute(host, ttl_max=64, pkgs_per_ttl=1):
 		# Saco RTT promedio
 		if ip_ok:
 			avgRTT = reduce(lambda x,y:float(x)+float(y), rtts)/len(rtts)
-			strRes += 'RTT Promedio: ' + str(round(avgRTT, 4)*100) + 'ms (sobre ' + str(len(rtts)) + ' paquetes)'
+			strRes += 'RTT Promedio: ' + str(round(avgRTT, 4)*1000) + 'ms (sobre ' + str(len(rtts)) + ' paquetes)'
 			print strRes
 
 #	i=1
