@@ -16,31 +16,38 @@ fi
 tr_file=traceroute_dump.txt
 
 traceroute $host_final > $tr_file
-hops=$(python rangoDeIPs.py $host_src $mask_src $host_dst $mask_dst)
+#hops=$(python rangoDeIPs.py $host_src $mask_src $host_dst $mask_dst)
+hops=$(python pi.py $host_src $mask_src $host_dst $mask_dst)
 
 first=`echo $hops | awk '{print $1}'`
 max=`echo $hops | awk '{print $2}'`
 
 touch $dump_file
 
+rtt_sum=0
+
 for i in $(seq 1 100)
 do
 	echo TR $i Hop inicial: $first  Hop final: $max
 
 	traceroute -f $first -m $max -q 5 $host_final > $tr_file
-	hops=$(python rangoDeIPs.py $host_src $mask_src $host_dst $mask_dst $tr_file)
+	#hops=$(python rangoDeIPs.py $host_src $mask_src $host_dst $mask_dst $tr_file)
+	hops=$(python pi.py $host_src $mask_src $host_dst $mask_dst $tr_file)
 	
 	#si el python devuelve un -1, bash lo ve como un 255 (alta saturacion xD)
 	if [ $? = 255 ]; then
 		echo "Cambio el enlace.. TODO MAL!!! chau.."
-		exit -1
+		break
 	fi
 
 	first=`echo $hops | awk '{print $1}'`
 	max=`echo $hops | awk '{print $2}'`
-	echo $hops | awk '{print $3}' >> $dump_file
+	rtt=`echo $hops | awk '{print $3}' | tee -a $dump_file`
 
+	rtt_sum=`echo "$rtt_sum+$rtt" | bc -l`
+	rtt_prom=`echo "$rtt_sum/$i" | bc -l`
 
+	echo "RTT = $rtt, RTT PROMEDIO = $rtt_prom"
 done
 
 rm -f $tr_file
