@@ -16,8 +16,7 @@ fi
 tr_file=traceroute_dump.txt
 
 traceroute $host_final > $tr_file
-#hops=$(python rangoDeIPs.py $host_src $mask_src $host_dst $mask_dst)
-hops=$(python pi.py $host_src $mask_src $host_dst $mask_dst)
+hops=$(python rangoDeIPs.py $host_src $mask_src $host_dst $mask_dst)
 
 first=`echo $hops | awk '{print $1}'`
 max=`echo $hops | awk '{print $2}'`
@@ -31,8 +30,7 @@ do
 	echo TR $i Hop inicial: $first  Hop final: $max
 
 	traceroute -f $first -m $max -q 5 $host_final > $tr_file
-	#hops=$(python rangoDeIPs.py $host_src $mask_src $host_dst $mask_dst $tr_file)
-	hops=$(python pi.py $host_src $mask_src $host_dst $mask_dst $tr_file)
+	hops=$(python rangoDeIPs.py $host_src $mask_src $host_dst $mask_dst $tr_file)
 	
 	#si el python devuelve un -1, bash lo ve como un 255 (alta saturacion xD)
 	if [ $? = 255 ]; then
