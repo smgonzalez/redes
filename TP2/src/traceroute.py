@@ -26,7 +26,7 @@ def traceroute(host, ttl_max=64, pkgs_per_ttl=1):
 		contin = 0
 		ip_ok = 0
 		
-		rtts = [0] * num_pkgs	
+		rtts = []
 		
 		for p in range(1, num_pkgs+1):
 			
@@ -46,7 +46,7 @@ def traceroute(host, ttl_max=64, pkgs_per_ttl=1):
 				ip_ok = 1
 				
 				# Solo entran al promedio los rtts de respuestas correctas
-				rtts[p-1] = rtt
+				rtts.append(rtt)
 				
 				if ans[1].type == 0:		# Recibi paquete ICMP del tipo echo-reply
 					ready = 1
@@ -67,7 +67,7 @@ def traceroute(host, ttl_max=64, pkgs_per_ttl=1):
 		# Saco RTT promedio
 		if ip_ok:
 			avgRTT = reduce(lambda x,y:float(x)+float(y), rtts)/len(rtts)
-			strRes += 'RTT Promedio: ' + str(round(avgRTT, 4)*100) + 'ms'
+			strRes += 'RTT Promedio: ' + str(round(avgRTT, 4)*100) + 'ms (sobre ' + str(len(rtts)) + ' paquetes)'
 			print strRes
 
 #	i=1
