@@ -29,7 +29,7 @@
  
  Hay que tener en cuenta que no todos los nodos van a responder el \texttt{ping}: muchos de ellos ignoran estos paquetes por cuestiones de seguridad. Adem\'as, ICMP es generalmente el protocolo con menor prioridad, con lo cual un router ocupado puede elegir desechar este mensaje, sin que esto signifique que vaya a desechar todos los mensajes que se env\'ian a \'el. Si no se recibe respuesta para un paquete ping se procede a enviar el siguiente, ignorando esta informaci\'on.\\
  
- Otro problema de esta implementaci\'on es que no podemos asegurar que, al enviar un mensaje con un determinado ttl (menor a lo necesario para llegar a destino) se siga la ruta encontrada hasta el momento. Por esta raz\'on, y por lo mencionado anteriormente respecto de la p\'erdida de paquetes, el camino que encuentre \texttt[traceroute} va a ser un camino aproximado. \\
+ Otro problema de esta implementaci\'on es que no podemos asegurar que, al enviar un mensaje con un determinado ttl (menor a lo necesario para llegar a destino) se siga la ruta encontrada hasta el momento. Por esta raz\'on, y por lo mencionado anteriormente respecto de la p\'erdida de paquetes, el camino que encuentre \texttt{traceroute} va a ser un camino aproximado. \\
  
  \subsection{Exploraci\'on}
  
