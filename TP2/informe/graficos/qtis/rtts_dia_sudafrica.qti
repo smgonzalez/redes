@@ -2,48 +2,30 @@ QtiPlot 0.9.8 project file
 <scripting-lang>	muParser
 <windows>	2
 <table>
-datos_finlandia_imp	25	3	11 Jun 2013 18:06:52
+datos_sudafrica_imp	8	3	11 Jun 2013 18:43:21
 geometry	0	0	445	220	
-header	1428[X]	1128[Y]	956[Y]
+header	1740[X]	1440[Y]	337[Y]
 ColWidth	100	100	100	
 <com>
 </com>
-ColType	3;hh:mm	3;hh:mm	0;0/13
+ColType	1;0/13	1;0/13	0;0/13
 ReadOnlyColumn	0	0	0
 HiddenColumn	0	0	0
-Comments	14:28	11:28	95.6	
-WindowLabel	/media/libre/Sergio/redes/TP2/informe/datos/datos_finlandia_imp	2
+Comments	17:40	14:40	33.7	
+WindowLabel	/media/libre/Sergio/redes/TP2/informe/datos/datos_sudafrica_imp	2
 <data>
-0	14:52	11:52	15.1
-1	15:15	12:15	58.7
-2	16:01	13:01	45.2
-3	16:23	13:23	20.4
-4	17:08	14:08	20.4
-5	17:31	14:31	27.3
-6	17:54	14:54	24.3
-7	18:17	15:17	60.5
-8	18:40	15:40	67.9
-9	19:03	16:03	64.2
-10	19:27	16:27	95.4
-11	19:51	16:51	103.4
-12	20:13	17:13	48.8
-13	20:37	17:37	65.3
-14	21:00	18:00	29.3
-15	21:23	18:23	74.6
-16	01:07	22:07	17
-17	01:52	22:52	28.2
-18	02:15	23:15	62.9
-19	02:37	23:37	17.7
-20	10:58	07:58	17.6
-21	11:21	08:21	33
-22	12:07	09:07	52.6
-23	13:14	10:14	69.1
-24	13:37	10:37	47
+0	10:57	15:57	31.6
+1	11:25	08:25	78
+2	11:59	08:59	64.4
+3	12:30	09:30	43.3
+4	13:15	10:15	50.7
+5	13:45	10:45	43.9
+6	14:15	14:15	36.1
 </data>
 </table>
 <multiLayer>
-Graph1	1	1	11 Jun 2013 18:20:38
-geometry	384	113	523	458	active
+Graph1	1	1	11 Jun 2013 18:43:47
+geometry	269	104	509	458	active
 WindowLabel		2
 Margins	5	5	5	5
 Spacing	5	5
@@ -52,8 +34,8 @@ Alignement	0	0
 <AlignPolicy>0</AlignPolicy>
 <CommonAxes>0</CommonAxes>
 <graph>
-ggeometry	5	5	505	395
-<PageGeometry>0.00970874	0.0121951	0.980583	0.963415</PageGeometry>
+ggeometry	5	5	491	395
+<PageGeometry>0.00998004	0.0121951	0.98004	0.963415</PageGeometry>
 PlotTitle		#000000	4228
 <Antialiasing>0</Antialiasing>
 <Autoscaling>1</Autoscaling>
@@ -65,7 +47,7 @@ Margin	0
 Border	0	#000000
 grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
 EnabledAxes	1	1	1	0	
-AxesTitles	Hora (Argentina)	RTT (Milisegundos)			
+AxesTitles	Horas (Argentina)	RTT (Milisegundos)			
 AxesTitleColors	#000000	#000000	#000000	#000000	
 AxesTitleAlignment	5124	5124	5124	4
 AxesTitleDistance	2	2	2	-1
@@ -82,13 +64,13 @@ AxesColors	#000000	#000000	#000000	#000000
 AxesNumberColors	#1a1a1a	#1a1a1a	#1a1a1a	#1a1a1a
 AxesBaseline	0	0	0	0	
 CanvasBackground	#ffffff	255
-curve	datos_finlandia_imp_1428	datos_finlandia_imp_956	3	1	#000000	0	1	7	0	#000000	#000000	1	#00ff00	0	98	0	2	0	0	24	1
-scale	0	0	120	0	7	5	0	0
-scale	1	0	120	0	7	5	0	0
-scale	2	0	1	0	6	5	0	0
-scale	3	0	1	0	6	5	0	0
+curve	datos_sudafrica_imp_1740	datos_sudafrica_imp_337	3	1	#000000	0	1	7	0	#000000	#000000	1	#00ff00	0	30	0	2	0	0	7	1
+scale	0	30	80	0	6	5	0	0
+scale	1	30	80	0	6	5	0	0
+scale	2	0	8	0	9	5	0	0
+scale	3	0	8	0	9	5	0	0
 LabelsFormat	0	6	0	6	0	6	0	6
-AxisType	0	0	4;hh:mm	0	
+AxisType	0	0	1;datos_sudafrica_imp_1740	0	
 MajorTicks	1	1	1	1
 MinorTicks	1	1	1	1
 TicksLength	5	9
