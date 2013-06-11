@@ -1,0 +1,126 @@
+www.gu.se (Suecia)
+
+1  1-156-18-190.fibertel.com.ar (190.18.156.1)  19.244 ms  19.392 ms  19.602 ms
+ 2  * * *
+ 3  * * *
+ 4  * * *
+ 5  21-165-89-200.fibertel.com.ar (200.89.165.21)  31.228 ms 17-165-89-200.fibertel.com.ar (200.89.165.17)  40.908 ms 21-165-89-200.fibertel.com.ar (200.89.165.21)  43.986 ms
+ 6  250-165-89-200.fibertel.com.ar (200.89.165.250)  40.077 ms  14.412 ms  13.032 ms
+ 7  ge-0-1-2.ar3.eze1.gblx.net (159.63.23.5)  13.704 ms  13.170 ms  13.827 ms
+ 8  po3-20G.ar2.MIA2.gblx.net (67.16.139.18)  141.876 ms  143.047 ms  143.475 ms
+ 9  mai-b1-link.telia.net (213.248.76.189)  160.000 ms  158.900 ms  162.377 ms
+10  ash-bb3-link.telia.net (213.155.137.30)  159.185 ms ash-bb4-link.telia.net (213.155.137.22)  163.653 ms ash-bb4-link.telia.net (213.155.137.24)  162.550 ms
+11  nyk-bb1-link.telia.net (213.155.134.148)  162.201 ms nyk-bb2-link.telia.net (213.155.134.145)  174.108 ms nyk-bb2-link.telia.net (80.91.245.99)  162.114 ms
+12  kbn-bb2-link.telia.net (80.91.249.28)  292.417 ms kbn-bb2-link.telia.net (80.91.247.118)  253.266 ms kbn-bb2-link.telia.net (213.248.82.102)  265.916 ms
+13  kbn-b4-link.telia.net (213.155.135.175)  265.131 ms kbn-b4-link.telia.net (80.91.253.245)  264.527 ms kbn-b4-link.telia.net (213.155.135.175)  252.005 ms
+14  kbn-bb1-link.telia.net (80.91.247.223)  269.790 ms nordunet-ic-157529-kbn-b4.c.telia.net (62.115.11.78)  261.067 ms  248.754 ms
+15  se-fre.nordu.net (109.105.97.5)  268.215 ms  270.342 ms  277.402 ms
+16  t1fre.sunet.se (109.105.102.10)  273.497 ms  271.879 ms  267.680 ms
+17  m1fre-ae1-v1.sunet.se (130.242.83.45)  261.962 ms  267.829 ms  266.496 ms
+18  ls-gu-br1.sunet.se (193.11.0.66)  286.347 ms  288.572 ms t1fre.sunet.se (109.105.102.10)  280.387 ms
+19  lyk-a1sth-gw.net.gu.se (130.241.1.130)  284.252 ms  283.776 ms  288.836 ms
+20  ls-gu-br1.sunet.se (193.11.0.66)  303.563 ms lyk-mh-lyk-sw.net.gu.se (130.241.190.10)  273.988 ms  276.460 ms
+21  www.gu.se (130.241.151.114)  272.532 ms  278.316 ms  286.112 ms
+
+
+www.lunduniversity.lu.se (Suecia)
+
+
+2013-06-11 16:03:12.998126
+traceroute to www.lunduniversity.lu.se (130.235.62.56), 30 hops max, 60 byte packets
+ 1  1-156-18-190.fibertel.com.ar (190.18.156.1)  16.952 ms  16.974 ms  17.449 ms
+ 2  * * *
+ 3  * * *
+ 4  * * *
+ 5  21-165-89-200.fibertel.com.ar (200.89.165.21)  31.323 ms 5-164-89-200.fibertel.com.ar (200.89.164.5)  31.048 ms  31.746 ms
+ 6  250-165-89-200.fibertel.com.ar (200.89.165.250)  31.961 ms  19.470 ms  18.978 ms
+ 7  ge-1-2-0.ar3.eze1.gblx.net (208.178.195.205)  19.534 ms  15.721 ms  15.807 ms
+ 8  po3-20G.ar2.MIA2.gblx.net (67.16.139.18)  420.075 ms  419.857 ms  406.089 ms
+ 9  * mai-b1-link.telia.net (213.248.76.189)  165.065 ms  165.795 ms
+10  ash-bb3-link.telia.net (213.155.137.26)  182.145 ms ash-bb4-link.telia.net (213.155.137.22)  178.034 ms ash-bb3-link.telia.net (213.155.137.30)  170.444 ms
+11  nyk-bb1-link.telia.net (213.155.130.78)  158.411 ms nyk-bb2-link.telia.net (213.155.131.236)  161.686 ms nyk-bb2-link.telia.net (213.155.134.145)  159.589 ms
+12  ldn-bb1-link.telia.net (80.91.248.202)  238.066 ms kbn-bb2-link.telia.net (213.248.64.33)  253.414 ms ldn-bb1-link.telia.net (80.91.248.202)  235.259 ms
+13  kbn-b4-link.telia.net (80.91.253.245)  256.986 ms hbg-bb1-link.telia.net (80.91.245.63)  267.398 ms kbn-b4-link.telia.net (80.91.254.223)  269.801 ms
+14  nordunet-ic-157529-kbn-b4.c.telia.net (62.115.11.78)  267.134 ms  250.738 ms kbn-bb1-link.telia.net (213.248.65.145)  261.745 ms
+15  se-fre.nordu.net (109.105.97.5)  264.390 ms  265.346 ms  261.678 ms
+16  t1fre.sunet.se (109.105.102.10)  260.490 ms nordunet-ic-157529-kbn-b4.c.telia.net (62.115.11.78)  253.530 ms  258.870 ms
+17  m1fre-ae1-v1.sunet.se (130.242.83.45)  269.504 ms  258.845 ms  257.596 ms
+18  lu-br1-xe-1-2-0.sunet.se (130.242.85.2)  282.643 ms  283.052 ms  275.794 ms
+19  lu-g.sunet.se (193.11.20.10)  275.815 ms  271.867 ms  281.574 ms
+20  c001--x001.net.lu.se (130.235.217.9)  276.704 ms *  271.763 ms
+21  d001a--c001.net.lu.se (130.235.217.30)  273.076 ms  284.274 ms  274.460 ms
+22  * c001--x001.net.lu.se (130.235.217.9)  279.774 ms *
+23  * d001a--c001.net.lu.se (130.235.217.30)  291.117 ms *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+
+
+
+http://www.uta.fi/ (Finlandia)
+
+
+traceroute to www.uta.fi (153.1.6.41), 30 hops max, 60 byte packets
+ 1  1-156-18-190.fibertel.com.ar (190.18.156.1)  20.154 ms  20.601 ms  20.939 ms
+ 2  * * *
+ 3  * * *
+ 4  * * *
+ 5  17-165-89-200.fibertel.com.ar (200.89.165.17)  23.963 ms 41-165-89-200.fibertel.com.ar (200.89.165.41)  39.957 ms 17-165-89-200.fibertel.com.ar (200.89.165.17)  40.801 ms
+ 6  250-165-89-200.fibertel.com.ar (200.89.165.250)  41.511 ms  44.092 ms  44.443 ms
+ 7  ge-1-2-0.ar3.eze1.gblx.net (208.178.195.205)  39.046 ms  39.100 ms  32.285 ms
+ 8  po3-20G.ar2.MIA2.gblx.net (67.16.139.18)  158.320 ms  157.439 ms  142.220 ms
+ 9  mai-b1-link.telia.net (213.248.76.189)  152.893 ms  156.801 ms  151.801 ms
+10  ash-bb3-link.telia.net (213.155.137.26)  167.941 ms ash-bb3-link.telia.net (213.155.137.30)  161.910 ms  162.159 ms
+11  nyk-bb2-link.telia.net (213.155.133.8)  187.909 ms nyk-bb1-link.telia.net (213.155.131.226)  159.764 ms nyk-bb1-link.telia.net (213.155.134.148)  246.820 ms
+12  kbn-bb1-link.telia.net (80.91.247.116)  314.580 ms kbn-bb2-link.telia.net (80.91.249.28)  276.510 ms kbn-bb1-link.telia.net (80.91.247.116)  283.228 ms
+13  kbn-b4-link.telia.net (213.155.130.97)  283.035 ms kbn-b4-link.telia.net (80.91.246.47)  259.620 ms  258.806 ms
+14  nordunet-ic-157529-kbn-b4.c.telia.net (62.115.11.78)  249.141 ms  253.796 ms  274.789 ms
+15  se-fre.nordu.net (109.105.97.5)  260.266 ms  265.908 ms  263.723 ms
+16  se-tug.nordu.net (109.105.97.2)  280.249 ms  258.282 ms  267.802 ms
+17  se-fre.nordu.net (109.105.97.5)  264.030 ms ndn-gw.funet.fi (109.105.102.62)  266.380 ms  271.571 ms
+18  csc6-a00-helsinki6.funet.fi (193.166.255.93)  271.584 ms  267.180 ms  279.783 ms
+19  tut6-x1010-csc6.funet.fi (193.166.255.78)  329.365 ms  290.494 ms  274.731 ms
+20  csc6-a00-helsinki6.funet.fi (193.166.255.93)  329.342 ms utart1-gw255-0.uta.fi (153.1.255.1)  331.550 ms  308.790 ms
+21  * * *
+22  * * *
+23  *
+
+
+http://www.utu.fi/ (Finlandia)
+
+
+traceroute to www.utu.fi (130.232.251.19), 30 hops max, 60 byte packets
+ 1  1-156-18-190.fibertel.com.ar (190.18.156.1)  21.310 ms  21.480 ms  25.570 ms
+ 2  * * *
+ 3  * * *
+ 4  * * *
+ 5  1-164-89-200.fibertel.com.ar (200.89.164.1)  25.447 ms 53-165-89-200.fibertel.com.ar (200.89.165.53)  32.674 ms 17-165-89-200.fibertel.com.ar (200.89.165.17)  42.369 ms
+ 6  250-165-89-200.fibertel.com.ar (200.89.165.250)  42.452 ms  15.795 ms  15.885 ms
+ 7  xe-1-2-1.ar3.eze1.gblx.net (208.178.244.125)  16.959 ms  17.181 ms  23.392 ms
+ 8  po3-20G.ar2.MIA2.gblx.net (67.16.139.18)  143.306 ms  143.327 ms  167.525 ms
+ 9  mai-b1-link.telia.net (213.248.76.189)  155.052 ms  153.582 ms  162.705 ms
+10  ash-bb3-link.telia.net (213.155.137.26)  187.185 ms  187.135 ms  186.826 ms
+11  nyk-bb2-link.telia.net (80.91.245.99)  196.905 ms nyk-bb2-link.telia.net (213.155.131.236)  288.235 ms nyk-bb2-link.telia.net (213.155.134.145)  190.649 ms
+12  kbn-bb1-link.telia.net (80.91.249.25)  248.748 ms  256.930 ms kbn-bb2-link.telia.net (213.248.64.33)  276.476 ms
+13  kbn-b4-link.telia.net (80.91.253.245)  260.706 ms  259.655 ms kbn-b4-link.telia.net (213.155.130.97)  273.201 ms
+14  nordunet-ic-157529-kbn-b4.c.telia.net (62.115.11.78)  260.996 ms  253.073 ms  246.958 ms
+15  se-fre.nordu.net (109.105.97.5)  261.767 ms  264.120 ms  286.678 ms
+16  se-tug.nordu.net (109.105.97.2)  262.203 ms  263.536 ms  262.876 ms
+17  se-tug.nordu.net (109.105.97.2)  262.844 ms ndn-gw.funet.fi (109.105.102.62)  280.775 ms  280.766 ms
+18  csc6-a00-helsinki6.funet.fi (193.166.255.93)  282.718 ms ndn-gw.funet.fi (109.105.102.62)  277.057 ms csc6-a00-helsinki6.funet.fi (193.166.255.93)  290.689 ms
+19  csc6-a00-helsinki6.funet.fi (193.166.255.93)  301.614 ms utu6-x10200-csc6.funet.fi (193.166.255.98)  315.471 ms  295.526 ms
+20  border-rtr-funet.utu.fi (130.232.202.214)  301.222 ms  310.681 ms  312.106 ms
+21  * border-rtr-funet.utu.fi (130.232.202.214)  289.654 ms *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *

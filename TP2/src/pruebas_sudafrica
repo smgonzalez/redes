@@ -1,0 +1,141 @@
+http://www.ul.ac.za/
+
+traceroute to www.ul.ac.za (196.21.218.26), 30 hops max, 60 byte packets
+ 1  1-156-18-190.fibertel.com.ar (190.18.156.1)  24.567 ms  24.764 ms  24.970 ms
+ 2  * * *
+ 3  * * *
+ 4  * * *
+ 5  21-165-89-200.fibertel.com.ar (200.89.165.21)  35.180 ms 61-165-89-200.fibertel.com.ar (200.89.165.61)  35.252 ms 41-165-89-200.fibertel.com.ar (200.89.165.41)  36.176 ms
+ 6  6-165-89-200.fibertel.com.ar (200.89.165.6)  36.628 ms  23.429 ms  22.956 ms
+ 7  150-165-89-200.fibertel.com.ar (200.89.165.150)  36.012 ms  35.623 ms  36.470 ms
+ 8  ge-3-2-1.ar2.EZE1.gblx.net (64.209.94.69)  28.211 ms  27.946 ms  23.540 ms
+ 9  146.82.32.154 (146.82.32.154)  225.770 ms  224.206 ms  223.340 ms
+10  r1ams1.core.init7.net (77.109.128.149)  232.749 ms  232.434 ms r1lon2.core.init7.net (82.197.168.42)  215.985 ms
+11  r1ams2.core.init7.net (77.109.128.146)  223.865 ms  245.358 ms  231.730 ms
+12  gw-tenet.init7.net (77.109.134.50)  268.389 ms  267.962 ms  256.327 ms
+13  te-3-5.ldn1.uk.ubuntunet.net (196.32.209.49)  452.592 ms  451.941 ms  481.913 ms
+14  196.32.209.50 (196.32.209.50)  233.044 ms  228.221 ms  227.245 ms
+15  te-1-4.mtz1.za.ubuntunet.net (196.32.209.117)  468.092 ms  472.467 ms  471.582 ms
+16  mtz1pe1-x001-700-mtzub1-vl700.net.tenet.ac.za.6.232.155.in-addr.arpa (155.232.6.86)  444.156 ms  440.772 ms  440.556 ms
+17  dur1pe2-x002-mtz1pe1-x002.net.tenet.ac.za (155.232.6.101)  480.257 ms  475.913 ms  464.056 ms
+18  pta1-t45-dur1-t100.net.tenet.ac.za (155.232.6.29)  450.069 ms  449.719 ms  450.472 ms
+19  155.232.5.11 (155.232.5.11)  461.842 ms  455.505 ms  473.916 ms
+20  * * *
+21  * * *
+22  * unknown.uni.net.za (155.232.6.189)  540.068 ms  539.787 ms
+23  bfn1-t100-cpt1-t101.net.tenet.ac.za (155.232.6.37)  544.509 ms  540.223 ms  540.710 ms
+24  jnb2-t95-bfn1-t200.net.tenet.ac.za (155.232.6.33)  509.131 ms  513.565 ms  509.424 ms
+25  pta1-t42-jnb2-75.net.tenet.ac.za (155.232.6.26)  565.374 ms  566.488 ms  566.690 ms
+26  155.232.5.11 (155.232.5.11)  520.940 ms  523.797 ms  523.524 ms
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+
+
+http://www.ukzn.ac.za/
+
+
+traceroute to www.ukzn.ac.za (146.230.128.52), 30 hops max, 60 byte packets
+ 1  1-156-18-190.fibertel.com.ar (190.18.156.1)  17.857 ms  17.970 ms  18.306 ms
+ 2  * * *
+ 3  * * *
+ 4  * * *
+ 5  1-164-89-200.fibertel.com.ar (200.89.164.1)  29.622 ms 61-165-89-200.fibertel.com.ar (200.89.165.61)  35.975 ms 1-164-89-200.fibertel.com.ar (200.89.164.1)  30.159 ms
+ 6  2-165-89-200.fibertel.com.ar (200.89.165.2)  37.995 ms  38.048 ms  32.566 ms
+ 7  86-165-89-200.fibertel.com.ar (200.89.165.86)  42.618 ms  41.659 ms  41.931 ms
+ 8  tengigabitethernet3-4.asr1.eze1.gblx.net (208.50.25.65)  30.763 ms  28.603 ms *
+ 9  146.82.32.154 (146.82.32.154)  221.488 ms  223.865 ms  224.774 ms
+10  r1ams1.core.init7.net (77.109.128.149)  225.629 ms r1lon2.core.init7.net (82.197.168.42)  219.528 ms  218.917 ms
+11  r1ams2.core.init7.net (77.109.128.146)  228.373 ms  228.023 ms  232.295 ms
+12  gw-tenet.init7.net (77.109.134.50)  231.769 ms  230.585 ms  222.371 ms
+13  te-3-5.ldn1.uk.ubuntunet.net (196.32.209.49)  430.692 ms  429.090 ms  428.595 ms
+14  xe-0-0-0.ams1.nl.ubuntunet.net (196.32.209.50)  225.408 ms  224.739 ms  228.431 ms
+15  te-1-4.mtz1.za.ubuntunet.net (196.32.209.117)  428.630 ms  428.118 ms  428.881 ms
+16  mtz1pe1-x001-700-mtzub1-vl700.net.tenet.ac.za.6.232.155.in-addr.arpa (155.232.6.86)  462.041 ms  459.595 ms  464.060 ms
+17  dur1pe2-x002-mtz1pe1-x002.net.tenet.ac.za (155.232.6.101)  444.138 ms  440.917 ms  442.609 ms
+18  dur1pe1-t301-dur1pe2-x000.net.tenet.ac.za (155.232.6.133)  442.355 ms  439.844 ms  442.182 ms
+19  155.232.7.42 (155.232.7.42)  440.710 ms  437.917 ms  435.543 ms
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+
+
+http://www.nmmu.ac.za/
+
+traceroute to www.nmmu.ac.za (192.96.15.83), 30 hops max, 60 byte packets
+ 1  1-156-18-190.fibertel.com.ar (190.18.156.1)  17.029 ms  22.307 ms  22.289 ms
+ 2  * * *
+ 3  * * *
+ 4  * * *
+ 5  61-165-89-200.fibertel.com.ar (200.89.165.61)  29.310 ms 1-164-89-200.fibertel.com.ar (200.89.164.1)  29.511 ms 45-165-89-200.fibertel.com.ar (200.89.165.45)  63.772 ms
+ 6  2-165-89-200.fibertel.com.ar (200.89.165.2)  57.490 ms  17.223 ms  20.110 ms
+ 7  86-165-89-200.fibertel.com.ar (200.89.165.86)  19.312 ms  19.509 ms  20.478 ms
+ 8  tengigabitethernet4-1.ar3.EZE1.gblx.net (64.214.130.253)  19.813 ms  20.662 ms  20.004 ms
+ 9  146.82.32.154 (146.82.32.154)  225.600 ms  226.312 ms  226.034 ms
+10  r1lon2.core.init7.net (82.197.168.42)  222.654 ms  228.120 ms  228.071 ms
+11  r1ams2.core.init7.net (77.109.128.146)  265.178 ms r1ams2.core.init7.net (77.109.128.34)  267.504 ms  267.171 ms
+12  gw-tenet.init7.net (77.109.134.50)  218.133 ms  222.313 ms  225.515 ms
+13  te-3-5.ldn1.uk.ubuntunet.net (196.32.209.49)  436.814 ms  438.560 ms  439.115 ms
+14  xe-0-0-0.ams1.nl.ubuntunet.net (196.32.209.50)  237.387 ms  224.259 ms  256.014 ms
+15  te-1-4.mtz1.za.ubuntunet.net (196.32.209.117)  429.169 ms  428.770 ms  433.080 ms
+16  mtz1pe1-x001-700-mtzub1-vl700.net.tenet.ac.za.6.232.155.in-addr.arpa (155.232.6.86)  441.544 ms  440.899 ms  440.734 ms
+17  dur1pe2-x002-mtz1pe1-x002.net.tenet.ac.za (155.232.6.101)  438.071 ms  437.291 ms  438.387 ms
+18  dur1pe1-t301-dur1pe2-x000.net.tenet.ac.za (155.232.6.133)  470.108 ms  481.834 ms  484.179 ms
+19  els1pe2-t0100-dur1pe1-t200.net.tenet.ac.za (155.232.6.69)  465.901 ms  469.736 ms  468.585 ms
+20  plz1pe1-t200-els1pe2-t0000.net.tenet.ac.za (155.232.6.45)  468.244 ms  468.631 ms  456.054 ms
+21  kentico-p.nmmu.ac.za (192.96.15.83)  470.166 ms  471.325 ms  471.185 ms
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *
+
+
+
+http://www.unisa.ac.za/
+
+
+traceroute to www.unisa.ac.za (163.200.81.116), 30 hops max, 60 byte packets
+ 1  1-156-18-190.fibertel.com.ar (190.18.156.1)  17.997 ms  18.158 ms  18.592 ms
+ 2  * * *
+ 3  * * *
+ 4  * * *
+ 5  53-165-89-200.fibertel.com.ar (200.89.165.53)  33.118 ms 17-165-89-200.fibertel.com.ar (200.89.165.17)  33.354 ms 5-164-89-200.fibertel.com.ar (200.89.164.5)  33.802 ms
+ 6  6-165-89-200.fibertel.com.ar (200.89.165.6)  27.435 ms  12.841 ms  13.149 ms
+ 7  150-165-89-200.fibertel.com.ar (200.89.165.150)  27.002 ms  27.200 ms  22.065 ms
+ 8  tengigabitethernet7-1.asr1.eze1.gblx.net (208.178.244.97)  13.781 ms  13.567 ms  11.401 ms
+ 9  146.82.32.154 (146.82.32.154)  212.722 ms  220.388 ms  220.431 ms
+10  r1ams1.core.init7.net (77.109.128.149)  221.019 ms r1lon2.core.init7.net (82.197.168.42)  216.480 ms  217.673 ms
+11  r1ams2.core.init7.net (77.109.128.146)  224.020 ms  231.088 ms r1ams2.core.init7.net (77.109.128.34)  230.666 ms
+12  gw-tenet.init7.net (77.109.134.50)  219.433 ms  219.830 ms  222.318 ms
+13  te-3-5.ldn1.uk.ubuntunet.net (196.32.209.49)  432.563 ms  430.801 ms  429.285 ms
+14  xe-0-0-0.ams1.nl.ubuntunet.net (196.32.209.50)  226.947 ms  225.124 ms  225.305 ms
+15  te-1-4.mtz1.za.ubuntunet.net (196.32.209.117)  431.662 ms  430.901 ms  432.322 ms
+16  mtz1pe1-x001-700-mtzub1-vl700.net.tenet.ac.za.6.232.155.in-addr.arpa (155.232.6.86)  435.196 ms  436.545 ms  437.447 ms
+17  dur1pe2-x002-mtz1pe1-x002.net.tenet.ac.za (155.232.6.101)  430.875 ms  431.264 ms  470.609 ms
+18  dur1pe1-t301-dur1pe2-x000.net.tenet.ac.za (155.232.6.133)  499.903 ms  499.998 ms  500.093 ms
+19  els1pe2-t0100-dur1pe1-t200.net.tenet.ac.za (155.232.6.69)  491.328 ms  500.392 ms  495.793 ms
+20  plz1-t200-dur1-t200.net.tenet.ac.za (155.232.6.45)  490.408 ms  490.554 ms  491.854 ms
+21  cpt1-t100-plz1-t100.net.tenet.ac.za (155.232.6.41)  493.944 ms  494.595 ms  514.352 ms
+22  unknown.uni.net.za (155.232.6.189)  506.359 ms  521.760 ms  493.130 ms
+23  bfn1-t100-cpt1-t101.net.tenet.ac.za (155.232.6.37)  516.664 ms  512.350 ms  512.188 ms
+24  jnb2-t95-bfn1-t200.net.tenet.ac.za (155.232.6.33)  492.619 ms  488.953 ms  494.626 ms
+25  pta1-t42-jnb2-75.net.tenet.ac.za (155.232.6.26)  509.580 ms  516.609 ms  511.575 ms
+26  pta1pe1-t84-pta1p1-t0100.net.tenet.ac.za (155.232.6.130)  491.048 ms  493.631 ms  493.687 ms
+27  * * *
+28  * * *
+29  * * *
+30  * * *

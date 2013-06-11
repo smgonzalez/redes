@@ -10,15 +10,12 @@ def traceroute(host, ttl_max=64, pkgs_per_ttl=1):
 	ttl = int(ttl_max)
 	num_pkgs = int(pkgs_per_ttl)
 	
-	# num_pkgs: Cantidad de paquetes que se envian por cada ttl
-	#route=[]
 	pkg=IP(dst=host) / ICMP() / 'Pingeando host'
 	
 	print datetime.datetime.now()
 	
 	for i in range(1, ttl+1):
 		
-		#print 'pingeando i:', i
 		pkg.ttl = i
 		strRes = 'Hop ' + str(i) + '\t'
 		
@@ -29,7 +26,6 @@ def traceroute(host, ttl_max=64, pkgs_per_ttl=1):
 		rtts = []
 		
 		for p in range(1, num_pkgs+1):
-			
 			ans = None
 			
 			t0 = time.time()
@@ -60,18 +56,12 @@ def traceroute(host, ttl_max=64, pkgs_per_ttl=1):
 		elif contin:
 			continue
 			
-		#route.append(ip)
 		# Saco RTT promedio
 		if ip_ok:
 			avgRTT = reduce(lambda x,y:float(x)+float(y), rtts)/len(rtts)
 			strRes += 'RTT Promedio: ' + str(round(avgRTT, 4)*1000) + 'ms (sobre ' + str(len(rtts)) + ' paquetes)'
 			print strRes
 
-#	i=1
-#	print 'Ruta:'
-#	for ip in route:
-#		print i, ')', ip
-#		i+=1
 	
 	return 0
 
@@ -94,7 +84,7 @@ if __name__ == '__main__':
 	parser=OptionParser(usage=usage)
 	params = definirParamertos(parser)
 	
-	# si no usaste sudo o no pasate el host, mostra help
+	# si no usaste sudo o no pasate el host, muestra help
 	if os.geteuid() or not params.host:
 		parser.print_help()
 		exit()
