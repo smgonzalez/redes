@@ -1,0 +1,96 @@
+QtiPlot 0.9.8 project file
+<scripting-lang>	muParser
+<windows>	2
+<table>
+datos_inglaterra2	14	3	10/06/13 21:47
+geometry	0	0	445	220	
+header	1[X]	2[Y]	3[Y]
+ColWidth	100	100	100	
+<com>
+</com>
+ColType	2;hh:mm	3;hh:mm	0;0/13
+ReadOnlyColumn	0	0	0
+HiddenColumn	0	0	0
+Comments				
+WindowLabel	/home/sergiogonza/Facu/repos/redes/TP2/informe/datos/datos_inglaterra2	2
+<data>
+0	14:28	18:28	93.3
+1	15:08	19:08	111
+2	15:30	19:30	134.9
+3	15:54	19:54	94.7
+4	16:16	20:16	85.3
+5	16:37	20:37	103
+6	16:59	20:59	127.1
+7	17:21	21:21	109.1
+8	17:43	21:43	99.7
+9	18:07	22:07	91.8
+10	18:27	22:27	81
+11	18:48	22:48	126.5
+12	19:11	23:11	92.1
+13	19:33	23:33	64
+</data>
+</table>
+<multiLayer>
+Gráfica1	1	1	10/06/13 21:48
+geometry	445	0	616	521	active
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	5	5	598	458
+<PageGeometry>0.00822368	0.0105708	0.983553	0.968288</PageGeometry>
+PlotTitle		#000000	4228
+<Antialiasing>1</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	1	1	0	
+AxesTitles	Hora (Argentina)	RTT (Milisegundos)		%(?Y)	
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	5124	5124	4
+AxesTitleDistance	2	2	2	-1
+TitleFont	Ubuntu	13	75	0	0	0
+ScaleFont0	Ubuntu	10	75	0	0	0
+ScaleFont1	Ubuntu	10	75	0	0	0
+ScaleFont2	Ubuntu	10	75	0	0	0
+ScaleFont3	Ubuntu	10	75	0	0	0
+AxisFont0	Ubuntu	10	50	0	0	0
+AxisFont1	Ubuntu	10	50	0	0	0
+AxisFont2	Ubuntu	10	50	0	0	0
+AxisFont3	Ubuntu	10	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#1f1c1b	#1f1c1b	#1f1c1b	#1f1c1b
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	datos_inglaterra2_1	datos_inglaterra2_3	3	1	#000000	0	1	7	0	#000000	#000000	1	#00ff00	0	10	0	2	0	0	13	1
+scale	0	60	140	0	9	5	0	0
+scale	1	60	140	0	9	5	0	0
+scale	2	2415020.58333333	2415020.83263889	0	6	5	0	0
+scale	3	2415020.58333333	2415020.83263889	0	6	5	0	0
+LabelsFormat	0	6	0	6	0	6	0	6
+AxisType	0	0	5;hh:mm	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	1	1	1
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<open>1</open>

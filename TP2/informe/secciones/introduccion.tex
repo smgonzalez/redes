@@ -1,1 +1,25 @@
 \section{Introducci\'on}
+
+El presente trabajo pr\'actico consiste en analizar las rutas que siguen los paquetes IPs al viajar largas distancias. Para ello implementaremos 2 herramientas basadas en el protocolo ICMP:
+Ping y Traceroute.
+
+El protocolo ICMP (Internet Control Message Protocol) suele utilizarse como un protocolo de control entre y notificaci\'on de errores en el envi\'o de paquetes IP, por lo que corre debajo de este mismo. Las herramientas Ping y Traceroute que se encuentran en los Sistemas Operativos mas utilizados utilizan este mismo protocolo.
+
+Existen muchos tipos de paquetes ICMP que pueden mandarse, pero nosotros para la implementaci\'on de las herramientas solo nos focalizaremos en 3:
+
+\begin{itemize}
+ \item Echo-Request
+ \item Echo-Reply
+ \item Time Exceeded
+\end{itemize}
+
+Cuando un host A quiere saber si un host B esta disponible, lo que hace es mandar un paquete ICMP (sobre uno IP) de tipo {\bf Echo-Request}. Si el servidor B esta disponible efectivamente, le env\'ia al host un paquete ICMP de tipo {\bf Echo-Reply}.
+
+Existe una propiedad de los paquetes ICMP denominada {\bf Time To Live} (o TTL) el cual indica el numero m\'aximo de {\bf hops} que puede realizar el mismo. Cuando un router recibe un paquete de tipo Echo-Request el cual tiene como TTL = 0, este manda un paquete ICMP de tipo {\bf Time Exceeded} al servidor origen Esto por ejemplo se puede utilizar para aproximar una ruta posible que sigue un paquete, enviando paquetes de tipo Echo-Request aumentando linealmente el TTL, y viendo que IPs fuente son las que nos mandan las respuestas de Time Exceeded, hasta que se recibe un Echo-Reply.
+
+En base a este algoritmo se implementara la herramienta {\bf Traceroute}. Luego se utilizaran tanto estas herramientas como las ya implementadas en sistemas Unix para realizar mediciones y an\'alisis en base a las rutas y los enlaces transoce\'anicos que se encuentren.
+
+Para determinar si un enlace es Transoce\'anico lo que se har\'a sera es utilizar herramientas como las que se encuentran en \url{http://www.geoiptool.com/es/} o \url{http://geoip.flagfox.net/} entre otras, para poder localizar el punto geogr\'afico de un router mediante su IP publica.
+
+De haberse utilizado alguna pagina en especial, minimamente se hara mension a ella.
+

@@ -1,0 +1,85 @@
+FINLANDIA
+---------
+
+Grafico: finlandia_enlace_1.png
+Enlace:
+	De Estados Unidos (Florida segun IP2Location, Colorado segun IPLigence), ip 67.17.106.162 (hop 8)
+	A "Europa" (segun geoip tool, Ip Address Labs), ip 213.248.76.189 (hop 9)
+	Mas adelante, en el hop 10 se identifica a la ip en Londres, UK (segun IP2Location). ip 213.155.137.26. 
+	Probablemente "Europa" sea uk, asi que graficamos esta ip y tomamos rtt en base a hops 8 y 10
+
+Distancia: 7543.656 km
+RTT mínimo: 2*(7543.656 / 2*10^5) = 0.07544s = 75.44ms
+Rtt promedio calculado: 
+[hora_argentina	hora_finlandia(+6) rtt_enlace]
+	14:28hs		20:28hs		292.9ms - 197.3ms = 95.6ms
+	14:52hs		20:52hs		218ms - 202.9ms = 15.1ms
+	15:15hs		21:15hs		251.7ms - 193ms = 58.7ms
+	15:37hs		21:37hs		211.6ms	- 234.7ms = negativo, no va
+	16:01hs		22:01hs		233.9ms - 188.7ms = 45.2ms
+	16:23hs 	22:23hs		214.6ms - 194.2ms = 20.4ms
+	16:46hs		22:46hs		214.4ms - 208.9ms = 5.5ms
+	17:08hs		23:08hs		215.0ms - 194.6ms = 20.4ms
+	17:31hs		23:31hs		214.9ms - 187.6ms = 27.3ms
+	17:54hs		23:54hs		218.2ms - 193.9ms = 24.3ms
+	18:17hs		00:17hs		252.6ms - 192.1ms = 60.5ms
+	18:40hs		00:40hs		265.8ms - 197.9ms = 67.9ms
+	19:03hs		01:03hs		261.7ms - 197.5ms = 64.2ms
+	19:27hs		01:27hs		290.4ms - 195.0ms = 95.4ms
+	
+
+
+
+
+INGLATERRA
+----------
+
+Grafico: inglaterra_enlace_1.png
+Enlace:
+	De Estados Unidos (Colorado segun IPligence), ip 67.16.139.18 (hop 8)
+	A Alemania (segun IPligence, IPAdressLab, geoip.flagfox), ip 213.200.84.37 (hop 9)
+	PERO, con esa ip dan todos rtts negativos. Asi que voy a usar a la siguiente, 141.136.107.37 (hop 10). 
+	Segun IPligence es Alemania, segun geoip.flagfox es francia, pero voy a ignorar eso porque los rtts dan bien.
+	Tomamos RTT en base a hops 8 y 10
+
+Distancia: 8247.572km
+RTT minimo: 2*8247.572/2*10^5 = 0.08247s = 82.47ms
+
+RTT promedio calculado:
+[hora_argentina	hora_inglaterra(+4) rtt_enlace]
+	14:28hs		18:28hs		296ms - 202.7ms = 93.3ms
+	15:08hs		19:08hs		314.8ms - 203.8ms = 111ms
+	15:30hs		19:30hs		328.5ms - 193.6ms = 134.9ms
+	15:54hs		19:54hs		293.5ms - 198.8ms = 94.7ms
+	16:16hs		20:16hs		289.8ms - 204.5ms = 85.3ms
+	16:37hs		20:37hs		296.1ms - 193.1ms = 103ms
+	16:59hs		20:59hs		317.6ms - 190.5ms = 127.1ms
+	17:21hs		21:21hs		308.4ms - 199.3ms = 109.1ms
+	17:43hs		21:43hs		306.2ms - 206.5ms = 99.7ms
+	18:07hs		22:07hs		285.7ms - 193.9ms = 91.8ms
+	18:27hs		22:27hs		292.8ms - 211.8ms = 81ms
+	18:48hs		22:48hs		323.9ms - 197.4ms = 126.5ms
+	19:11hs		23:11hs		292.1ms - 200.0ms = 92.1ms
+	19:33hs		23:33hs		287.5ms - 223.5ms = 64ms
+	
+	
+	
+	
+	
+SUDAFRICA
+---------
+
+Grafico: sudafrica_enlace_1.png
+Enlace:
+	De Estados Unidos (Colorado segun IPligence), ip 146.82.32.154 (hop 9)
+	A Suiza (Zurich, segun todos), ip 77.109.128.149 (hop 10)
+	Para dibujar numeros voy a tomar hop 12, en mismo lugar que hop 10, ip 77.109.134.50
+	
+Distancia: 8319.832
+RTT Minimo = 83.19ms
+RTT promedio calculado: (entre hops 12 y 9)
+[hora_argentina	hora_sudafrica(+5) rtt_enlace]
+	17:40hs		22:40hs		301.2ms - 267.5ms = 33.7ms
+	18:22hs		23:22hs		308.5ms - 312.2ms = negativo, no cuenta
+	18:57hs		23:57hs		337.9ms - 326.3ms = 11.6ms
+	
