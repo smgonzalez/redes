@@ -16,8 +16,8 @@ En las figuras \ref{fig:mapa_fin} y \ref{fig:mapa_ing} se muestra una localizaci
 El primero es un enlace de Estados Unidos (Florida segun IP2Location, Colorado segun IPLigence), a ``Europa'' (segun \url{http://www.geoiptool.com/es/} y \url{www.ipaddresslabs.com}), que detectamos rastreando la ruta hacia \url{www.helsinki.fi} (IP: 128.214.222.4, Finlandia). \\
 
 \begin{itemize}
- \item IP en America: 67.17.106.162
- \item IP en Europa: 213.248.76.189\\
+ \item IP en America (EEUU): 67.17.106.162
+ \item IP en Europa (Reino Unido): 213.248.76.189\\
 \end{itemize}
 
 \begin{figure}[H]
@@ -30,8 +30,8 @@ El primero es un enlace de Estados Unidos (Florida segun IP2Location, Colorado s
 El segundo es un enlace de Estados Unidos (Colorado segun IPligence) a Alemania (segun IPligence), detectado en el camino a \url{www.ox.ac.uk} (IP: 163.1.60.42, Reino Unido).
 
 \begin{itemize}
- \item IP del lado de America: 67.16.139.18
- \item IP del lado de Europa: 141.136.107.37\\
+ \item IP del lado de America(EEUU): 67.16.139.18
+ \item IP del lado de Europa (Alemania): 141.136.107.37\\
 \end{itemize}
 
 
@@ -53,7 +53,7 @@ El segundo es un enlace de Estados Unidos (Colorado segun IPligence) a Alemania 
 %EEUU : -3
 %FINLANDIA: +4
 
-En la figura \ref{fig:rtts_fin} se puede ver cómo los RTT varían constantemente durante todo el día, pricipalmente porque estos enlaces no sólo son utilizados por Estados Unidos, sino también por varios hosts ubicados en todo el continente americano. Debido a las difrencias horarias dentro del continente, es factible que mientras en algunos países el tráfico es muy intenso, en otros no sea esperable que se congestione la red. 
+En la figura \ref{fig:rtts_fin} se puede ver cómo los RTT varían constantemente durante todo el día, pricipalmente porque estos enlaces no sólo son utilizados por Estados Unidos, sino también por varios hosts ubicados en todo el continente americano. Debido a las difrencias horarias dentro del continente, es factible que mientras en algunos países el tráfico es muy intenso, en otros no sea esperable que se congestione la red. Calculamos la latencia de propagación del enlace (suponiendo que se extiende entre los puntos trazados y que se trata de un enlace de fibra óptica, de manera que la velocidad de propagación es de $2*10^{5}\frac{m}{2}$), para calcular un RTT mínimo como el doble de este tiempo (dado que los paquetes son pequeños, despreciamos el tiempo de transmisión). En este caso resultó de $75,44$ms que, en muchos casos, es mayor al RTT observado. Atribuimos esto a la inestabilidad de nuestro método de medición y la dificultad de determinar efectivamente la ubicación de los extremos del enlace.
 
 De todas formas, pese a esto se pueden ver a grandes rasgos cómo a las 16hs de Argentina, el cual equivale a un rango de entre las 11hs y las 16hs de todo el continente americano, este enlace parece estar mucho menos congestionado que entre las 16 y las 20hs. 
 
@@ -63,8 +63,8 @@ De todas formas, pese a esto se pueden ver a grandes rasgos cómo a las 16hs de 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.9\textwidth]{graficos/rtts_dia_inglaterra.pdf}
-    \caption{RTTs medidos a lo largo del dia en un enlace de EEUU a finlandia}
+    \caption{RTTs medidos a lo largo del dia en un enlace de EEUU - Alemania}
     \label{fig:rtts_ing}
 \end{figure}
 
-En el caso de la figura \ref{fig:rtts_ing} se puede ver que, si bien se observan picos en los horarios laborables, durante el resto del día no existe una tendencia o valor representativo. Este es un ejemplo de lo caótico e irregular que puede llegar a ser el tráfico en Internet.
+En el caso de la figura \ref{fig:rtts_ing} se puede ver que, si bien se observan picos en los horarios laborables, durante el resto del día no existe una tendencia o valor representativo. Este es un ejemplo de lo caótico e irregular que puede llegar a ser el tráfico en Internet. El mismo cálculo de RTT mínimo del caso anterior resulta aquí en $82,47$ms que parece ser un resultado más acertado. Observamos que todas las mediciones están por arriba, algunas de ellas considerablemente. Más allá de la inestabilidad manifestada anteriormente, aquí podemos ver que la mayoría de las mediciones resultan entre $80$ms y $100$ms, lo que evidencia que, para comunicaciones de realmente larga distancia, el factor geográfico sigue siendo el mayor limitante en cuando a la demora promedio (por sobre los tiempos de demora de funcionamiento del protocolo en sí, como por ejemplo, las colas de los routers y las decisiones de routeo).
