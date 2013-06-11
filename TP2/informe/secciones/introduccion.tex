@@ -1,3 +1,4 @@
+
 \section{Introducci\'on}
 
 El presente trabajo pr\'actico consiste en explorar el nivel de red, observando las rutas que siguen los paquetes IPs al viajar largas distancias. Para ello implementaremos dos herramientas de análisis: Ping y Traceroute,  basándonos en el protocolo ICMP.
@@ -20,5 +21,5 @@ De los muchos tipos de paquetes ICMP existentes, para la implementaci\'on de las
 %Esto por ejemplo se puede utilizar para aproximar una ruta posible que sigue un paquete, enviando paquetes de tipo Echo-Request aumentando linealmente el TTL, y viendo que IPs fuente son las que nos mandan las respuestas de Time Exceeded, hasta que se recibe un Echo-Reply.
 
 %En base a este algoritmo se implementara la herramienta {\bf Traceroute}. 
-Utilizaremos estas herramientas (en nuestras implementacione, además de las ya implementadas en sistemas Unix) para realizar exploraciones, mediciones y an\'alisis de los enlaces de Internet, haciendo énfasis en enlaces transoceánicos. Para identificar estos últimos, utilizaremos además herramientas como las que se encuentran en \url{http://www.geoiptool.com/es/} o \url{http://geoip.flagfox.net/} para poder localizar (aproximadamente) el punto geogr\'afico de un router mediante su dirección IP pública.
+Utilizaremos estas herramientas (en nuestras implementaciones, además de las ya implementadas en sistemas Unix) para realizar exploraciones, mediciones y an\'alisis de los enlaces de Internet, haciendo énfasis en enlaces transoceánicos. Para identificar estos últimos, utilizaremos además herramientas como las que se encuentran en \url{http://www.geoiptool.com/es/} o \url{http://geoip.flagfox.net/} para poder localizar (aproximadamente) el punto geogr\'afico de un router mediante su dirección IP pública.
 
