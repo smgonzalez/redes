@@ -61,7 +61,14 @@ latencia es entonces la mitad de este valor.\\
 
 Es interesante conocer tambi\'en el valor te\'orico del RTT: sabiendo la distancia del enlace encontrado y el tipo de medio f\'isico, cu\'al es el m\'inimo valor de RTT esperado. Para esto asumimos que el enlace es de fibra \'optica, con una velocidad de propagaci\'on de la se\~nal de $2x10^5$ $km/s$. Para conocer la distancia del enlace utilizamos un calculador de distancias a partir de las coordenadas geogr\'aficas (las cuales obtuvimos anteriormente mediante la IP)\footnote{}. Debido a que la localizaci\'on no es exacta, y las asunciones sobre el medio f\'isico del enlace podr\'ian no ser ciertas, puede ser que el valor te\'orico calculado no sea menor a los RTTs encontrados emp\'iricamente.\\
 
-Por \'ultimo, vamos a explorar los enlaces hayados enviando sondas de \texttt{traceroute} a otras p\'aginas del continente (distintas a las mencionadas arriba). Queremos observar el uso de estos enlaces hacia distintas ubicaciones. *** ESTO FALTA!!!!
+Por \'ultimo, vamos a explorar los enlaces hayados enviando sondas de \texttt{traceroute} a otras p\'aginas dentro de la zona de los hosts originales (es decir, cercanas a Finlandia, Inglaterra y Sudáfrica). Las páginas utilizadas para probar fueron las siguientes (en todos los casos se trata de universidades de regiones cercanas):
+
+\begin{itemize}
+ \item Cercanas a Finlandia: \url{www.gu.se} (Suecia) \url{www.lunduniversity.lu.se} (Suecia), \url{www.uta.fi} (Finlandia), \url{www.utu.fi} (Finlandia)
+ \item Cercanas a Inglaterra: \url{www.buckingham.ac.uk} (Inglaterra), \url{www.city.ac.uk}, \url{www.dundee.ac.uk} (Escocia), \url{www.stir.ac.uk} (Escocia)
+ \item Cercanas a Sudáfrica: \url{www.ul.ac.za}, \url{www.ukzn.ac.za}, \url{www.nmmu.ac.za}, \url{www.unisa.ac.za}
+\end{itemize}
+
 
 % RTTs mal: el enlace encontrado, y la distancia entre los nodos, podr\'ia ser otra.\\ El enlace tiene nodos en el medio con tiempos de encolamiento, no es directo.
  
