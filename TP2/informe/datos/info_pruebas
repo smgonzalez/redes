@@ -11,21 +11,39 @@ Enlace:
 Distancia: 7543.656 km
 RTT mínimo: 2*(7543.656 / 2*10^5) = 0.07544s = 75.44ms
 Rtt promedio calculado: 
-[hora_argentina	hora_finlandia(+6) rtt_enlace]
-	14:28hs		20:28hs		292.9ms - 197.3ms = 95.6ms
-	14:52hs		20:52hs		218ms - 202.9ms = 15.1ms
-	15:15hs		21:15hs		251.7ms - 193ms = 58.7ms
-	15:37hs		21:37hs		211.6ms	- 234.7ms = negativo, no va
-	16:01hs		22:01hs		233.9ms - 188.7ms = 45.2ms
-	16:23hs 	22:23hs		214.6ms - 194.2ms = 20.4ms
-	16:46hs		22:46hs		214.4ms - 208.9ms = 5.5ms
-	17:08hs		23:08hs		215.0ms - 194.6ms = 20.4ms
-	17:31hs		23:31hs		214.9ms - 187.6ms = 27.3ms
-	17:54hs		23:54hs		218.2ms - 193.9ms = 24.3ms
-	18:17hs		00:17hs		252.6ms - 192.1ms = 60.5ms
-	18:40hs		00:40hs		265.8ms - 197.9ms = 67.9ms
-	19:03hs		01:03hs		261.7ms - 197.5ms = 64.2ms
-	19:27hs		01:27hs		290.4ms - 195.0ms = 95.4ms
+[hora_argentina	hora_eeuu_colorado(-3) hora_uk(+4) rtt_enlace]
+	14:28hs		11:28hs		18:28hs		292.9ms - 197.3ms = 95.6ms
+	14:52hs		11:52hs		18:52hs		218ms - 202.9ms = 15.1ms
+	15:15hs		12:15hs		19:15hs		251.7ms - 193ms = 58.7ms
+	15:37hs		12:37hs		19:37hs		211.6ms	- 234.7ms = negativo, no va
+	16:01hs		13:01hs		20:01hs		233.9ms - 188.7ms = 45.2ms
+	16:23hs 	13:23hs		20:23hs		214.6ms - 194.2ms = 20.4ms
+	16:46hs		13:46hs		20:46hs		214.4ms - 208.9ms = 5.5ms
+	17:08hs		14:08hs		21:08hs		215.0ms - 194.6ms = 20.4ms
+	17:31hs		14:31hs		21:31hs		214.9ms - 187.6ms = 27.3ms
+	17:54hs		14:54hs		21:54hs		218.2ms - 193.9ms = 24.3ms
+	18:17hs		15:17hs		22:17hs		252.6ms - 192.1ms = 60.5ms
+	18:40hs		15:40hs		22:40hs		265.8ms - 197.9ms = 67.9ms
+	19:03hs		16:03hs		23:03hs		261.7ms - 197.5ms = 64.2ms
+	19:27hs		16:27hs		23:27hs		290.4ms - 195.0ms = 95.4ms
+	19:51hs		16:51hs		23:51hs		299.4ms - 196.0ms = 103.4ms
+	20:13hs		17:13hs		00:13hs		263.4ms - 214.6ms = 48.8ms
+	20:37hs		17:37hs		00:37hs		265.1ms - 199.8ms = 65.3ms
+	21:00hs		18:00hs		01:00hs		267.6ms - 238.3ms = 29.3ms
+	21:23hs		18:23hs		01:23hs		277.7ms - 203.1ms = 74.6ms
+	01:07hs		22:07hs		05:07hs		229.7ms - 212.7ms = 17ms
+	01:30hs		22:30hs		05:30hs		216.7ms - 232.0ms = negativo
+	01:52hs		22:52hs		05:52hs		226.1ms - 197.9ms = 28.2ms
+	02:15hs		23:15hs		06:15hs		260.2ms - 197.3ms = 62.9ms
+	02:37hs		23:37hs		06:37hs		216.3ms - 198.6ms = 17.7ms
+	10:58hs		07:58hs		14:58hs		230.8ms - 213.2ms = 17.6ms
+	11:21hs		08:21hs		15:21hs		231.6ms - 198.6ms = 33ms
+	11:44hs		08:44hs		15:44hs		216.8ms - 224.2ms = negativo
+	12:07hs		09:07hs		16:07hs		251.2ms - 198.6ms = 52.6ms
+	12:30hs		09:30hs		16:30hs		228.1ms - 233.4ms = negativo
+	13:14hs		10:14hs		17:14hs		264.8ms - 195.7ms = 69.1ms
+	13:37hs		10:37hs		17:37hs		255.8ms - 208.8ms = 47ms		
+	
 	
 
 
@@ -44,23 +62,43 @@ Enlace:
 
 Distancia: 8247.572km
 RTT minimo: 2*8247.572/2*10^5 = 0.08247s = 82.47ms
+*** Todas las rutas son iguales (mismas ips, misma cantidad)
 
 RTT promedio calculado:
-[hora_argentina	hora_inglaterra(+4) rtt_enlace]
-	14:28hs		18:28hs		296ms - 202.7ms = 93.3ms
-	15:08hs		19:08hs		314.8ms - 203.8ms = 111ms
-	15:30hs		19:30hs		328.5ms - 193.6ms = 134.9ms
-	15:54hs		19:54hs		293.5ms - 198.8ms = 94.7ms
-	16:16hs		20:16hs		289.8ms - 204.5ms = 85.3ms
-	16:37hs		20:37hs		296.1ms - 193.1ms = 103ms
-	16:59hs		20:59hs		317.6ms - 190.5ms = 127.1ms
-	17:21hs		21:21hs		308.4ms - 199.3ms = 109.1ms
-	17:43hs		21:43hs		306.2ms - 206.5ms = 99.7ms
-	18:07hs		22:07hs		285.7ms - 193.9ms = 91.8ms
-	18:27hs		22:27hs		292.8ms - 211.8ms = 81ms
-	18:48hs		22:48hs		323.9ms - 197.4ms = 126.5ms
-	19:11hs		23:11hs		292.1ms - 200.0ms = 92.1ms
-	19:33hs		23:33hs		287.5ms - 223.5ms = 64ms
+[hora_argentina	hora_eeuu_colorado(-3) hora_alemania(+5) rtt_enlace]
+	14:28hs		11:28hs		19:28hs		296ms - 202.7ms = 93.3ms
+	15:08hs		12:08hs		20:08hs		314.8ms - 203.8ms = 111ms
+	15:30hs		12:30hs		20:30hs		328.5ms - 193.6ms = 134.9ms
+	15:54hs		12:54hs		20:54hs		293.5ms - 198.8ms = 94.7ms
+	16:16hs		13:16hs		21:16hs		289.8ms - 204.5ms = 85.3ms
+	16:37hs		13:37hs		21:37hs		296.1ms - 193.1ms = 103ms
+	16:59hs		13:59hs		21:59hs		317.6ms - 190.5ms = 127.1ms
+	17:21hs		14:21hs		22:21hs		308.4ms - 199.3ms = 109.1ms
+	17:43hs		14:43hs		22:43hs		306.2ms - 206.5ms = 99.7ms
+	18:07hs		15:07hs		23:07hs		285.7ms - 193.9ms = 91.8ms
+	18:27hs		15:27hs		23:27hs		292.8ms - 211.8ms = 81ms
+	18:48hs		15:48hs		23:48hs		323.9ms - 197.4ms = 126.5ms
+	19:11hs		16:11hs		00:11hs		292.1ms - 200.0ms = 92.1ms
+	19:33hs		16:33hs		00:33hs		287.5ms - 223.5ms = 64ms
+	19:54hs		16:54hs		00:54hs		296.9ms - 205.9ms = 91ms
+	20:15hs		17:15hs		01:15hs		298.1ms - 236.4ms = 61.7ms
+	20:37hs		17:37hs		01:37hs		297.6ms - 201.4ms = 96.2ms
+	20:59hs		17:59hs		01:59hs		348.4ms - 203.6ms = 144.8ms
+	21:21hs		18:21hs		02:21hs		332.4ms - 206.2ms = 126.2ms
+	21:43hs		18:43hs		02:43hs		320.5ms - 238.0ms = 82.5ms
+	01:07hs		22:07hs		06:07hs		300.6ms - 214.5ms = 86.1ms
+	01:28hs		22:28hs		06:28hs		289.7ms - 194.8ms = 94.9ms
+	01:49hs		22:49hs		06:49hs		311.5ms - 196.3ms = 115.2ms
+	02:10hs		23:10hs		07:10hs		284.3ms - 200.2ms = 84.1ms
+	02:31hs		23:31hs		07:31hs		307.0ms - 199.7ms = 107.3ms
+	10:59hs		07:59hs		15:59hs		315.5ms - 193.6ms = 121.9ms
+	11:20hs		08:20hs		16:20hs		287.4ms - 233.5ms = 53.9ms
+	11:41hs		08:41hs		16:41hs		289.3ms - 195.9ms = 93.4ms
+	12:02hs		09:02hs		17:02hs		289.6ms - 197.5ms = 92.1ms
+	12:23hs		09:23hs		17:23hs		289.3ms - 199.1ms = 90.2ms
+	12:44hs		09:44hs		17:44hs		289.5ms - 205.7ms = 83.8ms
+	13:13hs		10:13hs		18:13hs		294.5ms - 224.2ms = 70.3ms
+	13:36hs		10:36hs		18:36hs		321.2ms - 192.9ms = 128.3ms
 	
 	
 	
@@ -74,12 +112,29 @@ Enlace:
 	De Estados Unidos (Colorado segun IPligence), ip 146.82.32.154 (hop 9)
 	A Suiza (Zurich, segun todos), ip 77.109.128.149 (hop 10)
 	Para dibujar numeros voy a tomar hop 12, en mismo lugar que hop 10, ip 77.109.134.50
+
 	
 Distancia: 8319.832
 RTT Minimo = 83.19ms
 RTT promedio calculado: (entre hops 12 y 9)
-[hora_argentina	hora_sudafrica(+5) rtt_enlace]
-	17:40hs		22:40hs		301.2ms - 267.5ms = 33.7ms
-	18:22hs		23:22hs		308.5ms - 312.2ms = negativo, no cuenta
-	18:57hs		23:57hs		337.9ms - 326.3ms = 11.6ms
+[hora_argentina	hora_eeuu(-3) hora_suiza(+5) rtt_enlace]
+	17:40hs		14:40hs		22:40hs		301.2ms - 267.5ms = 33.7ms
+	18:22hs		15:22hs		23:22hs		308.5ms - 312.2ms = negativo
+	18:57hs		15:57hs		23:57hs		337.9ms - 326.3ms = 11.6ms
+	01:15hs		22:15hs		06:15hs		NO APARECE EL ENLACE, solo una punta, pero despues se va derecho para sudafrica (196.32.209.49)
+	10:58hs		07:58hs		15:58hs		310.6ms - 310.9ms = negativo
+	11:25hs		08:25hs		16:25hs		247.3ms - 169.3ms = 78ms
+	11:59hs		08:59hs		16:59hs		285.6ms - 221.2ms = 64.4ms
+	12:30hs		09:30hs		17:30hs		284.4ms - 241.1ms = 43.3ms
+	13:15hs		10:15hs		18:15hs		273.8ms - 273.1ms = 0.7ms
+	13:45hs		10:45hs		18:45hs		300.6ms - 286.7ms = 13.9ms
+	14:15hs		14:15hs		14:15hs		300.9ms - 264.8ms = 36.1ms
+	14:45hs		14:45hs		14:45hs		283.9ms - 310.7ms = negativo
+	
+	
+*** El comienzo de la ruta es igual al de inglaterra
+*** Algunas rutas varian un poco (poner 2 o 3 ejemplos). Solo varian las ips, pero no la ubicacion (en los casos anteriores no varia ni la ip).
+Poner de conclusion de que no varia que no necesariamente quiere decir que la ruta no cambia, sino que la muestra es muy chica
+Cambia donde aparecen algunas ips (nro de hop)
+	
 	
