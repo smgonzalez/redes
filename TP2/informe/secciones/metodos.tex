@@ -15,7 +15,8 @@
  \end{center}
  
  Como resultado de esta funci\'on, si es que se recibe respuesta, se obtiene el paquete ICMP devuelto por el host al recibir el \texttt{echo-request}, con la direcci\'on IP de donde proviene, entre otros datos.\\
- *** ALGUNA ESPECIE DE REFLEXION DE QUE NOS CONTESTARON Y ENTONCES ESTAN VIVOS? DE CUANDO CONTESTAN Y CUANDO NO?\\
+  
+ De esta forma se puede comprobar de una forma muy sencilla si un host esta disponible o no. De no estarlo, el paquete ICMP se perderia y nunca seria respondido, por lo que se deduce que el paquete se perdio o llego a un host que nose encontraba en linea.
  
  Para la implementaci\'on de \texttt{traceroute} nuevamente vamos a utilizar las funciones provistas por \texttt{scapy}. Este m\'etodo recibe como par\'ametros de entrada la direcci\'on destino, la cantidad m\'axima de gateways que se va a recorrer (\texttt{ttl\_max}), y la cantidad de paquetes a enviar a cada nodo que se encuentra en la ruta (\texttt{pkgs\_per\_ttl}).\\
  
@@ -36,6 +37,6 @@
  \subsection{Exploraci\'on}
  
  % CONTAR QUE ENLACES ELEGIMOS, POR QUE, COMO LOCALIZAMOS CADA IP, COMO TOMAMOS EL RTT MINIMO, ETC. DESPUES EN RESULTADOS PONEMOS LOS GRAFIQUITOS Y LOS ANALIZAMOS
-Las funciones mencionadas en la secci\'on anterior van a ser utilizadas para encontrar enlaces que conecten distintos continentes. Para ello seleccionamos tres direcciones correspondientes a pa\'ises de Europa y Africa, y corrimos \texttt{traceroute} con ellos. Dadas las IPs por donde pasa el paquete, podemos utilizar herramientas de geolocalizaci\'on para trazar la ruta y encontrar el momento en que se cruza hacia otro continente.\\
+Las funciones mencionadas en la secci\'on anterior van a ser utilizadas para encontrar enlaces que conecten distintos continentes. Para ello seleccionamos tres direcciones correspondientes a pa\'ises de Europa y Africa, y corrimos \texttt{traceroute} con ellos. Dadas las IPs por donde pasa el paquete, podemos utilizar herramientas de geolocalizaci\'on (dichas en la introducci\'on) para trazar la ruta y encontrar el momento en que se cruza hacia otro continente.\\
 
-Como explicamos en la secci\'on anterior, la ruta encontrada es solamente una ruta \emph{aproximada}, por lo tanto no esperamos encontrar el enlace transatl\'antico exacto. Sin embargo los nodos obtenidos pueden darnos una idea de por d\'onde se encuentra el mismo. Para conocer la ubicaci\'on de una IP utilizamos las siguientes p\'aginas: 
+Como explicamos en la secci\'on anterior, la ruta encontrada es solamente una ruta \emph{aproximada}, por lo tanto no esperamos encontrar el enlace transatl\'antico exacto. Sin embargo los nodos obtenidos pueden darnos una idea de por d\'onde se encuentra el mismo.
