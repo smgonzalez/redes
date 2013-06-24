@@ -1,0 +1,59 @@
+\documentclass[a4paper,10pt]{article}
+%\usepackage[paper=a4paper, left=1.5cm, right=1.5cm, bottom=2.0cm, top=1.6cm]{geometry}
+\usepackage[paper=a4paper]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{color}
+\usepackage{amsthm}
+\usepackage[colorlinks=true, linkcolor=blue]{hyperref}
+
+\usepackage{verbatim}
+\usepackage{caratula1}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{verbatim}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{graphicx}
+%\usepackage{epstopdf}
+\usepackage{ifpdf}
+\usepackage{multicol}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{hyperref}
+%\usepackage{subfig}
+
+
+\begin{document}
+%Datos para la caratula
+\materia{Teoría de las Comunicaciones}
+
+\titulo{Trabajo Pr\'actico 3}
+
+\subtitulo{Taller de Capa de Red}
+
+%\grupo{Grupo ?}
+
+\integrante{Dabbah, Juli\'an}{15/09}{djulius@gmail.com}
+\integrante{Fern\'andez Abrevaya, Victoria}{710/10}{vabrevaya@gmail.com}
+\integrante{Gonz\'alez, Sergio}{723/10}{sergiogonza90@gmail.com}
+
+\maketitle
+\tableofcontents
+\newpage
+  
+\input{secciones/introduccion.tex}
+$\\$	
+\input{secciones/metodos.tex}
+$\\$	
+\input{secciones/resultados.tex}
+%$\\$	
+%\input{secciones/conclusiones.tex}
+
+%\newpage
+%\begin{thebibliography}{9}
+ %\end{thebibliography}
+
+
+\end{document}
+

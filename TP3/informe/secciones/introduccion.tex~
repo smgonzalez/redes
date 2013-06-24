@@ -1,0 +1,25 @@
+
+\section{Introducci\'on}
+
+El presente trabajo pr\'actico tiene como objetivo explorar el nivel de red, observando las rutas que siguen los paquetes IPs al viajar largas distancias. Para ello implementaremos dos herramientas de análisis: \texttt{ping} y \texttt{traceroute},  basándonos en el protocolo ICMP (Internet Control Message Protocol).\\
+
+Dicho protocolo se utiliza para control y notificaci\'on de errores en el envi\'o de paquetes IP, por lo que corre por sobre este. Las herramientas \texttt{ping} y \texttt{traceroute} que se encuentran en los sistemas operativos más utilizados se basan en este mismo protocolo.\\
+
+De los varios tipos de paquetes ICMP existentes, para la implementaci\'on de las herramientas nos focalizaremos en tres de ellos, cuyo uso comentamos a continuación:
+
+\begin{itemize}
+ \item Echo-Request \\ 
+ Solicita la respuesta de un host. Por ejemplo para saber si un host está disponible, puede enviársele un paquete ICMP de este tipo.
+ \item Echo-Reply \\
+ Informa la respuesta de un host. Al recibirse un paquete de tipo {\bf Echo-Request}, se le envía al remitente uno de este tipo, indicando que el host está efectivamente activo y disponible.
+ \item Time Exceeded \\
+ Existe una propiedad de los paquetes ICMP denominada {\bf Time To Live} (TTL) que limita el número de {\bf hops} que puede atravesar: cuando se construye el paquete se le asigna un valor numérico, que es decrementado con cada hop de routing; si un router recibe un paquete de tipo {\bf Echo-Request} con TTL = 0, envía un paquete ICMP de tipo {\bf Time Exceeded} al remitente del paquete. En esta propiedad del protocolo basaremos nuestra implementación de la herramienta Traceroute.
+\end{itemize}
+
+%Cuando un host A quiere saber si un host B esta disponible, lo que hace es mandar un paquete ICMP (sobre uno IP) de tipo {\bf Echo-Request}. Si el servidor B esta disponible efectivamente, le env\'ia al host un paquete ICMP de tipo {\bf Echo-Reply}.
+
+%Esto por ejemplo se puede utilizar para aproximar una ruta posible que sigue un paquete, enviando paquetes de tipo Echo-Request aumentando linealmente el TTL, y viendo que IPs fuente son las que nos mandan las respuestas de Time Exceeded, hasta que se recibe un Echo-Reply.
+
+%En base a este algoritmo se implementara la herramienta {\bf Traceroute}. 
+Utilizaremos estas herramientas (en nuestras implementaciones, además de las ya implementadas en sistemas Unix) para realizar exploraciones, mediciones y an\'alisis de los enlaces de Internet, haciendo énfasis en enlaces transoceánicos. Para identificar estos últimos, utilizaremos además herramientas como las que se encuentran en \url{http://www.geoiptool.com/es/} o \url{http://geoip.flagfox.net/} para poder localizar (aproximadamente) el punto geogr\'afico de un router mediante su dirección IP pública.
+
