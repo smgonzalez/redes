@@ -51,6 +51,15 @@ class ClientControlBlock(ProtocolControlBlock):
     def send_allowed(self):
         pass
         
+    # Estas funciones las agregue yo (vicky)
+    # Responde True si el ACK fue aceptado (lo que quiera que quiere decir eso).
+    def ack_accepted(self, packet):
+		return 1
+		
+	# Reajusta la ventana, dado un ACK aceptado.
+	def adjust_window(self, packet):
+		pass
+        
 
 class PTCClientProtocol(object):
     
@@ -110,7 +119,19 @@ class PTCClientProtocol(object):
         # ...y verificar que no se exceda la cantidad máxima de reenvíos!
         # (hacer self.shutdown() si esto ocurre y dejar un mensaje en self.error)
         
-        pass
+        # *** NO SE SI NO HABIA YA OTRA VARIABLE DONDE SE INDICABA LA CANTIDAD DE TRANSMISIONES
+        # *** SE CUENTA POR PAQUETE O LA COLA ENTERA?
+        # *** HAY QUE RETRANSMITIR TODO LO QUE ESTA EN LA COLA?
+        # Cantidad maxima de reenvios: MAX_RETRANSMISSION_ATTEMPTS
+		newQueue = RetransmissionQueue(self)        
+		
+        for packet in self.retransmission_queue:
+			send_packet(packet)	# *** Ojo que esto debe estar mal
+			newQueue.put(packet)
+			
+		self.retransmission_queue = newQueue
+        
+        
     
     def handle_pending_data(self):
         more_data_pending = False
@@ -132,6 +153,7 @@ class PTCClientProtocol(object):
         if more_data_pending:
             self.worker.signal_pending_data()
     
+    
     def handle_incoming(self, packet):
         ###################
         ##   Completar!  ##
@@ -146,7 +168,49 @@ class PTCClientProtocol(object):
         # * Ajustar la ventana deslizante con #ACK
         # * Tener en cuenta también el caso donde el estado es FIN_SENT
         
-        pass
+        # Corroboro que el flag de ACK este seteado
+        if not ACKFlag in packet:
+			raise Exception('Error (hay que hacer algo mas? Es un error?)')
+			return
+			
+		# Reviso si el ACK es aceptado
+		if not self.control_block.ack_accepted(packet): 
+			# *** Si no es aceptado no hago nada no?
+			return
+		
+		
+		# Si fue aceptado, ejecuto accion en base al estado actual
+		# *** ASUMO QUE NO SE LO LLAMA SI EL ESTADO ES CLOSED, ESO ESTARA BIEN?
+        if self.state == SYN_SENT:
+			# El servidor establecio una conexion: 
+			# cambio el estado del cliente y sincronizo la conexion
+			
+			# Corroboro que el numero de ACK recibido sea igual al numero de SEQ enviado
+			ackNum = packet.get_seq_number()
+			seqNum = self.control_block.get_send_seq()
+			
+			if not (ackNum == seqNum):
+				# *** TIRO ERROR? LO IGNORO?
+				return
+			
+			self.state = ESTABLISHED
+			self.connected_event.set()
+			
+		elif self.state == FIN_SENT:
+			# Recibi respuesta del servidor indicando que puedo cerrar la conexion
+			self.state = CLOSED
+			# *** Hago algo mas para cerrar la conexion?
+			
+		else:	# ESTABLISHED
+			# Saco de la cola de transmision los paquetes aceptados por el servidor
+			#ackNum = packet.get_ack_number()
+			self.retranmission_queue.acknowledge(packet)
+			
+			# Ajusto la ventana deslizante (*** O ESTO LO HAGO CUANDO CHEQUEO ACK OK?)
+			# TODO
+			
+			
+        
             
     def handle_close_connection(self):
         if not self.outgoing_buffer.empty():
