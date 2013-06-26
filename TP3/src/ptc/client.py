@@ -22,6 +22,8 @@ from buffers import DataBuffer, RetransmissionQueue, NotEnoughDataException
 from constants import MIN_PACKET_SIZE, MAX_PACKET_SIZE, CLOSED,\
                       ESTABLISHED, FIN_SENT, SYN_SENT, MAX_SEQ,\
                       SEND_WINDOW, MAX_RETRANSMISSION_ATTEMPTS
+from collections import Counter
+                 
 
 
 class ClientControlBlock(ProtocolControlBlock):
@@ -72,21 +74,20 @@ class ClientControlBlock(ProtocolControlBlock):
 		else:
 			return high < ackNum and ackNum < low
 
-		
 	# Reajusta la ventana, dado un ACK aceptado.
-	def adjust_window(self, packet):
+    def adjust_window(self, packet):
 		self.window_lo = packet.get_ack_number()
-        self.window_hi = self.modular_sum(self.window_lo, self.send_window)
+		self.window_hi = self.modular_sum(self.window_lo, self.send_window)
 
-	def increment_send_seq(self):
-		self.send_seq+=1
+    def increment_send_seq(self):
+		self.send_seq = self.modular_increment(self.send_seq)
                 
 
 class PTCClientProtocol(object):
     
     def __init__(self, address, port):
         self.retransmission_queue = RetransmissionQueue(self)
-        self.retransmission_attempts = dict()
+        self.retransmission_attempts = Counter()
         self.outgoing_buffer = DataBuffer()
         self.state = CLOSED
         self.control_block = ClientControlBlock(address, port)
@@ -144,16 +145,16 @@ class PTCClientProtocol(object):
         # *** SE CUENTA POR PAQUETE O LA COLA ENTERA?
         # *** HAY QUE RETRANSMITIR TODO LO QUE ESTA EN LA COLA?
         # Cantidad maxima de reenvios: MAX_RETRANSMISSION_ATTEMPTS
-		newQueue = RetransmissionQueue(self)        
-		
-        for packet in self.retransmission_queue:
-			send_packet(packet)	# *** Ojo que esto debe estar mal
-			newQueue.put(packet)
-			
-		self.retransmission_queue = newQueue
-        
-        
-    
+		oldQueue = self.retransmission_queue
+		self.retransmission_queue = RetransmissionQueue()		
+		for packet in oldQueue:
+			if self.retransmission_attempts[packet.get_seq_number()] == MAX_RETRANSMISSION_ATTEMPTS:
+                self.error = 'Retransmition Limit Exceeded'
+                self.shutdown()
+            else:
+                self.retransmission_attempts[packet.get_seq_number()] += 1
+                send_and_queue_packet(packet) 
+
     def handle_pending_data(self):
         more_data_pending = False
         
@@ -195,14 +196,20 @@ class PTCClientProtocol(object):
 			return
 			
 		# Reviso si el ACK es aceptado
-		if not self.control_block.ack_accepted(packet): 
+        if self.control_block.ack_accepted(packet): 
 			# *** Si no es aceptado no hago nada no?
+			for ackedPacket in self.retranmission_queue.acknowledge(packet):
+				self.retransmission_attempts[ackedPacket.get_seq_number()]
+			self.control_block.adjust_window(packet)
+		else:
 			return
 		
 		
 		# Si fue aceptado, ejecuto accion en base al estado actual
 		# *** ASUMO QUE NO SE LO LLAMA SI EL ESTADO ES CLOSED, ESO ESTARA BIEN?
-        if self.state == SYN_SENT:
+		if self.state == ESTABLISHED:
+			return
+        elif self.state == SYN_SENT:
 			# El servidor establecio una conexion: 
 			# cambio el estado del cliente y sincronizo la conexion
 			
@@ -211,25 +218,23 @@ class PTCClientProtocol(object):
 			seqNum = self.control_block.get_send_seq()
 			
 			if not (ackNum == seqNum):
-				# *** TIRO ERROR? LO IGNORO?
+				self.error = 'SYN_ACK inválido'
+				self.shutdown()
 				return
 			
 			self.state = ESTABLISHED
 			self.connected_event.set()
 			
-		elif self.state == FIN_SENT:
+        elif self.state == FIN_SENT:
 			# Recibi respuesta del servidor indicando que puedo cerrar la conexion
 			self.state = CLOSED
 			# *** Hago algo mas para cerrar la conexion?
-            self.close() #(?)
+			self.close()
+			self.shutdown() #(?)
 			
-		else:	# ESTABLISHED
-			# Saco de la cola de transmision los paquetes aceptados por el servidor
-			#ackNum = packet.get_ack_number()
-			self.retranmission_queue.acknowledge(packet)
-			
-			# Ajusto la ventana deslizante (*** O ESTO LO HAGO CUANDO CHEQUEO ACK OK?)
-			# TODO
+        else:
+			self.error = 'Estado inexistente'
+			self.shutdown()
 			
 			
         
