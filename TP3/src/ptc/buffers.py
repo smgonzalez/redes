@@ -89,15 +89,19 @@ class RetransmissionQueue(object):
         
     def acknowledge(self, packet):
         self.cancel_timer()
-        self.remove_acknowledged_by(packet.get_ack_number())
+        #me guardo los acknowledged para borrarlos del retransmission_attempt
+        acked = self.remove_acknowledged_by(packet.get_ack_number())
         if self.packet_list:
             new_timeout = time.time() - self.packet_list[0][1]
             self.start_timer_with(new_timeout)
+        return acked
             
     def remove_acknowledged_by(self, ack_number):
         first_seq = self.packet_list[0][0].get_seq_number()
         acked_offset = (ack_number - first_seq) % (MAX_SEQ + 1)
+        acked = self.packet_list[:1+acked_offset]
         self.packet_list = self.packet_list[1+acked_offset:]
+        return acked
     
     def start_timer_with(self, timeout):
         with self.timer_lock:

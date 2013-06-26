@@ -22,6 +22,7 @@ from buffers import DataBuffer, RetransmissionQueue, NotEnoughDataException
 from constants import MIN_PACKET_SIZE, MAX_PACKET_SIZE, CLOSED,\
                       ESTABLISHED, FIN_SENT, SYN_SENT, MAX_SEQ,\
                       SEND_WINDOW, MAX_RETRANSMISSION_ATTEMPTS
+from collections import Counter
 
 
 class ClientControlBlock(ProtocolControlBlock):
@@ -49,23 +50,34 @@ class ClientControlBlock(ProtocolControlBlock):
     
     # Responde True sii la ventana de emisión no está saturada.
     def send_allowed(self):
-        pass
+        #Alta probabilidad de fruta
+        return self.send_seq != self.modular_increment(self.window_hi) # self.send_q < self.window_hi (mod MAX_SEQ).
+
         
     # Estas funciones las agregue yo (vicky)
     # Responde True si el ACK fue aceptado (lo que quiera que quiere decir eso).
+    #JAJA acabo de preguntar más abajo qué significa ser accepted. -> digamos que es un ack 'nuevo'
     def ack_accepted(self, packet):
-		return 1
+        if packet.get_seq_number > self.window_lo: #algo así, falta considerar el rollover
+            self.adjust_window(self, packet)
+            return True
+        else :
+            return False
 		
 	# Reajusta la ventana, dado un ACK aceptado.
+    # Nunca cambia el tamaño de la ventana. Está bien eso o hay que implementar control de congestión?
 	def adjust_window(self, packet):
-		pass
+		self.window_lo = packet.get_seq_number()
+        self.window_hi = self.modular_sum(self.window_lo, self.send_window)
         
 
 class PTCClientProtocol(object):
     
     def __init__(self, address, port):
         self.retransmission_queue = RetransmissionQueue(self)
-        self.retransmission_attempts = dict()
+        # self.retransmission_attempts = dict()
+        #uso Counter en vez de dict para que si pregunto por una clave no definida me diga 0 en vez de error. Necesita python 2.7
+        self.retransmission_attempts = Counter()
         self.outgoing_buffer = DataBuffer()
         self.state = CLOSED
         self.control_block = ClientControlBlock(address, port)
@@ -119,17 +131,28 @@ class PTCClientProtocol(object):
         # ...y verificar que no se exceda la cantidad máxima de reenvíos!
         # (hacer self.shutdown() si esto ocurre y dejar un mensaje en self.error)
         
-        # *** NO SE SI NO HABIA YA OTRA VARIABLE DONDE SE INDICABA LA CANTIDAD DE TRANSMISIONES
-        # *** SE CUENTA POR PAQUETE O LA COLA ENTERA?
-        # *** HAY QUE RETRANSMITIR TODO LO QUE ESTA EN LA COLA?
+        # *** NO SE SI NO HABIA YA OTRA VARIABLE DONDE SE INDICABA LA CANTIDAD DE TRANSMISIONES  -> self.retransmission_attempts
+        # *** SE CUENTA POR PAQUETE O LA COLA ENTERA? 
+        # ···· -> casi seguro que por paquete. podrías retransmitir toda la cola y después necesitar volver a retransmitir el último paquete nada más. cómo contarías?
+        # *** HAY QUE RETRANSMITIR TODO LO QUE ESTA EN LA COLA? 
+        # ·····-> si cuando recibimos un ack (válido) borramos de la cola todo lo que confirma ese ack, sí, la cola solo tiene cosas que no fueron reconocidas (?)
         # Cantidad maxima de reenvios: MAX_RETRANSMISSION_ATTEMPTS
-		newQueue = RetransmissionQueue(self)        
+		# newQueue = RetransmissionQueue(self)        
 		
         for packet in self.retransmission_queue:
-			send_packet(packet)	# *** Ojo que esto debe estar mal
-			newQueue.put(packet)
+            #en la cola sólo hay paquetes "en vuelo"
+            if self.retransmission_attempts[packet.get_id_number()] == MAX_RETRANSMISSION_ATTEMPTS: # == ó > ?
+                self.error = 'Retransmition Limit Exceeded' #así?
+                self.shutdown()
+            else:
+                self.retransmission_attempts[packet.get_id_number()] += 1
+                send_packet(packet)
+            #no hago nada con la cola, porque sería dejarla igual
+            #····-> esto si nadie agrega nada mientras estoy iterando acá adentro. qué onda con la SINCRONIZACIÓN de threads? puede pasar?
+            # mirando el código de la cola me parece que se está suponiendo que no... qué onda?
 			
-		self.retransmission_queue = newQueue
+  #       newQueue.put(packet)	
+		# self.retransmission_queue = newQueue
         
         
     
@@ -174,14 +197,24 @@ class PTCClientProtocol(object):
 			return
 			
 		# Reviso si el ACK es aceptado
-		if not self.control_block.ack_accepted(packet): 
-			# *** Si no es aceptado no hago nada no?
+		if self.control_block.ack_accepted(packet): 
+            # ···> qué significa "accepted"? 
+            # una vez que lo acepté, ya sé que no lo tengo que volver a transmitir, tenga los flags que tenga
+            for p in self.retranmission_queue.acknowledge(packet):
+                del self.retransmission_attempts[p.get_id_number()]
+        else:
+            # *** Si no es aceptado no hago nada no?
+            # ···> Puede ser un ack viejo, no? Si es un ack viejo no me importan sus flags, no?
 			return
 		
 		
 		# Si fue aceptado, ejecuto accion en base al estado actual
 		# *** ASUMO QUE NO SE LO LLAMA SI EL ESTADO ES CLOSED, ESO ESTARA BIEN?
-        if self.state == SYN_SENT:
+
+        if self.state == ESTABLISHED: #lo pongo primero porque suponemos que va a ser el caso más frecuente
+            return
+
+        elif self.state == SYN_SENT:
 			# El servidor establecio una conexion: 
 			# cambio el estado del cliente y sincronizo la conexion
 			
@@ -200,14 +233,16 @@ class PTCClientProtocol(object):
 			# Recibi respuesta del servidor indicando que puedo cerrar la conexion
 			self.state = CLOSED
 			# *** Hago algo mas para cerrar la conexion?
+            self.close() #(?)
 			
 		else:	# ESTABLISHED
-			# Saco de la cola de transmision los paquetes aceptados por el servidor
-			#ackNum = packet.get_ack_number()
-			self.retranmission_queue.acknowledge(packet)
-			
-			# Ajusto la ventana deslizante (*** O ESTO LO HAGO CUANDO CHEQUEO ACK OK?)
-			# TODO
+            # Saco de la cola de transmision los paquetes aceptados por el servidor
+            #ackNum = packet.get_ack_number()
+            #self.retranmission_queue.acknowledge(packet)
+            # Ajusto la ventana deslizante (*** O ESTO LO HAGO CUANDO CHEQUEO ACK OK?)
+            # TODO 
+
+            raise Exception('Estado frutal')
 			
 			
         
