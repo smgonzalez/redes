@@ -38,7 +38,7 @@ class ClientControlBlock(ProtocolControlBlock):
         self.window_lo = self.send_seq
         # Límite superior de la ventana
         self.window_hi = self.modular_sum(self.window_lo, self.send_window)
-        
+            
     def get_send_seq(self):
         return self.send_seq
     
@@ -51,36 +51,36 @@ class ClientControlBlock(ProtocolControlBlock):
     
     # Responde True sii la ventana de emisión no está saturada.
     def send_allowed(self):
-		actSeqNum = self.send_seq
-		high = self.window_hi
-		low = self.window_lo
-		
-		#Consultar!
-		if high < low:
-			return not (high < ackNum and ackNum < low)
-		else:
-			return high < ackNum
+        actSeqNum = self.send_seq
+        high = self.window_hi
+        low = self.window_lo
+        
+        #Consultar!
+        if high < low:
+            return not (high < ackNum and ackNum < low)
+        else:
+            return high < ackNum
 
     # Estas funciones las agregue yo (vicky)
     # Responde True si el ACK fue aceptado (lo que quiera que quiere decir eso).
     def ack_accepted(self, packet):
-		ackNum = packet.get_ack_number()
-		high = self.window_hi
-		low = self.window_lo
+        ackNum = packet.get_ack_number()
+        high = self.window_hi
+        low = self.window_lo
 
-		# Consultar!
-		if high < low:
-			return not (high < ackNum and ackNum < low)
-		else:
-			return high < ackNum and ackNum < low
+        # Consultar!
+        if high < low:
+            return not (high < ackNum and ackNum < low)
+        else:
+            return high < ackNum and ackNum < low
 
-	# Reajusta la ventana, dado un ACK aceptado.
+    # Reajusta la ventana, dado un ACK aceptado.
     def adjust_window(self, packet):
-		self.window_lo = packet.get_ack_number()
-		self.window_hi = self.modular_sum(self.window_lo, self.send_window)
+        self.window_lo = packet.get_ack_number()
+        self.window_hi = self.modular_sum(self.window_lo, self.send_window)
 
     def increment_send_seq(self):
-		self.send_seq = self.modular_increment(self.send_seq)
+        self.send_seq = self.modular_increment(self.send_seq)
                 
 
 class PTCClientProtocol(object):
@@ -145,10 +145,10 @@ class PTCClientProtocol(object):
         # *** SE CUENTA POR PAQUETE O LA COLA ENTERA?
         # *** HAY QUE RETRANSMITIR TODO LO QUE ESTA EN LA COLA?
         # Cantidad maxima de reenvios: MAX_RETRANSMISSION_ATTEMPTS
-		oldQueue = self.retransmission_queue
-		self.retransmission_queue = RetransmissionQueue()		
-		for packet in oldQueue:
-			if self.retransmission_attempts[packet.get_seq_number()] == MAX_RETRANSMISSION_ATTEMPTS:
+        oldQueue = self.retransmission_queue
+        self.retransmission_queue = RetransmissionQueue()       
+        for packet in oldQueue:
+            if self.retransmission_attempts[packet.get_seq_number()] == MAX_RETRANSMISSION_ATTEMPTS :
                 self.error = 'Retransmition Limit Exceeded'
                 self.shutdown()
             else:
@@ -192,51 +192,50 @@ class PTCClientProtocol(object):
         
         # Corroboro que el flag de ACK este seteado
         if not ACKFlag in packet:
-			raise Exception('Error (hay que hacer algo mas? Es un error?)')
-			return
-			
-		# Reviso si el ACK es aceptado
+            raise Exception('Error (hay que hacer algo mas? Es un error?)')
+            return
+            
+        # Reviso si el ACK es aceptado
         if self.control_block.ack_accepted(packet): 
-			# *** Si no es aceptado no hago nada no?
-			for ackedPacket in self.retranmission_queue.acknowledge(packet):
-				self.retransmission_attempts[ackedPacket.get_seq_number()]
-			self.control_block.adjust_window(packet)
-		else:
-			return
-		
-		
-		# Si fue aceptado, ejecuto accion en base al estado actual
-		# *** ASUMO QUE NO SE LO LLAMA SI EL ESTADO ES CLOSED, ESO ESTARA BIEN?
-		if self.state == ESTABLISHED:
-			return
-        elif self.state == SYN_SENT:
-			# El servidor establecio una conexion: 
-			# cambio el estado del cliente y sincronizo la conexion
-			
-			# Corroboro que el numero de ACK recibido sea igual al numero de SEQ enviado
-			ackNum = packet.get_ack_number()
-			seqNum = self.control_block.get_send_seq()
-			
-			if not (ackNum == seqNum):
-				self.error = 'SYN_ACK inválido'
-				self.shutdown()
-				return
-			
-			self.state = ESTABLISHED
-			self.connected_event.set()
-			
-        elif self.state == FIN_SENT:
-			# Recibi respuesta del servidor indicando que puedo cerrar la conexion
-			self.state = CLOSED
-			# *** Hago algo mas para cerrar la conexion?
-			self.close()
-			self.shutdown() #(?)
-			
+            # *** Si no es aceptado no hago nada no?
+            for ackedPacket in self.retranmission_queue.acknowledge(packet):
+                self.retransmission_attempts[ackedPacket.get_seq_number()]
+            self.control_block.adjust_window(packet)
         else:
-			self.error = 'Estado inexistente'
-			self.shutdown()
-			
-			
+            return
+ 
+        # Si fue aceptado, ejecuto accion en base al estado actual
+        # *** ASUMO QUE NO SE LO LLAMA SI EL ESTADO ES CLOSED, ESO ESTARA BIEN?
+        if self.state == ESTABLISHED:
+            return
+        elif self.state == SYN_SENT:
+            # El servidor establecio una conexion: 
+            # cambio el estado del cliente y sincronizo la conexion
+            
+            # Corroboro que el numero de ACK recibido sea igual al numero de SEQ enviado
+            ackNum = packet.get_ack_number()
+            seqNum = self.control_block.get_send_seq()
+            
+            if not (ackNum == seqNum):
+                self.error = 'SYN_ACK inválido'
+                self.shutdown()
+                return
+            
+            self.state = ESTABLISHED
+            self.connected_event.set()
+            
+        elif self.state == FIN_SENT:
+            # Recibi respuesta del servidor indicando que puedo cerrar la conexion
+            self.state = CLOSED
+            # *** Hago algo mas para cerrar la conexion?
+            self.close()
+            self.shutdown() #(?)
+            
+        else:
+            self.error = 'Estado inexistente'
+            self.shutdown()
+            
+            
         
             
     def handle_close_connection(self):
