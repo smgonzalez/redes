@@ -32,3 +32,6 @@ ESTABLISHED = 3
 FIN_SENT = 4
 FIN_RECEIVED = 5
 CLOSED = 6
+
+DEBUG = True
+RANDOM_LOSS = True #el sender pierde paquetes a propósito (sólo funciona con debug = True)

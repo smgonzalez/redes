@@ -21,7 +21,8 @@ from worker import ClientProtocolWorker
 from buffers import DataBuffer, RetransmissionQueue, NotEnoughDataException
 from constants import MIN_PACKET_SIZE, MAX_PACKET_SIZE, CLOSED,\
                       ESTABLISHED, FIN_SENT, SYN_SENT, MAX_SEQ,\
-                      SEND_WINDOW, MAX_RETRANSMISSION_ATTEMPTS
+                      SEND_WINDOW, MAX_RETRANSMISSION_ATTEMPTS,\
+                      DEBUG, RANDOM_LOSS
 from collections import Counter
                  
 
@@ -99,7 +100,15 @@ class PTCClientProtocol(object):
         return packet
         
     def send_packet(self, packet):
-        self.socket.send(packet)
+        if DEBUG and RANDOM_LOSS:
+            #'perdemos' un 10% de los paquetes
+            if random.choice(range(10)) :
+                print 'mando el paquete:', packet.get_seq_number()
+                self.socket.send(packet)
+            else:
+                print 'Mala leche con el', packet.get_seq_number()
+        else:
+            self.socket.send(packet)
         
     def send_and_queue_packet(self, packet):
         self.send_packet(packet)
@@ -140,6 +149,7 @@ class PTCClientProtocol(object):
         # *** SE CUENTA POR PAQUETE O LA COLA ENTERA?
         # *** HAY QUE RETRANSMITIR TODO LO QUE ESTA EN LA COLA?
         # Cantidad maxima de reenvios: MAX_RETRANSMISSION_ATTEMPTS
+        if DEBUG: print 'TIMEOUT'
         oldQueue = self.retransmission_queue
         self.retransmission_queue = RetransmissionQueue(self)       
         for packet in oldQueue:
@@ -191,6 +201,7 @@ class PTCClientProtocol(object):
             self.shutdown()
             return
             
+        if DEBUG: print 'me llegó el paquete numero:', packet.get_ack_number()
         # Reviso si el ACK es aceptado
         if self.control_block.ack_accepted(packet): 
             # *** Si no es aceptado no hago nada no?
@@ -215,15 +226,18 @@ class PTCClientProtocol(object):
             if not (self.control_block.modular_increment(ackNum) == seqNum):
                 #self.error = 'SYN_ACK inválido'
                 #self.shutdown()
+                if DEBUG: print 'recibí fruta (ack != seq):', ackNum, seqNum
                 #no hagamos que se cierre, tal vez le llegó algo viejo o equivocado
                 #dejemos que si posta anda mal, lo maten los timeouts.
                 return
             
             self.state = ESTABLISHED
             self.connected_event.set()
+            if DEBUG: print 'conexión establecida'
             
         elif self.state == FIN_SENT:
             # Recibi respuesta del servidor indicando que puedo cerrar la conexion
+            if DEBUG: print 'llego el fin'
             self.state = CLOSED
             # *** Hago algo mas para cerrar la conexion?
             self.shutdown() #(?)

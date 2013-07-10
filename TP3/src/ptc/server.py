@@ -20,7 +20,8 @@ from worker import ServerProtocolWorker
 from buffers import DataBuffer
 from constants import MIN_PACKET_SIZE, CLOSED,\
                       ESTABLISHED,\
-                      FIN_RECEIVED, RECV_WINDOW
+                      FIN_RECEIVED, RECV_WINDOW,\
+                      DEBUG
 
 
 class ServerControlBlock(ProtocolControlBlock):
@@ -91,6 +92,7 @@ class PTCServerProtocol(object):
         
     def handle_incoming(self, packet):
         seq_number = packet.get_seq_number()
+        if DEBUG: print 'recibi el paquete numero', seq_number
         if SYNFlag in packet:
             self.control_block.set_destination_address(packet.get_source_ip())
             self.control_block.set_destination_port(packet.get_source_port())
@@ -101,13 +103,16 @@ class PTCServerProtocol(object):
             self.control_block.increment_receive_seq()            
             self.state = ESTABLISHED
             self.connected_event.set()
+            if DEBUG: print 'server established'
         if FINFlag in packet:
             if self.control_block.accepts(seq_number):
+                if DEBUG: print 'server ended'
                 self.state = FIN_RECEIVED
                 self.send_ack()
                 self.close()
         else:
             data = packet.get_payload()
+            if DEBUG: print 'recibí un paquete con esta data:', data
             if self.control_block.accepts(seq_number) and data:
                 self.incoming_buffer.put(data)
                 if self.state != FIN_RECEIVED:
