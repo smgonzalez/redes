@@ -49,34 +49,24 @@ class ClientControlBlock(ProtocolControlBlock):
     ### Completar esta clase! ###
     #############################
     
+    def is_inside_window(self, seqNr):
+        if self.window_lo < self.window_hi:
+            return self.window_lo <= seqNr < self.window_hi
+        else:
+            return self.window_lo <= seqNr or seqNr < self.window_hi
+
     # Responde True sii la ventana de emisión no está saturada.
     def send_allowed(self):
-        actSeqNum = self.send_seq
-        high = self.window_hi
-        low = self.window_lo
-        
-        #Consultar!
-        if high < low:
-            return not (high < ackNum and ackNum < low)
-        else:
-            return high < ackNum
+        return self.is_inside_window(self.send_seq)
 
     # Estas funciones las agregue yo (vicky)
     # Responde True si el ACK fue aceptado (lo que quiera que quiere decir eso).
     def ack_accepted(self, packet):
-        ackNum = packet.get_ack_number()
-        high = self.window_hi
-        low = self.window_lo
-
-        # Consultar!
-        if high < low:
-            return not (high < ackNum and ackNum < low)
-        else:
-            return high < ackNum and ackNum < low
+        return self.is_inside_window(packet.get_ack_number())
 
     # Reajusta la ventana, dado un ACK aceptado.
     def adjust_window(self, packet):
-        self.window_lo = packet.get_ack_number()
+        self.window_lo = packet.get_ack_number() + 1
         self.window_hi = self.modular_sum(self.window_lo, self.send_window)
 
     def increment_send_seq(self):
@@ -146,14 +136,14 @@ class PTCClientProtocol(object):
         # *** HAY QUE RETRANSMITIR TODO LO QUE ESTA EN LA COLA?
         # Cantidad maxima de reenvios: MAX_RETRANSMISSION_ATTEMPTS
         oldQueue = self.retransmission_queue
-        self.retransmission_queue = RetransmissionQueue()       
+        self.retransmission_queue = RetransmissionQueue(self)       
         for packet in oldQueue:
             if self.retransmission_attempts[packet.get_seq_number()] == MAX_RETRANSMISSION_ATTEMPTS :
                 self.error = 'Retransmition Limit Exceeded'
                 self.shutdown()
             else:
                 self.retransmission_attempts[packet.get_seq_number()] += 1
-                send_and_queue_packet(packet) 
+                self.send_and_queue_packet(packet) 
 
     def handle_pending_data(self):
         more_data_pending = False
@@ -193,12 +183,14 @@ class PTCClientProtocol(object):
         # Corroboro que el flag de ACK este seteado
         if not ACKFlag in packet:
             raise Exception('Error (hay que hacer algo mas? Es un error?)')
+            self.shutdown()
             return
             
         # Reviso si el ACK es aceptado
         if self.control_block.ack_accepted(packet): 
             # *** Si no es aceptado no hago nada no?
             for ackedPacket in self.retranmission_queue.acknowledge(packet):
+            for ackedPacket in self.retransmission_queue.acknowledge(packet):
                 self.retransmission_attempts[ackedPacket.get_seq_number()]
             self.control_block.adjust_window(packet)
         else:

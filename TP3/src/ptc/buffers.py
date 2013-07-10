@@ -101,7 +101,7 @@ class RetransmissionQueue(object):
         acked_offset = (ack_number - first_seq) % (MAX_SEQ + 1)
         acked = self.packet_list[:1+acked_offset]
         self.packet_list = self.packet_list[1+acked_offset:]
-        return acked
+        return map(lambda item: item[0], acked)
     
     def start_timer_with(self, timeout):
         with self.timer_lock:
