@@ -194,9 +194,8 @@ class PTCClientProtocol(object):
         # Reviso si el ACK es aceptado
         if self.control_block.ack_accepted(packet): 
             # *** Si no es aceptado no hago nada no?
-            for ackedPacket in self.retranmission_queue.acknowledge(packet):
             for ackedPacket in self.retransmission_queue.acknowledge(packet):
-                self.retransmission_attempts[ackedPacket.get_seq_number()]
+                del(self.retransmission_attempts[ackedPacket.get_seq_number()])
             self.control_block.adjust_window(packet)
         else:
             return
