@@ -30,14 +30,9 @@ class ClientControlBlock(ProtocolControlBlock):
     
     def __init__(self, address, port):
         ProtocolControlBlock.__init__(self, address, port)
-        # Próximo SEQ a enviar
-        self.send_seq = random.randint(1, MAX_SEQ)
         # Tamaño de la ventana de emisión
         self.send_window = SEND_WINDOW
-        # Límite inferior de la ventana (i.e., unacknowledged)
-        self.window_lo = self.send_seq
-        # Límite superior de la ventana
-        self.window_hi = self.modular_sum(self.window_lo, self.send_window)
+        self.reset_numbers()
             
     def get_send_seq(self):
         return self.send_seq
@@ -68,9 +63,18 @@ class ClientControlBlock(ProtocolControlBlock):
     def adjust_window(self, packet):
         self.window_lo = packet.get_ack_number() + 1
         self.window_hi = self.modular_sum(self.window_lo, self.send_window)
+        self.send_seq = max(self.send_seq, self.window_lo)
 
     def increment_send_seq(self):
         self.send_seq = self.modular_increment(self.send_seq)
+
+    def reset_numbers(self):
+        # Próximo SEQ a enviar
+        self.send_seq = random.randint(1, MAX_SEQ)
+        # Límite inferior de la ventana (i.e., unacknowledged)
+        self.window_lo = self.send_seq
+        # Límite superior de la ventana
+        self.window_hi = self.modular_sum(self.window_lo, self.send_window)
                 
 
 class PTCClientProtocol(object):
@@ -110,6 +114,7 @@ class PTCClientProtocol(object):
         self.worker = ClientProtocolWorker.spawn_for(self)
         self.worker.start()
         self.connected_event = threading.Event()
+        self.control_block.reset_numbers()
         self.control_block.set_destination_address(address)
         self.control_block.set_destination_port(port)
         
