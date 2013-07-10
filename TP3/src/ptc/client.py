@@ -212,9 +212,11 @@ class PTCClientProtocol(object):
             ackNum = packet.get_ack_number()
             seqNum = self.control_block.get_send_seq()
             
-            if not (ackNum == seqNum):
-                self.error = 'SYN_ACK inválido'
-                self.shutdown()
+            if not (self.control_block.modular_increment(ackNum) == seqNum):
+                #self.error = 'SYN_ACK inválido'
+                #self.shutdown()
+                #no hagamos que se cierre, tal vez le llegó algo viejo o equivocado
+                #dejemos que si posta anda mal, lo maten los timeouts.
                 return
             
             self.state = ESTABLISHED
@@ -224,15 +226,11 @@ class PTCClientProtocol(object):
             # Recibi respuesta del servidor indicando que puedo cerrar la conexion
             self.state = CLOSED
             # *** Hago algo mas para cerrar la conexion?
-            self.close()
             self.shutdown() #(?)
             
         else:
             self.error = 'Estado inexistente'
             self.shutdown()
-            
-            
-        
             
     def handle_close_connection(self):
         if not self.outgoing_buffer.empty():
